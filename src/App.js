@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import fusTheme from './fusTheme';
+import React, { Component } from 'react'
+import './App.css'
+import AppBar from 'material-ui/AppBar'
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import fusTheme from './fusTheme'
 
-injectTapEventPlugin();
+injectTapEventPlugin()
 
 class App extends Component {
 	constructor(props) {
-		super(props);
-		this.state = { open: false };
+		super(props)
+		this.state = { open: false }
 	}
 	render() {
 		return (
@@ -36,8 +35,8 @@ class App extends Component {
 					</Drawer>
 				</div>
 			</MuiThemeProvider>
-		);
+		)
 	}
 }
 
-export default App;
+export default App
