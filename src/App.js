@@ -21,19 +21,19 @@ class App extends Component {
       
       <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
         <div>
-        <AppBar
-          title="Title"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-          onLeftIconButtonTouchTap={() => this.setState({open: !this.state.open})﻿}
-        />
-        <Drawer
-          open={this.state.open}
-          docked={false}
-          onRequestChange={(open) => this.setState({open})}
-        >
-          <MenuItem>Menu Item</MenuItem>
-          <MenuItem>Menu Item 2</MenuItem>
-        </Drawer>
+          <AppBar
+            title="Title"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            onLeftIconButtonTouchTap={() => this.setState({open: !this.state.open})﻿}
+          />
+          <Drawer
+            open={this.state.open}
+            docked={false}
+            onRequestChange={(open) => this.setState({open})}
+          >
+            <MenuItem>Menu Item</MenuItem>
+            <MenuItem>Menu Item 2</MenuItem>
+          </Drawer>
         </div>
       </MuiThemeProvider>
       
