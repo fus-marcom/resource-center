@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, NavLink } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
@@ -16,6 +16,9 @@ class App extends Component {
     super(props)
     this.state = { open: false }
   }
+
+  handleClose = () => this.setState({ open: false })
+
   render () {
     return (
       <BrowserRouter>
@@ -32,27 +35,30 @@ class App extends Component {
               docked={false}
               onRequestChange={open => this.setState({ open })}
             >
-              <MenuItem>
-                <Link to='/'>Home</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/logos'>Logos</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/posters'>Posters</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/letterhead'>Letterhead</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/share-a-story'>Share a Story</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/service-request-form'>Service Request Form</Link>
-              </MenuItem>
-              <MenuItem>
-                <Link to='/tutorial'>Tutorial</Link>
-              </MenuItem>
+              <NavLink to='/'>
+                <MenuItem onTouchTap={this.handleClose}>Home</MenuItem>
+              </NavLink>
+
+              <NavLink activeClassName='active' to='/logos'>
+                <MenuItem onTouchTap={this.handleClose} primaryText='Logos' />
+              </NavLink>
+              <NavLink to='/posters'>
+                <MenuItem onTouchTap={this.handleClose}>Posters</MenuItem>
+              </NavLink>
+              <NavLink to='/letterhead'>
+                <MenuItem onTouchTap={this.handleClose}>Letterhead</MenuItem>
+              </NavLink>
+              <NavLink to='/share-a-story'>
+                <MenuItem onTouchTap={this.handleClose}>Share a Story</MenuItem>
+              </NavLink>
+              <NavLink to='/service-request-form'>
+                <MenuItem onTouchTap={this.handleClose}>
+                  Service Request Form
+                </MenuItem>
+              </NavLink>
+              <NavLink to='/tutorial'>
+                <MenuItem onTouchTap={this.handleClose}>Tutorial</MenuItem>
+              </NavLink>
             </Drawer>
 
             <Route exact path='/' render={() => <h1>Home View</h1>} />
