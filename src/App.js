@@ -19,7 +19,16 @@ class App extends Component {
 
   handleClose = () => this.setState({ open: false })
 
+  SideBarItem = ({ link, text, isExact }) => {
+    return (
+      <NavLink activeClassName='active' exact={isExact} to={link}>
+        <MenuItem onTouchTap={this.handleClose} primaryText={text} />
+      </NavLink>
+    )
+  }
+
   render () {
+    const SideBarItem = this.SideBarItem
     return (
       <BrowserRouter>
         <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
@@ -35,30 +44,16 @@ class App extends Component {
               docked={false}
               onRequestChange={open => this.setState({ open })}
             >
-              <NavLink activeClassName='active' exact to='/'>
-                <MenuItem onTouchTap={this.handleClose}>Home</MenuItem>
-              </NavLink>
-
-              <NavLink activeClassName='active' to='/logos'>
-                <MenuItem onTouchTap={this.handleClose} primaryText='Logos' />
-              </NavLink>
-              <NavLink activeClassName='active' to='/posters'>
-                <MenuItem onTouchTap={this.handleClose}>Posters</MenuItem>
-              </NavLink>
-              <NavLink activeClassName='active' to='/letterhead'>
-                <MenuItem onTouchTap={this.handleClose}>Letterhead</MenuItem>
-              </NavLink>
-              <NavLink activeClassName='active' to='/share-a-story'>
-                <MenuItem onTouchTap={this.handleClose}>Share a Story</MenuItem>
-              </NavLink>
-              <NavLink activeClassName='active' to='/service-request-form'>
-                <MenuItem onTouchTap={this.handleClose}>
-                  Service Request Form
-                </MenuItem>
-              </NavLink>
-              <NavLink activeClassName='active' to='/tutorial'>
-                <MenuItem onTouchTap={this.handleClose}>Tutorial</MenuItem>
-              </NavLink>
+              <SideBarItem link='/' text='Home' isExact />
+              <SideBarItem link='/logos' text='Logos' />
+              <SideBarItem link='/posters' text='Posters' />
+              <SideBarItem link='/letterhead' text='Letterhead' />
+              <SideBarItem link='/share-a-story' text='Share a Story' />
+              <SideBarItem
+                link='/service-request-form'
+                text='Service Request Form'
+              />
+              <SideBarItem link='/tutorial' text='Tutorial' />
             </Drawer>
 
             <Route exact path='/' render={() => <h1>Home View</h1>} />
