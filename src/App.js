@@ -5,8 +5,12 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 
 /* Material-UI */
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import fusTheme from './fusTheme'
+import { theme } from 'material-ui/styles'
+
+/* import fusTheme for custom theme and use it in theme attribute of MuiThemeProvider.
+It'll change the theme of current home page from light to dark */
+
+// import fusTheme from './fusTheme';
 
 import SideNav from './SideNav'
 
@@ -30,7 +34,7 @@ class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
+        <MuiThemeProvider theme={theme}>
           <div>
             <SideNav />
 
