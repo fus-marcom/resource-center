@@ -4,8 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 /* Material-UI */
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { MuiThemeProvider } from 'material-ui/styles'
 import fusTheme from './fusTheme'
 
 import SideNav from './SideNav'
@@ -30,7 +29,7 @@ class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
+        <MuiThemeProvider theme={fusTheme}>
           <div>
             <SideNav />
 
