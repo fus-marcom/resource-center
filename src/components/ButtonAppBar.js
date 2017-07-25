@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
@@ -10,7 +9,7 @@ import MenuIcon from 'material-ui-icons/Menu'
 
 const styleSheet = createStyleSheet('ButtonAppBar', {
   root: {
-    marginTop: 30,
+    marginTop: 0,
     width: '100%'
   },
   flex: {
@@ -18,7 +17,7 @@ const styleSheet = createStyleSheet('ButtonAppBar', {
   }
 })
 
-function ButtonAppBar (props) {
+const ButtonAppBar = props => {
   const classes = props.classes
   return (
     <div className={classes.root}>
@@ -35,10 +34,6 @@ function ButtonAppBar (props) {
       </AppBar>
     </div>
   )
-}
-
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styleSheet)(ButtonAppBar)

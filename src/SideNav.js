@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ButtonAppBar from './components/ButtonAppBar'
 import Drawer from 'material-ui/Drawer'
+import { withStyles, createStyleSheet } from 'material-ui/styles'
 import SideBarItem from './SideBarItem'
 
 /*
@@ -24,13 +25,35 @@ const links = [
   { isExact: false, linkTo: '/tutorial', text: 'Tutorial' }
 ]
 
+const styleSheet = createStyleSheet('SideNav', {
+  list: {
+    width: 250,
+    flex: 'initial'
+  },
+  listFull: {
+    width: 'auto',
+    flex: 'initial'
+  }
+})
+
 class SideNav extends Component {
   constructor (props) {
     super(props)
-    this.state = { open: false }
+    this.state = {
+      open: {
+        left: false
+      }
+    }
   }
 
-  handleClose = () => this.setState({ open: false })
+  toggleDrawer = (side, open) => {
+    const drawerState = {}
+    drawerState[side] = open
+    this.setState({ open: drawerState })
+  }
+
+  handleLeftOpen = () => this.toggleDrawer('left', true)
+  handleLeftClose = () => this.toggleDrawer('left', false)
 
   render () {
     return (
@@ -38,9 +61,9 @@ class SideNav extends Component {
         <ButtonAppBar />
 
         <Drawer
-          open={this.state.open}
-          docked={false}
-          onRequestChange={open => this.setState({ open })}
+          open={this.state.open.left}
+          onRequestClose={this.handleLeftClose}
+          onClick={this.handleLeftClose}
         >
           {links.map((link, i) => {
             return (
@@ -48,7 +71,7 @@ class SideNav extends Component {
                 isExact={link.isExact}
                 linkTo={link.linkTo}
                 primaryText={link.text}
-                handleClose={this.handleClose}
+                handleClose={this.handleLeftClose}
                 key={i}
               />
             )
@@ -59,4 +82,4 @@ class SideNav extends Component {
   }
 }
 
-export default SideNav
+export default withStyles(styleSheet)(SideNav)
