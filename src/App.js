@@ -22,6 +22,7 @@ import ServiceRequest from './views/ServiceRequest'
 import Services from './views/Services'
 import Story from './views/Story'
 import Tutorial from './views/Tutorial'
+import NotFound from './views/NotFound'
 
 injectTapEventPlugin()
 
@@ -45,6 +46,7 @@ class App extends Component {
               <Route path='/glossary' component={Glossary} />
               <Route path='/service-request-form' component={ServiceRequest} />
               <Route path='/tutorial' component={Tutorial} />
+              <Route component={NotFound} />
             </Switch>
           </div>
         </MuiThemeProvider>
