@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AppBar from 'material-ui/AppBar'
+import ButtonAppBar from './components/ButtonAppBar'
 import Drawer from 'material-ui/Drawer'
 import SideBarItem from './SideBarItem'
 
@@ -35,12 +35,8 @@ class SideNav extends Component {
   render () {
     return (
       <div>
-        <AppBar
-          title='Title'
-          iconClassNameRight='muidocs-icon-navigation-expand-more'
-          onLeftIconButtonTouchTap={() =>
-            this.setState({ open: !this.state.open })}
-        />
+        <ButtonAppBar />
+
         <Drawer
           open={this.state.open}
           docked={false}

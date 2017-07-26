@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import MenuItem from 'material-ui/MenuItem'
+import { MenuItem } from 'material-ui/Menu'
 
 class SideBarItem extends Component {
   constructor (props) {
