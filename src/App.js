@@ -5,10 +5,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 
 /* Material-UI */
 import { MuiThemeProvider } from 'material-ui/styles'
-import { theme } from 'material-ui/styles/theme'
+// import { theme } from 'material-ui/styles/theme'
 
 // uncomment below import and then replace value of theme property with fusTheme in MuiThemeProvider component
-// import fusTheme from './fusTheme'
+import fusTheme from './fusTheme'
 
 import SideNav from './SideNav'
 
@@ -32,7 +32,7 @@ class App extends Component {
   render () {
     return (
       <BrowserRouter>
-        <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider theme={fusTheme}>
           <div>
             <SideNav />
 
