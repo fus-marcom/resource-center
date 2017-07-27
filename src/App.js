@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import './styles/materialize-grid.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
