@@ -3,12 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { ListItem } from 'material-ui/List'
 
 class SideBarItem extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      open: false
-    }
-  }
   render () {
     return (
       <NavLink
