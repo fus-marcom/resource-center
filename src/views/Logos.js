@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { GenericCard } from './../components/GenericCard'
+import { CardTitle } from 'material-ui/Card'
 
 class Logos extends Component {
   render () {
@@ -7,13 +8,15 @@ class Logos extends Component {
       <div className='row'>
         <div className='col m6'>
           <GenericCard
-            headerTitle='Hello'
-            headerSubtitle='I am Rohit Bhati'
-            headerAvatar='http://via.placeholder.com/140x100'
-            mediaOverlayTitle='Happy Coding'
-            mediaOverlaySubtitle="Hope you're enjoying"
-            mediaImgSrc='http://via.placeholder.com/350x150'
-            mediaImgAlt='Image'
+            headerTitle='Rohit Bhati'
+            headerAvatar='http://via.placeholder.com/100x200'
+            mediaImgSrc='http://via.placeholder.com/120x100'
+            overlay={
+              <CardTitle
+                title='Nice job'
+                subtitle='Congratulations on this great Achievement'
+              />
+            }
             cardTitle='Nice one'
             cardSubtitle='Looking good'
           >
