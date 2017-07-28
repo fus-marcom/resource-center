@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { GenericCard } from './../components/GenericCard'
 import { CardTitle } from 'material-ui/Card'
+import FlatButton from 'material-ui/FlatButton'
 
 class Logos extends Component {
   render () {
@@ -11,14 +12,15 @@ class Logos extends Component {
             headerTitle='Rohit Bhati'
             headerAvatar='http://via.placeholder.com/100x200'
             mediaImgSrc='http://via.placeholder.com/120x100'
-            overlay={
-              <CardTitle
-                title='Nice job'
-                subtitle='Congratulations on this great Achievement'
-              />
-            }
+            overlay={<CardTitle title='Good job' subtitle='Keep it up' />}
             cardTitle='Nice one'
             cardSubtitle='Looking good'
+            actions={
+              <div>
+                <FlatButton label='Action1' />
+                <FlatButton label='Action2' />
+              </div>
+            }
           >
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam
             iusto, quis dignissimos fugiat qui architecto. Numquam illum dolor
