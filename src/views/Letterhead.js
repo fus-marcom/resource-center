@@ -31,22 +31,22 @@ class Letterhead extends Component {
           <LetterheadCard
             title='Card title'
             action='Action1'
-            image='https://unsplash.it/600/776/?random=1'
+            image='https://placeimg.com/600/776/nature'
           />
           <LetterheadCard
             title='Card title'
             action='Action1'
-            image='https://unsplash.it/600/776/?random=2'
+            image='https://placeimg.com/600/776/animals'
           />
           <LetterheadCard
             title='Card title'
             action='Action1'
-            image='https://unsplash.it/600/776/?random=3'
+            image='https://placeimg.com/600/776/arch'
           />
           <LetterheadCard
             title='Card title'
             action='Action1'
-            image='https://unsplash.it/600/776/?random=4'
+            image='https://placeimg.com/600/776/tech'
           />
         </div>
       </div>
