@@ -29,7 +29,7 @@ class Letterhead extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col s12 m6'>
+          <div className='col s12 m6' style={{ paddingBottom: '0.75rem' }}>
             <Card>
               <CardMedia>
                 <img src='https://unsplash.it/600/776/?random' alt='' />
@@ -40,7 +40,7 @@ class Letterhead extends Component {
               </CardActions>
             </Card>
           </div>
-          <div className='col s12 m6'>
+          <div className='col s12 m6' style={{ paddingBottom: '0.75rem' }}>
             <Card>
               <CardMedia>
                 <img src='https://unsplash.it/600/776/?random' alt='' />
@@ -51,9 +51,7 @@ class Letterhead extends Component {
               </CardActions>
             </Card>
           </div>
-        </div>
-        <div className='row'>
-          <div className='col s12 m6'>
+          <div className='col s12 m6' style={{ paddingBottom: '0.75rem' }}>
             <Card>
               <CardMedia>
                 <img src='https://unsplash.it/600/776/?random' alt='' />
@@ -65,7 +63,7 @@ class Letterhead extends Component {
             </Card>
           </div>
 
-          <div className='col s12 m6'>
+          <div className='col s12 m6' style={{ paddingBottom: '0.75rem' }}>
             <Card>
               <CardMedia>
                 <img src='https://unsplash.it/600/776/?random' alt='' />
