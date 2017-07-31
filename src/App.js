@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css'
+import './styles/App.css'
 import './styles/materialize-grid.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -7,9 +7,9 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 /* Material-UI */
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import fusTheme from './fusTheme'
+import fusTheme from './components/fusTheme'
 
-import SideNav from './SideNav'
+import SideNav from './components/SideNav'
 
 /* Import Views */
 import Glossary from './views/Glossary'
