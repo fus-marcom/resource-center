@@ -1,6 +1,13 @@
 import nightmare from 'nightmare'
+import url from 'url'
 
 export const visit = path => {
+  const BASE_URL = url.format({
+    protocol: process.env.PROTOCOL || 'http',
+    hostname: process.env.HOST || 'localhost',
+    port: process.env.PORT || 3000
+  })
+  const location = url.resolve(BASE_URL, path)
   const config = {
     // Try changing this to true and run the tests
     // It is pretty cool
@@ -10,5 +17,5 @@ export const visit = path => {
     // is only raised if the DOM itself has not yet loaded.
     gotoTimeout: 4000
   }
-  return nightmare(config).goto('http://localhost:3000' + path)
+  return nightmare(config).goto(location)
 }
