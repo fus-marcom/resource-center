@@ -1,0 +1,137 @@
+.file-field {
+    position: relative;
+}
+
+.input-field {
+    position: relative;
+    margin-top: 1rem;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+.file-field .btn, .file-field .btn-large {
+    float: left;
+    height: 3rem;
+    line-height: 3rem;
+}
+
+.btn, .btn-large {
+    text-decoration: none;
+    color: #fff;
+    background-color: #26a69a;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    cursor: pointer;
+}
+
+.btn, .btn-large, .btn-floating, .btn-large, .btn-flat {
+    font-size: 1rem;
+    outline: 0;
+}
+
+.btn, .btn-large, .btn-flat {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+.file-field span {
+    cursor: pointer;
+}
+
+.file-field input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+input {
+    line-height: normal;
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+.file-field .file-path-wrapper {
+    overflow: hidden;
+    padding-left: 10px;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+.file-field input.file-path {
+    width: 100%;
+}
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+input {
+    line-height: normal;
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
