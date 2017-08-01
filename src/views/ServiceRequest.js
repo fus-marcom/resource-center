@@ -52,16 +52,14 @@ class ServiceRequest extends Component {
   }
 
   handleFilePath = () => {
-    let file = document.getElementById('upload').files
+    // Array.from converts array-like to array (so that map works)
+    const file = Array.from(document.getElementById('upload').files)
     if (file.length === 0) {
       this.setState({
         fileInput: null
       })
     } else {
-      let fileNames = ''
-      for (let i = 0; i < file.length; i++) {
-        fileNames = fileNames + file[i].name + ', '
-      }
+      const fileNames = file.map(f => f.name).join(', ')
       this.setState({
         fileInput: fileNames
       })
@@ -69,7 +67,7 @@ class ServiceRequest extends Component {
   }
 
   render () {
-    let fileValue = this.state.fileInput || 'Select a file to upload'
+    const fileValue = this.state.fileInput || 'Select a file to upload'
     return (
       <div className='container'>
         <div className='row'>
