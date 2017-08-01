@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
-import RaisedButton from '../MaterializeRaisedButton'
+import RaisedButton from '../components/MaterializeRaisedButton'
 import '../styles/responsive-text.css'
 
 class Story extends Component {
