@@ -14,12 +14,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test-without-watch": "cross-env CI=true npm test",
     "eject": "react-scripts eject",
     "lint": "prettier 'src/**/*.js' 'src/components/**/*.js' '*.js' --write --single-quote --no-semi && standard --fix",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged && npm run test-without-watch"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "cross-env": "^5.0.1",
     "husky": "^0.14.3",
     "lint-staged": "^4.0.2",
     "nightmare": "^2.10.0",
