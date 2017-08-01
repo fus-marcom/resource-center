@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
 import Checkbox from 'material-ui/Checkbox'
-import RaisedButton from '../MaterializeRaisedButton'
+import RaisedButton from '../components/MaterializeRaisedButton'
 import '../styles/inputFile.css'
 
 const styles = {
