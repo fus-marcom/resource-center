@@ -5,7 +5,10 @@ import FlatButton from 'material-ui/FlatButton'
 class LetterheadCard extends Component {
   render () {
     return (
-      <div className='col s12 m6' style={{ paddingBottom: '0.75rem' }}>
+      <div
+        className='col s12 m6 letterhead-card'
+        style={{ paddingBottom: '0.75rem' }}
+      >
         <Card>
           <CardMedia>
             <img src={this.props.image} alt={this.props.title} />
