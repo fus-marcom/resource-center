@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
 import Checkbox from 'material-ui/Checkbox'
 import RaisedButton from '../components/MaterializeRaisedButton'
+import { Link } from 'react-router-dom'
 import '../styles/inputFile.css'
 
 const styles = {
@@ -63,20 +64,20 @@ class ServiceRequest extends Component {
         </div>
         <div className='row'>
           <div className='col s12 m6'>
-            <TextField floatingLabelText='Floating Label Text' fullWidth />
+            <TextField floatingLabelText='Name' fullWidth />
           </div>
           <div className='col s12 m6'>
-            <TextField floatingLabelText='Floating Label Text' fullWidth />
+            <TextField floatingLabelText='Email' fullWidth />
           </div>
           <div className='col s12 m6'>
-            <TextField floatingLabelText='Floating Label Text' fullWidth />
+            <TextField floatingLabelText='Phone' fullWidth />
           </div>
           <div className='col s12 m6'>
-            <TextField floatingLabelText='Floating Label Text' fullWidth />
+            <TextField floatingLabelText='Department' fullWidth />
           </div>
           <div className='col s12 m6'>
             <TextField
-              floatingLabelText='MultiLine and FloatingLabel'
+              floatingLabelText='Project Description'
               multiLine
               rows={2}
               fullWidth
@@ -84,7 +85,7 @@ class ServiceRequest extends Component {
           </div>
           <div className='col s12 m6'>
             <TextField
-              floatingLabelText='MultiLine and FloatingLabel'
+              floatingLabelText='Project Goal'
               multiLine
               rows={2}
               fullWidth
@@ -92,7 +93,7 @@ class ServiceRequest extends Component {
           </div>
           <div className='col s12 m6'>
             <TextField
-              floatingLabelText='MultiLine and FloatingLabel'
+              floatingLabelText='Project Budget'
               multiLine
               rows={2}
               fullWidth
@@ -100,7 +101,7 @@ class ServiceRequest extends Component {
           </div>
           <div className='col s12 m6'>
             <TextField
-              floatingLabelText='MultiLine and FloatingLabel'
+              floatingLabelText='Key Messages'
               multiLine
               rows={2}
               fullWidth
@@ -108,7 +109,7 @@ class ServiceRequest extends Component {
           </div>
           <div className='col s12 m6'>
             <TextField
-              floatingLabelText='MultiLine and FloatingLabel'
+              floatingLabelText='Primary Target Audience'
               multiLine
               rows={2}
               fullWidth
@@ -116,7 +117,7 @@ class ServiceRequest extends Component {
           </div>
           <div className='col s12 m6'>
             <TextField
-              floatingLabelText='MultiLine and FloatingLabel'
+              floatingLabelText='Secondary Target Audience'
               multiLine
               rows={2}
               fullWidth
@@ -124,7 +125,7 @@ class ServiceRequest extends Component {
           </div>
           <div className='col s12 m6'>
             <TextField
-              floatingLabelText='MultiLine and FloatingLabel'
+              floatingLabelText='Project Contact (if other than yourself)'
               multiLine
               rows={2}
               fullWidth
@@ -132,19 +133,19 @@ class ServiceRequest extends Component {
           </div>
           <div className='col s12 m6'>
             <TextField
-              floatingLabelText='MultiLine and FloatingLabel'
+              floatingLabelText='Comments'
               multiLine
               rows={2}
               fullWidth
             />
           </div>
           <div className='col s12 m6'>
-            <DatePicker hintText='Portrait Dialog' />
+            <DatePicker hintText='Desired Completion Date' />
           </div>
           <div className='col s12 m6'>
             <div className='file-field input-field'>
               <div className='btn'>
-                <span>Upload File</span>
+                <span>Upload Files</span>
                 <input
                   id='upload'
                   type='file'
@@ -161,16 +162,6 @@ class ServiceRequest extends Component {
                 />
               </div>
             </div>
-            {/* This is how Material-UI display an upload button (uncomment it)
-                <RaisedButton
-                  label="Choose an Image"
-                  labelPosition="before"
-                  style={styles.button}
-                  containerElement="label"
-                >
-                  <input type="file" style={styles.exampleImageInput} />
-                </RaisedButton>
-           */}
           </div>
           <div className='col s12 m6'>
             <Checkbox label='Simple' style={styles.checkbox} />
@@ -192,7 +183,18 @@ class ServiceRequest extends Component {
           </div>
           <div className='col s12'>
             <RaisedButton label='Submit' primary />
-            <Checkbox label='Simple' style={styles.checkbox} />
+            <Checkbox
+              label={
+                <span>
+                  I have read the{' '}
+                  <Link exact to='/planning-guide' style={{ fontWeight: 500 }}>
+                    Planning Guide
+                  </Link>
+                </span>
+              }
+              style={styles.checkbox}
+              inputStyle={{ width: '35px' }}
+            />
           </div>
         </div>
       </div>
