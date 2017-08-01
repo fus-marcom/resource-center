@@ -42,8 +42,12 @@ class ServiceRequest extends Component {
         fileInput: null
       })
     } else {
+      let fileNames = ''
+      for (let i = 0; i < file.length; i++) {
+        fileNames = fileNames + file[i].name + ', '
+      }
       this.setState({
-        fileInput: file[0].name
+        fileInput: fileNames
       })
     }
   }
@@ -153,6 +157,7 @@ class ServiceRequest extends Component {
                   value={fileValue}
                   className='file-path validate'
                   type='text'
+                  readOnly
                 />
               </div>
             </div>
