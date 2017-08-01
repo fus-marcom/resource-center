@@ -51,15 +51,16 @@ class ServiceRequest extends Component {
     })
   }
 
-  handleFilePath = () => {
+  handleFilePath = event => {
+    const target = event.target
     // Array.from converts array-like to array (so that map works)
-    const file = Array.from(document.getElementById('upload').files)
-    if (file.length === 0) {
+    const files = Array.from(target.files)
+    if (files.length === 0) {
       this.setState({
         fileInput: null
       })
     } else {
-      const fileNames = file.map(f => f.name).join(', ')
+      const fileNames = files.map(f => f.name).join(', ')
       this.setState({
         fileInput: fileNames
       })
