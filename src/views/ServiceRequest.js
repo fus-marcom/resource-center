@@ -86,8 +86,8 @@ class ServiceRequest extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
-  formatLabelToProperty = lable =>
-    lable.split(' (')[0].toLowerCase().split(' ').join('-')
+  formatLabelToProperty = label =>
+    label.split(' (')[0].toLowerCase().split(' ').join('-')
 
   handleInputChange (event) {
     const target = event.target
