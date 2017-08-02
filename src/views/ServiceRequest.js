@@ -32,14 +32,62 @@ const styles = {
 class ServiceRequest extends Component {
   constructor (props) {
     super(props)
+    this.singleLineFields = ['Name', 'Email', 'Phone', 'Department']
+    this.multiLineFields = [
+      'Project Description',
+      'Project Goal',
+      'Project Budget',
+      'Key Messages',
+      'Primary Target Audience',
+      'Secondary Target Audience',
+      'Project Contact (if other than yourself)',
+      'Comments'
+    ]
+    this.leftCheckboxes = [
+      'Simple1',
+      'Simple2',
+      'Simple3',
+      'Simple4',
+      'Simple5',
+      'Simple6'
+    ]
+    this.rightCheckboxes = [
+      'Simple7',
+      'Simple8',
+      'Simple9',
+      'Simple10',
+      'Simple11',
+      'Simple12'
+    ]
+    const stringProps = [
+      ...this.singleLineFields,
+      ...this.multiLineFields
+    ].reduce(
+      (acc, label) => ({
+        [this.formatLabelToProperty(label)]: '',
+        ...acc
+      }),
+      {}
+    )
+    const checkboxProps = [
+      ...this.leftCheckboxes,
+      ...this.rightCheckboxes
+    ].reduce(
+      (acc, label) => ({
+        [this.formatLabelToProperty(label)]: false,
+        ...acc
+      }),
+      {}
+    )
     this.state = {
-      fileInput: null,
-      name: '',
-      email: '',
-      phone: ''
+      fileInput: null
     }
+    Object.assign(this.state, stringProps, checkboxProps)
     this.handleInputChange = this.handleInputChange.bind(this)
   }
+
+  formatLabelToProperty = label =>
+    label.split(' (')[0].toLowerCase().split(' ').join('-')
 
   handleInputChange (event) {
     const target = event.target
@@ -51,17 +99,16 @@ class ServiceRequest extends Component {
     })
   }
 
-  handleFilePath = () => {
-    let file = document.getElementById('upload').files
-    if (file.length === 0) {
+  handleFilePath = event => {
+    const target = event.target
+    // Array.from converts array-like to array (so that map works)
+    const files = Array.from(target.files)
+    if (files.length === 0) {
       this.setState({
         fileInput: null
       })
     } else {
-      let fileNames = ''
-      for (let i = 0; i < file.length; i++) {
-        fileNames = fileNames + file[i].name + ', '
-      }
+      const fileNames = files.map(f => f.name).join(', ')
       this.setState({
         fileInput: fileNames
       })
@@ -69,7 +116,38 @@ class ServiceRequest extends Component {
   }
 
   render () {
-    let fileValue = this.state.fileInput || 'Select a file to upload'
+    const fileValue = this.state.fileInput || 'Select a file to upload'
+    const SingleLineField = (label, index) =>
+      <div className='col s12 m6' key={index}>
+        <TextField
+          floatingLabelText={label}
+          name={this.formatLabelToProperty(label)}
+          value={this.state[this.formatLabelToProperty(label)]}
+          onChange={this.handleInputChange}
+          fullWidth
+        />
+      </div>
+    const MultiLineField = (label, index) =>
+      <div className='col s12 m6' key={index}>
+        <TextField
+          floatingLabelText={label}
+          name={this.formatLabelToProperty(label)}
+          value={this.state[this.formatLabelToProperty(label)]}
+          onChange={this.handleInputChange}
+          multiLine
+          rows={2}
+          fullWidth
+        />
+      </div>
+    const CheckboxField = (label, index) =>
+      <Checkbox
+        label={label}
+        name={this.formatLabelToProperty(label)}
+        key={index}
+        onClick={this.handleInputChange}
+        style={styles.checkbox}
+      />
+
     return (
       <div className='container'>
         <div className='row'>
@@ -78,99 +156,12 @@ class ServiceRequest extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Name'
-              name='name'
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Email'
-              name='email'
-              onChange={this.handleInputChange}
-              type='email'
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Phone'
-              name='phone'
-              onChange={this.handleInputChange}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField floatingLabelText='Department' fullWidth />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Project Description'
-              multiLine
-              rows={2}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Project Goal'
-              multiLine
-              rows={2}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Project Budget'
-              multiLine
-              rows={2}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Key Messages'
-              multiLine
-              rows={2}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Primary Target Audience'
-              multiLine
-              rows={2}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Secondary Target Audience'
-              multiLine
-              rows={2}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Project Contact (if other than yourself)'
-              multiLine
-              rows={2}
-              fullWidth
-            />
-          </div>
-          <div className='col s12 m6'>
-            <TextField
-              floatingLabelText='Comments'
-              multiLine
-              rows={2}
-              fullWidth
-            />
-          </div>
+          {this.singleLineFields.map((label, index) =>
+            SingleLineField(label, index)
+          )}
+          {this.multiLineFields.map((label, index) =>
+            MultiLineField(label, index)
+          )}
           <div className='col s12 m6'>
             <DatePicker hintText='Desired Completion Date' />
           </div>
@@ -196,22 +187,14 @@ class ServiceRequest extends Component {
             </div>
           </div>
           <div className='col s12 m6'>
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
+            {this.leftCheckboxes.map((label, index) =>
+              CheckboxField(label, index)
+            )}
           </div>
           <div className='col s12 m6'>
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
+            {this.rightCheckboxes.map((label, index) =>
+              CheckboxField(label, index)
+            )}
           </div>
           <div className='col s12 planning-guide-checkbox'>
             <RaisedButton label='Submit' primary />

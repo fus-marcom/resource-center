@@ -4451,6 +4451,12 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
+nightmare-upload@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/nightmare-upload/-/nightmare-upload-0.1.1.tgz#c9d47c14818f57ff47bf49fd19d11eec71937ada"
+  dependencies:
+    debug "^2.2.0"
+
 nightmare@^2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/nightmare/-/nightmare-2.10.0.tgz#e9c5d590bb296f59685fd48218c2fbac44767b21"
