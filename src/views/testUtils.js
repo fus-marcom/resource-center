@@ -1,4 +1,5 @@
-import nightmare from 'nightmare'
+import Nightmare from 'nightmare'
+require('nightmare-upload')(Nightmare)
 
 export const visit = path => {
   const config = {
@@ -10,5 +11,6 @@ export const visit = path => {
     // is only raised if the DOM itself has not yet loaded.
     gotoTimeout: 4000
   }
-  return nightmare(config).goto('http://localhost:3000' + path)
+  const nightmare = Nightmare(config)
+  return nightmare.goto('http://localhost:3000' + path)
 }

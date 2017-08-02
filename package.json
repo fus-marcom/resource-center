@@ -25,6 +25,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^4.0.2",
     "nightmare": "^2.10.0",
+    "nightmare-upload": "^0.1.1",
     "prettier": "^1.5.3",
     "standard": "^10.0.2"
   },
