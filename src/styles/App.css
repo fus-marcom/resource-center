@@ -1,10 +1,15 @@
 a {
   text-decoration: none;
-  color: #000;
+  color: #ffb41f;
 }
 
 /* Change this ugly color */
 
 .active div {
   background-color: #eee;
+}
+
+.valign-wrapper {
+  display: flex;
+  align-items: center;
 }
