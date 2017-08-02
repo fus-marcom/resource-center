@@ -174,7 +174,7 @@ class ServiceRequest extends Component {
           <div className='col s12 m6'>
             <DatePicker hintText='Desired Completion Date' />
           </div>
-          <div className='col s12 m6'>
+          <div className='col s12 m6 file-upload'>
             <div className='file-field input-field'>
               <div className='btn'>
                 <span>Upload Files</span>
@@ -213,13 +213,17 @@ class ServiceRequest extends Component {
             <Checkbox label='Simple' style={styles.checkbox} />
             <Checkbox label='Simple' style={styles.checkbox} />
           </div>
-          <div className='col s12'>
+          <div className='col s12 planning-guide-checkbox'>
             <RaisedButton label='Submit' primary />
             <Checkbox
               label={
                 <span>
                   I have read the{' '}
-                  <Link to='/planning-guide' style={{ fontWeight: 500 }}>
+                  <Link
+                    to='/planning-guide'
+                    target='_blank'
+                    style={{ fontWeight: 500 }}
+                  >
                     Planning Guide
                   </Link>
                 </span>
