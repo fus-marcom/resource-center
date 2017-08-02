@@ -8,7 +8,6 @@
 }
 
 *, *:before, *:after {
-    -webkit-box-sizing: inherit;
     box-sizing: inherit;
 }
 
@@ -21,10 +20,9 @@
 .btn, .btn-large {
     text-decoration: none;
     color: #fff;
-    background-color: #26a69a;
+    background-color: rgb(33,65,42);
     text-align: center;
     letter-spacing: .5px;
-    -webkit-transition: .2s ease-out;
     transition: .2s ease-out;
     cursor: pointer;
 }
@@ -43,16 +41,13 @@
     padding: 0 2rem;
     text-transform: uppercase;
     vertical-align: middle;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
 *, *:before, *:after {
-    -webkit-box-sizing: inherit;
     box-sizing: inherit;
 }
 .file-field span {
@@ -85,7 +80,6 @@ button, input, optgroup, select, textarea {
 }
 
 *, *:before, *:after {
-    -webkit-box-sizing: inherit;
     box-sizing: inherit;
 }
 
@@ -94,7 +88,6 @@ button, input, optgroup, select, textarea {
     padding-left: 10px;
 }
 *, *:before, *:after {
-    -webkit-box-sizing: inherit;
     box-sizing: inherit;
 }
 
@@ -113,11 +106,8 @@ input:not([type]), input[type=text]:not(.browser-default), input[type=password]:
     font-size: 1rem;
     margin: 0 0 20px 0;
     padding: 0;
-    -webkit-box-shadow: none;
     box-shadow: none;
-    -webkit-box-sizing: content-box;
     box-sizing: content-box;
-    -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -132,6 +122,5 @@ button, input, optgroup, select, textarea {
 }
 
 *, *:before, *:after {
-    -webkit-box-sizing: inherit;
     box-sizing: inherit;
 }
