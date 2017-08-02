@@ -3,12 +3,12 @@ import '../styles/video.css'
 
 const Tutorial = props =>
   <div className='container'>
-    <div className='row'>
+    <div className='row' style={{ marginBottom: 0 }}>
       <div
         className='col s12 valign-wrapper'
         style={{ minHeight: 'calc(100vh - 64px)' }}
       >
-        <div>
+        <div style={{ width: '100%' }}>
           <div className='video-container z-depth-1'>
             <iframe
               src='https://www.youtube.com/embed/WQt0GDsL8ZU?rel=0'
@@ -19,7 +19,7 @@ const Tutorial = props =>
               title='tutorial-video'
             />
           </div>
-          <p className='btm-margin-20'>
+          <p style={{ marginTop: '20px' }}>
             If you have any problems using the MarCom Resource Center, please
             contact Jesse Weigel at{' '}
             <a href='mailto:jweigel@franciscan.edu'>
