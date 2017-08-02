@@ -43,16 +43,38 @@ class ServiceRequest extends Component {
       'Project Contact (if other than yourself)',
       'Comments'
     ]
-    const singleStateProps = this.singleLineFields.reduce(
+    this.leftCheckboxes = [
+      'Simple1',
+      'Simple2',
+      'Simple3',
+      'Simple4',
+      'Simple5',
+      'Simple6'
+    ]
+    this.rightCheckboxes = [
+      'Simple7',
+      'Simple8',
+      'Simple9',
+      'Simple10',
+      'Simple11',
+      'Simple12'
+    ]
+    const stringProps = [
+      ...this.singleLineFields,
+      ...this.multiLineFields
+    ].reduce(
       (acc, label) => ({
         [this.formatLabelToProperty(label)]: '',
         ...acc
       }),
       {}
     )
-    const multiStateProps = this.multiLineFields.reduce(
+    const checkboxProps = [
+      ...this.leftCheckboxes,
+      ...this.rightCheckboxes
+    ].reduce(
       (acc, label) => ({
-        [this.formatLabelToProperty(label)]: '',
+        [this.formatLabelToProperty(label)]: false,
         ...acc
       }),
       {}
@@ -60,7 +82,7 @@ class ServiceRequest extends Component {
     this.state = {
       fileInput: null
     }
-    Object.assign(this.state, singleStateProps, multiStateProps)
+    Object.assign(this.state, stringProps, checkboxProps)
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
@@ -118,6 +140,14 @@ class ServiceRequest extends Component {
           fullWidth
         />
       </div>
+    const CheckboxField = (label, index) =>
+      <Checkbox
+        label={label}
+        name={this.formatLabelToProperty(label)}
+        key={index}
+        onClick={this.handleInputChange}
+        style={styles.checkbox}
+      />
 
     return (
       <div className='container'>
@@ -158,22 +188,14 @@ class ServiceRequest extends Component {
             </div>
           </div>
           <div className='col s12 m6'>
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
+            {this.leftCheckboxes.map((label, index) =>
+              CheckboxField(label, index)
+            )}
           </div>
           <div className='col s12 m6'>
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
-            <Checkbox label='Simple' style={styles.checkbox} />
+            {this.rightCheckboxes.map((label, index) =>
+              CheckboxField(label, index)
+            )}
           </div>
           <div className='col s12'>
             <RaisedButton label='Submit' primary />
