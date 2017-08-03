@@ -4,7 +4,9 @@ import { visit } from './testUtils'
 describe('Letterhead page', () => {
   it('loads in /letterhead', async () => {
     const page = visit('/letterhead')
-    await page.end()
+    const text = await page.evaluate(() => document.body.textContent).end()
+
+    expect(text).not.toContain('Page not found')
   })
 
   it('has 4 letterheads', async () => {

@@ -4,7 +4,9 @@ import { visit } from './testUtils'
 describe('Service Request Page', () => {
   it('loads on /service-request-form', async () => {
     const page = visit('/service-request-form')
-    await page.end()
+    const text = await page.evaluate(() => document.body.textContent).end()
+
+    expect(text).not.toContain('Page not found')
   })
 
   it('contains the text "Please use this form to request services"', async () => {

@@ -2,6 +2,13 @@
 import { visit } from './testUtils'
 
 describe('Home Page', () => {
+  it('loads on /', async () => {
+    const page = visit('/')
+    const text = await page.evaluate(() => document.body.textContent).end()
+
+    expect(text).not.toContain('Page not found')
+  })
+
   it('contains "Resource Center"', async () => {
     const page = visit('/')
     const text = await page.evaluate(() => document.body.textContent).end()
