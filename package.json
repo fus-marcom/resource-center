@@ -16,6 +16,8 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
+    "custom-server-only": "nodemon server.js",
+    "custom-server": "react-scripts build && npm-run-all -p watch-css custom-server-only",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test-without-watch": "cross-env CI=true npm test",
@@ -31,6 +33,7 @@
     "nightmare": "^2.10.0",
     "nightmare-upload": "^0.1.1",
     "node-sass-chokidar": "^0.0.3",
+    "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
     "standard": "^10.0.2"
