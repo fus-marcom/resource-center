@@ -24,4 +24,29 @@ describe('Tutorial page', () => {
 
     expect(text).toContain('please contact Jesse Weigel')
   })
+
+  const testCentered = async viewport => {
+    const page = visit('/tutorial')
+    const { leftSpace, rightSpace } = await page
+      .viewport(viewport.width, viewport.height)
+      .evaluate(() => {
+        const iframeRect = document
+          .querySelector('iframe')
+          .getBoundingClientRect()
+        const viewportWidth = window.innerWidth // Not incluiding scrollbar
+        const leftSpace = iframeRect.left
+        const rightSpace = viewportWidth - iframeRect.right
+        return { leftSpace, rightSpace }
+      })
+      .end()
+
+    const difference = Math.abs(leftSpace - rightSpace)
+    return expect(difference).toBeLessThanOrEqual(1) // Allow up to 1px of difference
+  }
+
+  it('has an iframe centered in a big viewport', () =>
+    testCentered({ width: 1920, height: 1080 }))
+
+  it('has an iframe centered in a small viewport', () =>
+    testCentered({ width: 320, height: 570 }))
 })
