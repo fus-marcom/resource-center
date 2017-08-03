@@ -25,4 +25,4 @@ app.post('/uploads', function (req, res) {
   res.json({ success: true, status: 'Form successfully﻿ submitted' })
 })
 
-app.listen(9000)
+app.listen(9000, () => console.log('Now serving on http://localhost:9000'))
