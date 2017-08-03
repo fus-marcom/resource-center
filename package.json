@@ -5,6 +5,7 @@
   "dependencies": {
     "formidable": "^1.1.1",
     "material-ui": "^0.18.6",
+    "nodemon": "^1.11.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
@@ -15,7 +16,8 @@
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
+    "start-server": "nodemon server.js -w server.js",
+    "start": "npm-run-all -p watch-css start-js start-server",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test-without-watch": "cross-env CI=true npm test",

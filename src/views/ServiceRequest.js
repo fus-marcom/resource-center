@@ -6,6 +6,10 @@ import RaisedButton from '../components/MaterializeRaisedButton'
 import { Link } from 'react-router-dom'
 import '../styles/inputFile.css'
 
+const PORT = process.env.UPLOADS_PORT || 9000
+const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
+const UPLOAD_URL = `http://${HOST}:${PORT}/uploads`
+
 const styles = {
   block: {
     maxWidth: 250
@@ -120,7 +124,7 @@ class ServiceRequest extends Component {
     for (const [key, val] of Object.entries(this.state)) data.append(key, val)
     for (const file of this.uploadInput.files) data.append('file', file)
 
-    fetch('/uploads', {
+    fetch(UPLOAD_URL, {
       method: 'post',
       body: data
     }).then(response => {})
