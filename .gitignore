@@ -22,3 +22,5 @@ yarn-error.log*
 
 # css files are build product now
 src/**/*.css
+
+# /uploads
