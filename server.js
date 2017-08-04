@@ -5,6 +5,7 @@ const formidable = require('formidable')
 const app = express()
 const PORT = process.env.PORT || 9000
 const UPLOAD_DIR = path.join(__dirname, 'uploads/')
+const CORS = process.env.NODE_ENV === 'production' ? process.env.HOST : '*'
 
 if (!fs.existsSync(UPLOAD_DIR)) {
   console.warn('Creating uploads folder...')
@@ -31,7 +32,7 @@ app.post('/uploads', function (req, res) {
     console.log('Uploaded ' + file.name)
   })
 
-  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Origin', CORS)
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
