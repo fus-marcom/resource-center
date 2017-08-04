@@ -215,28 +215,31 @@ class ServiceRequest extends Component {
               CheckboxField(label, index)
             )}
           </div>
-          <div className='col s12 planning-guide-checkbox'>
+          <div className='col s12'>
             <RaisedButton
               label='Submit'
+              id='submit-button'
               onClick={this.handleFormData}
               primary
             />
-            <Checkbox
-              label={
-                <span>
-                  I have read the{' '}
-                  <Link
-                    to='/planning-guide'
-                    target='_blank'
-                    style={{ fontWeight: 500 }}
-                  >
-                    Planning Guide
-                  </Link>
-                </span>
-              }
-              style={styles.checkbox}
-              inputStyle={{ width: '35px' }}
-            />
+            <div id='planning-guide-checkbox'>
+              <Checkbox
+                label={
+                  <span>
+                    I have read the{' '}
+                    <Link
+                      to='/planning-guide'
+                      target='_blank'
+                      style={{ fontWeight: 500 }}
+                    >
+                      Planning Guide
+                    </Link>
+                  </span>
+                }
+                style={styles.checkbox}
+                inputStyle={{ width: '35px' }}
+              />
+            </div>
           </div>
         </div>
       </div>
