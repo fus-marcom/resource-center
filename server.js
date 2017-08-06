@@ -42,34 +42,70 @@ app.get('/*', function (req, res) {
 })
 
 app.post('/uploads', function (req, res) {
-  var form = new formidable.IncomingForm()
+  const form = new formidable.IncomingForm()
+
+  // In any case send the cors headers (even on error)
+  res.header('Access-Control-Allow-Origin', CORS)
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
 
   form.parse(req).on('field', function (field, value) {
     console.log(field, value)
   })
 
+  // The events we subscribe to in the form occur in the following order
+  // field - multiple times
+  // fileBegin then file - once per file
+  // error - only if there was a parsing error
+  // end - when all other events have been handled and the files have
+  //       finished being written to the disk, this event happens even
+  //       if there was an error
+
   form.on('fileBegin', function (name, file) {
-    file.path = `${UPLOAD_DIR}${file.name}`
+    file.path = path.join(UPLOAD_DIR, file.name)
   })
 
   form.on('file', function (name, file) {
     console.log('Uploaded ' + file.name)
   })
 
-  res.header('Access-Control-Allow-Origin', CORS)
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  )
-  res.status(200).json({ success: true, status: 'Form successfully submitted' })
+  const fields = {}
+  form.on('field', (name, value) => {
+    fields[name] = value
+  })
 
-  sg.API(request, function (error, response) {
-    if (error) {
-      console.log('Error response received')
-    }
-    console.log(response.statusCode)
-    console.log(response.body)
-    console.log(response.headers)
+  // Handle a possible error while parsing the request
+  // We need a variable in this scope to hold whether there was an error
+  // because we need to know that in a different callback
+  let error = false
+  form.on('error', err => {
+    error = true
+    console.log('Error while parsing request to /uploads: ' + err)
+    res
+      .status(400) // Bad request
+      .json({ success: false, status: 'Error parsing the request' })
+  })
+
+  form.on('end', () => {
+    // The end event is fired even if an error occurs, so we
+    // need to prevent from sending a second response, otherwise the
+    // server crashes
+    if (error) return
+    console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
+    // Here is a good place to send the emails since we have the fields
+    sg.API(request, function (error, response) {
+      if (error) {
+        console.log('Error response received')
+      }
+      console.log(response.statusCode)
+      console.log(response.body)
+      console.log(response.headers)
+    })
+    res
+      .status(200)
+      .json({ success: true, status: 'Form successfully submitted' })
   })
 })
 
