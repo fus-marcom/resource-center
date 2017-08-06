@@ -33,6 +33,7 @@
     "lint-staged": "^4.0.2",
     "nightmare": "^2.10.0",
     "nightmare-upload": "^0.1.1",
+    "node-fetch": "^1.7.1",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
