@@ -4,6 +4,7 @@ const fs = require('fs')
 const formidable = require('formidable')
 const helper = require('sendgrid').mail
 const app = express()
+
 require('dotenv').config()
 const PORT = process.env.SERVER_PORT || 9000
 // const CLIENT_PORT = process.env.PORT || 3000
@@ -13,21 +14,15 @@ const UPLOAD_DIR = path.join(__dirname, 'uploads/')
 const CORS =
   process.env.NODE_ENV === 'production' ? `${PROTOCOL}://${HOSTNAME}` : `*`
 
-const fromEmail = new helper.Email('test@example.com')
 const toEmail = new helper.Email('jesseweigel@gmail.com')
-const subject = 'Sending with SendGrid is Fun'
-const content = new helper.Content(
-  'text/plain',
-  'and easy to do anywhere, even with Node.js'
-)
-const mail = new helper.Mail(fromEmail, subject, toEmail, content)
 
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
-const request = sg.emptyRequest({
-  method: 'POST',
-  path: '/v3/mail/send',
-  body: mail.toJSON()
-})
+const makeSgRequest = body =>
+  sg.emptyRequest({
+    method: 'POST',
+    path: '/v3/mail/send',
+    body: body.toJSON()
+  })
 
 if (!fs.existsSync(UPLOAD_DIR)) {
   console.warn('Creating uploads folder...')
@@ -51,9 +46,7 @@ app.post('/uploads', function (req, res) {
     'Origin, X-Requested-With, Content-Type, Accept'
   )
 
-  form.parse(req).on('field', function (field, value) {
-    console.log(field, value)
-  })
+  form.parse(req)
 
   // The events we subscribe to in the form occur in the following order
   // field - multiple times
@@ -94,15 +87,34 @@ app.post('/uploads', function (req, res) {
     // server crashes
     if (error) return
     console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
+
+    // TODO: Validate fields
+
     // Here is a good place to send the emails since we have the fields
-    sg.API(request, function (error, response) {
-      if (error) {
-        console.log('Error response received')
-      }
-      console.log(response.statusCode)
-      console.log(response.body)
-      console.log(response.headers)
-    })
+    // We don't want to actually send emails during testing since it
+    // would send a test email on every single commit
+    const testing = fields.hasOwnProperty('testing')
+    if (!testing) {
+      const fromEmail = new helper.Email('test@example.com')
+      const subject = 'Sending with SendGrid is Fun'
+      const content = new helper.Content(
+        'text/plain',
+        'and easy to do anywhere, even with Node.js'
+      )
+      const mail = new helper.Mail(fromEmail, subject, toEmail, content)
+      const request = makeSgRequest(mail)
+      console.log('Sending email...')
+      sg.API(request, function (error, response) {
+        if (error) {
+          console.log('Error response received')
+        }
+        console.log(response.statusCode)
+        console.log(response.body)
+        console.log(response.headers)
+      })
+    }
+
+    // Send the success response
     res
       .status(200)
       .json({ success: true, status: 'Form successfully submitted' })
