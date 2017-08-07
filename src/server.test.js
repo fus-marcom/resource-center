@@ -20,7 +20,7 @@ async function post (data, customHeaders) {
       customHeaders
     ),
     method: 'post',
-    body: data + '&testing=true'
+    body: data
   })
 
   return res.json()
