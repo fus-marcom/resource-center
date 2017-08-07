@@ -10,7 +10,8 @@
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
     "react-scripts": "^1.0.10",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "sendgrid": "^5.2.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
@@ -32,6 +33,7 @@
     "lint-staged": "^4.0.2",
     "nightmare": "^2.10.0",
     "nightmare-upload": "^0.1.1",
+    "node-fetch": "^1.7.1",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
