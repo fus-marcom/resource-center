@@ -6,6 +6,7 @@ const formidable = require('formidable')
 const helper = require('sendgrid').mail
 const app = express()
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
+const fetch = require('node-fetch')
 
 const PORT = process.env.SERVER_PORT || 9000
 // const CLIENT_PORT = process.env.PORT || 3000
@@ -15,7 +16,8 @@ const UPLOAD_DIR = path.join(__dirname, 'uploads/')
 const CORS =
   process.env.NODE_ENV === 'production' ? `${PROTOCOL}://${HOSTNAME}` : `*`
 const ENABLE_SEND_EMAILS =
-  process.env.NODE_ENV === 'production' || process.env.ENABLE_SEND_EMAILS
+  process.env.NODE_ENV === 'production' ||
+  process.env.ENABLE_SEND_EMAILS === 'true'
 
 if (ENABLE_SEND_EMAILS) {
   console.info('Sending emails is enabled')
@@ -29,6 +31,26 @@ const makeSgRequest = body =>
     path: '/v3/mail/send',
     body: body.toJSON()
   })
+
+// This converts {a:1, b:2} into 'a=1&b=2'
+const queryParams = obj =>
+  Object.keys(obj)
+    .map(key => [key, obj[key]]) // There is no Object.entries() in node 6
+    .map(([key, val]) => `${key}=${val}`)
+    .join('&')
+
+const wrikeMkFolder = name =>
+  fetch(process.env.WRIKE_URL, {
+    body: queryParams({
+      title: name,
+      description: 'folder description'
+    }),
+    method: 'post',
+    headers: {
+      Authorization: `bearer ${process.env.WRIKE_TOKEN}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).then(res => res.text())
 
 if (!fs.existsSync(UPLOAD_DIR)) {
   console.warn('Creating uploads folder...')
@@ -118,6 +140,8 @@ app.post('/uploads', function (req, res) {
         console.log(response.headers)
       })
     }
+
+    wrikeMkFolder('test').then(status => console.log(status)).catch(console.log)
 
     // Send the success response
     res
