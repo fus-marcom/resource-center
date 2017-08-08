@@ -1,6 +1,7 @@
 import Nightmare from 'nightmare'
 import url from 'url'
 require('nightmare-upload')(Nightmare)
+global['jasmine'].DEFAULT_TIMEOUT_INTERVAL = process.env.JASMINE_TIMEOUT || 6000
 
 const BASE_URL = url.format({
   protocol: process.env.PROTOCOL || 'http',
