@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const path = require('path')
-const fs = require('fs-extra')
+const fs = require('fs')
 const formidable = require('formidable')
 const helper = require('sendgrid').mail
 const app = express()
@@ -170,22 +170,20 @@ app.post('/uploads', function (req, res) {
         const folderId = status.data[0].id
         for (const file of files) {
           // Formidable files are just metadata, not the actual file
-          // Use the file name to read the real file from the disk
-          // as a Buffer
-
-          // Note that fs was swapped with fs-extra which is a
-          // promisified version of the fs built-in module
-          fs
-            .readFile(file.path)
-            .then(buffer => {
-              wrikeAddAttachment(folderId, buffer, file.name, file.type)
-            })
-            .catch(err => {
-              console.log(
-                'Error while reading file for upload to Wrike: ' + err
-              )
-              console.log('Filename: ' + file.path)
-            })
+          // Use the file name to create a ReadStream and pass it to
+          // node-fetch which can handle ReadStreams
+          // To pass a ReadStream is something like piping the file
+          // instead of reading the whole file and passing it
+          const readStream = fs.createReadStream(file.path)
+          wrikeAddAttachment(
+            folderId,
+            readStream,
+            file.name,
+            file.type
+          ).catch(err => {
+            console.log('Error while reading file for upload to Wrike: ' + err)
+            console.log('Filename: ' + file.path)
+          })
         }
       })
       .catch(err => {
