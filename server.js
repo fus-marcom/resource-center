@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const path = require('path')
-const fs = require('fs')
+const fs = require('fs-extra')
 const formidable = require('formidable')
 const helper = require('sendgrid').mail
 const app = express()
@@ -56,7 +56,7 @@ const wrikeMkFolder = name =>
     }
   }).then(res => res.json())
 
-const wrikeAddAttachments = (id, file, name, type) =>
+const wrikeAddAttachment = (id, file, name, type) =>
   fetch(`https://www.wrike.com/api/v3/folders/${id}/attachments`, {
     body: file,
     method: 'post',
@@ -67,10 +67,7 @@ const wrikeAddAttachments = (id, file, name, type) =>
       'content-type': type,
       'cache-control': 'no-cache'
     }
-  })
-    .then(res => res.json())
-    .then(console.log)
-    .catch(console.log)
+  }).then(res => res.json())
 
 if (!fs.existsSync(UPLOAD_DIR)) {
   console.warn('Creating uploads folder...')
@@ -167,16 +164,33 @@ app.post('/uploads', function (req, res) {
       })
     }
 
+    // Create project and attach files in wrike
     wrikeMkFolder('test')
       .then(status => {
-        files.forEach(file =>
-          fs.readFile(file.path, (err, buffer) => {
-            if (err) throw 'up'
-            wrikeAddAttachments(status.data[0].id, buffer, file.name, file.type)
-          })
-        )
+        const folderId = status.data[0].id
+        for (const file of files) {
+          // Formidable files are just metadata, not the actual file
+          // Use the file name to read the real file from the disk
+          // as a Buffer
+
+          // Note that fs was swapped with fs-extra which is a
+          // promisified version of the fs built-in module
+          fs
+            .readFile(file.path)
+            .then(buffer => {
+              wrikeAddAttachment(folderId, buffer, file.name, file.type)
+            })
+            .catch(err => {
+              console.log(
+                'Error while reading file for upload to Wrike: ' + err
+              )
+              console.log('Filename: ' + file.path)
+            })
+        }
       })
-      .catch(console.log)
+      .catch(err => {
+        console.log('Error while creating a project in Wrike: ' + err)
+      })
 
     // Send the success response
     res
