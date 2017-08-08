@@ -45,7 +45,9 @@ const wrikeMkFolder = name =>
   fetch(process.env.WRIKE_URL, {
     body: queryParams({
       title: name,
-      description: 'folder description'
+      description: 'folder description',
+      shareds: process.env.WRIKE_SHARE_ID,
+      project: process.env.WRIKE_OWNER_ID
     }),
     method: 'post',
     headers: {
@@ -144,6 +146,7 @@ app.post('/uploads', function (req, res) {
     }
 
     wrikeMkFolder('test').then(status => console.log(status)).catch(console.log)
+    console.log(queryParams)
 
     // Send the success response
     res
