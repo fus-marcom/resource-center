@@ -1,7 +1,7 @@
 import Nightmare from 'nightmare'
 import url from 'url'
 require('nightmare-upload')(Nightmare)
-global['jasmine'].DEFAULT_TIMEOUT_INTERVAL = process.env.JASMINE_TIMEOUT || 6000
+global['jasmine'].DEFAULT_TIMEOUT_INTERVAL = process.env.TEST_TIMEOUT || 6000
 
 const BASE_URL = url.format({
   protocol: process.env.PROTOCOL || 'http',
@@ -18,7 +18,7 @@ export const visit = path => {
     // From the docs: Note that, even though goto normally waits
     // for all the resources on a page to load, a timeout exception
     // is only raised if the DOM itself has not yet loaded.
-    gotoTimeout: process.env.TEST_TIMEOUT || 4000
+    gotoTimeout: process.env.NIGHTMARE_GOTO_TIMEOUT || 4000
   }
 
   const nightmare = Nightmare(config)
