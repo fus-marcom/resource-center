@@ -8,7 +8,7 @@ import FlatButton from 'material-ui/FlatButton'
 import { Link } from 'react-router-dom'
 import '../styles/inputFile.css'
 
-const PORT = process.env.UPLOADS_PORT || 9000
+const PORT = process.env.SERVER_PORT || 9000
 const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
 const UPLOAD_URL = `http://${HOST}:${PORT}/uploads`
 
@@ -128,7 +128,9 @@ class ServiceRequest extends Component {
 
   handleFormData = async () => {
     const data = new FormData()
-    for (const [key, val] of Object.entries(this.state.form)) { data.append(key, val) }
+    for (const [key, val] of Object.entries(this.state.form)) {
+      data.append(key, val)
+    }
 
     for (const file of this.uploadInput.files) data.append('file', file)
 
@@ -279,11 +281,7 @@ class ServiceRequest extends Component {
             </div>
           </div>
         </div>
-        <Dialog
-          title='Loading...'
-          modal
-          open={this.state.loadingDialogOpen}
-        >
+        <Dialog title='Loading...' modal open={this.state.loadingDialogOpen}>
           Sending service request
         </Dialog>
         <Dialog
