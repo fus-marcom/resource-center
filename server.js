@@ -24,7 +24,7 @@ if (ENABLE_SEND_EMAILS) {
 } else {
   console.info('Sending emails is disabled')
 }
-const toEmail = new helper.Email('jesseweigel@gmail.com')
+
 const makeSgRequest = body =>
   sg.emptyRequest({
     method: 'POST',
@@ -41,11 +41,11 @@ const queryParams = obj =>
     )
     .join('&')
 
-const wrikeMkFolder = name =>
+const wrikeMkFolder = (name, content) =>
   fetch(process.env.WRIKE_URL, {
     body: queryParams({
       title: name,
-      description: 'folder description',
+      description: content,
       shareds: process.env.WRIKE_SHARE_ID,
       project: process.env.WRIKE_OWNER_ID
     }),
@@ -116,8 +116,10 @@ app.post('/uploads', function (req, res) {
   })
 
   const fields = {}
+  let fieldsString = ''
   form.on('field', (name, value) => {
     fields[name] = value
+    fieldsString = fieldsString + `${name}: ${value}<br />`
   })
 
   // Handle a possible error while parsing the request
@@ -145,12 +147,10 @@ app.post('/uploads', function (req, res) {
     // We don't want to actually send emails during testing since it
     // would send a test email on every single commit
     if (ENABLE_SEND_EMAILS) {
+      const toEmail = new helper.Email('jesseweigel@gmail.com')
       const fromEmail = new helper.Email('test@example.com')
-      const subject = 'Sending with SendGrid is Fun'
-      const content = new helper.Content(
-        'text/plain',
-        'and easy to do anywhere, even with Node.js'
-      )
+      const subject = 'New Service Request Form Submission'
+      const content = new helper.Content('text/html', fieldsString)
       const mail = new helper.Mail(fromEmail, subject, toEmail, content)
       const request = makeSgRequest(mail)
       console.log('Sending email...')
@@ -165,7 +165,7 @@ app.post('/uploads', function (req, res) {
     }
 
     // Create project and attach files in wrike
-    wrikeMkFolder('test')
+    wrikeMkFolder(fields['email'], fieldsString)
       .then(status => {
         const folderId = status.data[0].id
         for (const file of files) {
