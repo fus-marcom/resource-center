@@ -19,6 +19,9 @@ const ENABLE_SEND_EMAILS =
   process.env.NODE_ENV === 'production' ||
   process.env.ENABLE_SEND_EMAILS === 'true'
 
+const ENABLE_WRIKE =
+  process.env.NODE_ENV === 'production' || process.env.ENABLE_WRIKE === 'true'
+
 if (ENABLE_SEND_EMAILS) {
   console.info('Sending emails is enabled')
 } else {
@@ -167,16 +170,23 @@ app.post('/uploads', function (req, res) {
       })
     }
 
-    wrikeMkFolder('test')
-      .then(status => {
-        files.forEach(file =>
-          fs.readFile(file.path, (err, buffer) => {
-            if (err) throw 'up'
-            wrikeAddAttachments(status.data[0].id, buffer, file.name, file.type)
-          })
-        )
-      })
-      .catch(console.log)
+    if (ENABLE_WRIKE) {
+      wrikeMkFolder('test')
+        .then(status => {
+          files.forEach(file =>
+            fs.readFile(file.path, (err, buffer) => {
+              if (err) throw 'up'
+              wrikeAddAttachments(
+                status.data[0].id,
+                buffer,
+                file.name,
+                file.type
+              )
+            })
+          )
+        })
+        .catch(console.log)
+    }
 
     // Send the success response
     res
