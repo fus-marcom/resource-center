@@ -28,6 +28,12 @@ if (ENABLE_SEND_EMAILS) {
   console.info('Sending emails is disabled')
 }
 
+if (ENABLE_WRIKE) {
+  console.info('Wrike integration is enabled')
+} else {
+  console.info('Wrike integration is disabled')
+}
+
 const makeSgRequest = body =>
   sg.emptyRequest({
     method: 'POST',
