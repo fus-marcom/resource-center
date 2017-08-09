@@ -1,0 +1,13 @@
+.tabs {
+  list-style-type: none;
+  text-align: center;
+
+  .tab {
+    margin: 0 8px;
+    display: inline;
+
+    a {
+      padding: 8px;
+    }
+  }
+}
