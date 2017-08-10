@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Masonry from 'react-masonry-component'
+import { GenericCard } from './../components/GenericCard'
+import FlatButton from 'material-ui/FlatButton'
 import '../styles/logos.css'
 
 class Logos extends Component {
@@ -29,7 +31,15 @@ class Logos extends Component {
           .filter(post => activeTab === 'all' || activeTab === post.type)
           .map((post, i) =>
             <div className='col s12 m6 l4 xl3' key={i}>
-              <img src='https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/FranciscanLogo/LogoStC-thumb.jpg' />
+              <GenericCard
+                mediaImgSrc='https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/FranciscanLogo/LogoStC-thumb.jpg'
+                actions={
+                  <div>
+                    <FlatButton label='JPG' />
+                    <FlatButton label='PSD' />
+                  </div>
+                }
+              />
             </div>
           )}
       </Masonry>
