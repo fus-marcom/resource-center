@@ -19,10 +19,19 @@ const ENABLE_SEND_EMAILS =
   process.env.NODE_ENV === 'production' ||
   process.env.ENABLE_SEND_EMAILS === 'true'
 
+const ENABLE_WRIKE =
+  process.env.NODE_ENV === 'production' || process.env.ENABLE_WRIKE === 'true'
+
 if (ENABLE_SEND_EMAILS) {
   console.info('Sending emails is enabled')
 } else {
   console.info('Sending emails is disabled')
+}
+
+if (ENABLE_WRIKE) {
+  console.info('Wrike integration is enabled')
+} else {
+  console.info('Wrike integration is disabled')
 }
 
 const makeSgRequest = body =>
@@ -165,30 +174,34 @@ app.post('/uploads', function (req, res) {
     }
 
     // Create project and attach files in wrike
-    wrikeMkFolder(fields['email'], fieldsString)
-      .then(status => {
-        const folderId = status.data[0].id
-        for (const file of files) {
-          // Formidable files are just metadata, not the actual file
-          // Use the file name to create a ReadStream and pass it to
-          // node-fetch which can handle ReadStreams
-          // To pass a ReadStream is something like piping the file
-          // instead of reading the whole file and passing it
-          const readStream = fs.createReadStream(file.path)
-          wrikeAddAttachment(
-            folderId,
-            readStream,
-            file.name,
-            file.type
-          ).catch(err => {
-            console.log('Error while reading file for upload to Wrike: ' + err)
-            console.log('Filename: ' + file.path)
-          })
-        }
-      })
-      .catch(err => {
-        console.log('Error while creating a project in Wrike: ' + err)
-      })
+    if (ENABLE_WRIKE) {
+      wrikeMkFolder(fields['email'], fieldsString)
+        .then(status => {
+          const folderId = status.data[0].id
+          for (const file of files) {
+            // Formidable files are just metadata, not the actual file
+            // Use the file name to create a ReadStream and pass it to
+            // node-fetch which can handle ReadStreams
+            // To pass a ReadStream is something like piping the file
+            // instead of reading the whole file and passing it
+            const readStream = fs.createReadStream(file.path)
+            wrikeAddAttachment(
+              folderId,
+              readStream,
+              file.name,
+              file.type
+            ).catch(err => {
+              console.log(
+                'Error while reading file for upload to Wrike: ' + err
+              )
+              console.log('Filename: ' + file.path)
+            })
+          }
+        })
+        .catch(err => {
+          console.log('Error while creating a project in Wrike: ' + err)
+        })
+    }
 
     // Send the success response
     res
