@@ -1,3 +1,10 @@
+$fus-yellow: #ffb41f;
+$fus-light-blue: #8e9fbc;
+$fus-dark-blue:  #1f2a44;
+$fus-green:      #21412a;
+$fus-gold:       #998643;
+$link-color: $fus-yellow;
+
 .tabs {
   list-style-type: none;
   text-align: center;
@@ -17,5 +24,17 @@
 
   .img-container {
     padding: 8px 8px 0 8px;
+  }
+
+  button {
+    span {
+      color: $link-color;
+
+      svg {
+        vertical-align: middle;
+        fill: $link-color;
+      }
+    }
+
   }
 }
