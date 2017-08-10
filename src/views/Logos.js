@@ -3,16 +3,12 @@ import Masonry from 'react-masonry-component'
 import { GenericCard } from './../components/GenericCard'
 import FlatButton from 'material-ui/FlatButton'
 import '../styles/logos.css'
+import { logos } from '../data/logoData.js'
 
 class Logos extends Component {
   state = {
     activeTab: 'all',
-    data: [
-      { type: 'audio' },
-      { type: 'text' },
-      { type: 'video' },
-      { type: 'audio' }
-    ],
+    data: logos,
     type: 'all'
   }
 
@@ -20,19 +16,31 @@ class Logos extends Component {
     const { activeTab } = this.state
     const tabs = {
       all: 'All',
-      audio: 'Audio',
-      text: 'Text',
-      video: 'Video'
+      alumni: 'Alumni',
+      athletics: 'Athletics',
+      austrian: 'Austrian',
+      conference: 'Conference',
+      franciscan: 'Franciscan',
+      grad: 'Grad School',
+      iheart: 'IHeart',
+      online: 'Online',
+      pilgrimages: 'Pilgrimages',
+      press: 'Press',
+      seal: 'Seal',
+      yom: 'Year of Mercy'
     }
 
     const massonryComp = (
       <Masonry>
         {this.state.data
-          .filter(post => activeTab === 'all' || activeTab === post.type)
-          .map((post, i) =>
+          .filter(logo => activeTab === 'all' || activeTab === logo.category)
+          .map((logo, i) =>
             <div className='col s12 m6 l4 xl3' key={i}>
               <GenericCard
-                mediaImgSrc='https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/FranciscanLogo/LogoStC-thumb.jpg'
+                mediaImgSrc={
+                  'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/' +
+                  logo.thumbnailUrl
+                }
                 actions={
                   <div>
                     <FlatButton label='JPG' />
