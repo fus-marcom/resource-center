@@ -26,13 +26,16 @@ $link-color: $fus-yellow;
     padding: 8px 8px 0 8px;
   }
 
+  .card-actions {
+    border-top: 1px solid rgba(160,160,160,0.2);
+  }
+
   button {
     span {
       color: $link-color;
 
       svg {
         vertical-align: middle;
-        fill: $link-color;
       }
     }
 

@@ -42,7 +42,7 @@ export class GenericCard extends Component {
           {children}
         </CardText>
         {actions &&
-          <CardActions>
+          <CardActions className='card-actions'>
             {actions}
           </CardActions>}
       </Card>
