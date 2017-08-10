@@ -29,7 +29,10 @@ class Logos extends Component {
           .filter(post => activeTab === 'all' || activeTab === post.type)
           .map((post, i) =>
             <div className='col s12 m6 l4 xl3' key={i}>
-              <img src='https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/FranciscanLogo/LogoStC-thumb.jpg' />
+              <img
+                src='https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/FranciscanLogo/LogoStC-thumb.jpg'
+                alt='Franciscan Logo'
+              />
             </div>
           )}
       </Masonry>
