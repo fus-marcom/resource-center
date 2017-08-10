@@ -20,11 +20,12 @@ export class GenericCard extends Component {
       cardTitle,
       cardSubtitle,
       actions,
-      children
+      children,
+      classes
     } = this.props
 
     return (
-      <Card>
+      <Card className={classes}>
         {(headerTitle || headerAvatar) &&
           <CardHeader
             title={headerTitle}
@@ -33,7 +34,7 @@ export class GenericCard extends Component {
           />}
 
         {mediaImgSrc &&
-          <CardMedia overlay={overlay}>
+          <CardMedia className='img-container' overlay={overlay}>
             <img src={mediaImgSrc} alt={mediaImgAlt} />
           </CardMedia>}
         {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}

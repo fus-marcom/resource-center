@@ -35,8 +35,9 @@ class Logos extends Component {
         {this.state.data
           .filter(logo => activeTab === 'all' || activeTab === logo.category)
           .map((logo, i) =>
-            <div className='col s12 m6 l4 xl3' key={i}>
+            <div className='col s12 m6 l4 xl3 logo-card-container' key={i}>
               <GenericCard
+                classes='logo-card'
                 mediaImgSrc={
                   'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/' +
                   logo.thumbnailUrl
