@@ -38,7 +38,7 @@ export class GenericCard extends Component {
             <img src={mediaImgSrc} alt={mediaImgAlt} />
           </CardMedia>}
         {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
-        <CardText>
+        <CardText style={{ fontSize: '16px' }}>
           {children}
         </CardText>
         {actions &&
