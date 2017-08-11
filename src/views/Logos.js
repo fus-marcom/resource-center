@@ -3,6 +3,8 @@ import Masonry from 'react-masonry-component'
 import { GenericCard } from './../components/GenericCard'
 import FlatButton from 'material-ui/FlatButton'
 import SvgIcon from 'material-ui/SvgIcon'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 import '../styles/logos.css'
 import { logos } from '../data/logoData.js'
 
@@ -12,6 +14,8 @@ class Logos extends Component {
     data: logos,
     type: 'all'
   }
+
+  handleChange = (event, index, value) => this.setState({ activeTab: value })
 
   render () {
     const { activeTab } = this.state
@@ -76,7 +80,7 @@ class Logos extends Component {
     return (
       <div>
         <div className='row'>
-          <div className='col s12'>
+          <div className='col s12 hide-on-med-and-down'>
             <ul className='tabs'>
               {Object.keys(tabs).map(tabKey =>
                 <li className='tab' key={tabKey + 'li'}>
@@ -91,6 +95,17 @@ class Logos extends Component {
                 </li>
               )}
             </ul>
+          </div>
+          <div className='col s12 hide-on-large-only'>
+            <SelectField
+              floatingLabelText='Logo Type'
+              value={this.state.activeTab}
+              onChange={this.handleChange}
+            >
+              {Object.keys(tabs).map(tabKey =>
+                <MenuItem value={tabKey} primaryText={tabs[tabKey]} />
+              )}
+            </SelectField>
           </div>
         </div>
 
