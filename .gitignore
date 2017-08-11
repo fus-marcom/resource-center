@@ -25,3 +25,4 @@ yarn-error.log*
 src/**/*.css
 
 /uploads
+test-upload.txt

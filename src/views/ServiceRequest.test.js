@@ -65,7 +65,7 @@ describe('Service Request Page', () => {
     // We can use the sync methods because this code
     // is not used in production
     const filename = 'test-upload.txt'
-    const tempfile = path.resolve('./uploads', filename)
+    const tempfile = path.resolve(filename)
     const fileContents = 'This the request that I have for you'
     fs.writeFileSync(tempfile, fileContents)
 
@@ -87,6 +87,8 @@ describe('Service Request Page', () => {
     const uploadedContents = fs.readFileSync(uploadedFile, 'utf8')
     expect(uploadedContents).toEqual(fileContents)
 
+    // Remove the temp file we created
+    fs.unlinkSync(tempfile)
     // Remove the uploaded file
     fs.unlinkSync(uploadedFile)
   })
