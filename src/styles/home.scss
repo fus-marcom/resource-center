@@ -1,0 +1,10 @@
+.col {
+  display: flex;
+  margin-bottom: 16px;
+
+  >div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
