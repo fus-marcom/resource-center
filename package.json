@@ -55,7 +55,11 @@
   "standard": {
     "globals": [
       "fetch",
-      "FormData"
+      "FormData",
+      "describe",
+      "it",
+      "beforeEach",
+      "expect"
     ],
     "parser": "babel-eslint"
   }
