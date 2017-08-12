@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Services extends Component {
-  render () {
-    return <h1>Services View</h1>
-  }
+const Services = () => {
+  return <h1>Services View</h1>
 }
 
 export default Services

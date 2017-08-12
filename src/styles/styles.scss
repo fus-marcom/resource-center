@@ -1,0 +1,15 @@
+// Load base variables and external/module style sheets
+/*  If you want add styles sheets from modules, simply add the file as follows: @import "~nameofmodule/path/to/example.css";. Downloaded stylesheets can be imported as follows: @import "/app/public/assets/cssframework/path/to/example.min.css";  */
+@import "base/component-variables";
+@import "base/materialize-variables";
+@import "base/materialize-grid";
+@import "base/responsive-text";
+
+// Load component stylesheets
+/*  If you want add new component stylesheets, simply add a new file in the components folder starting with underscore: _example.scss, then import the file as follows: @import "components/example";. Please note that these css classes are now available to all components by simply adding the css class name to a component's html element. Individual styleheet imports inside the component are no longer required. */
+@import "components/app";
+@import "components/home";
+@import "components/index";
+@import "components/inputfile";
+@import "components/logos";
+@import "components/video";

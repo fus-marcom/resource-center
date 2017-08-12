@@ -5,17 +5,23 @@ import FlatButton from 'material-ui/FlatButton'
 import SvgIcon from 'material-ui/SvgIcon'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-import '../styles/logos.css'
 import { logos } from '../data/logoData.js'
 
 class Logos extends Component {
-  state = {
-    activeTab: 'all',
-    data: logos,
-    type: 'all'
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      activeTab: 'all',
+      data: logos,
+      type: 'all'
+    }
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange = (event, index, value) => this.setState({ activeTab: value })
+  handleChange (event, index, value) {
+    this.setState({ activeTab: value })
+  }
 
   render () {
     const { activeTab } = this.state
@@ -45,7 +51,10 @@ class Logos extends Component {
         {this.state.data
           .filter(logo => activeTab === 'all' || activeTab === logo.category)
           .map((logo, i) =>
-            <div className='col s12 m6 l4 xl3 logo-card-container' key={i}>
+            <div
+              className='col s12 m6 l4 xl3 logo-card-container'
+              key={logo.number}
+            >
               <GenericCard
                 classes='logo-card'
                 mediaImgSrc={
@@ -106,7 +115,11 @@ class Logos extends Component {
               style={{ textAlign: 'left' }}
             >
               {Object.keys(tabs).map(tabKey =>
-                <MenuItem value={tabKey} primaryText={tabs[tabKey]} />
+                <MenuItem
+                  key={tabKey}
+                  value={tabKey}
+                  primaryText={tabs[tabKey]}
+                />
               )}
             </SelectField>
           </div>

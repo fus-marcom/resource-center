@@ -29,9 +29,12 @@ class SideNav extends Component {
   constructor (props) {
     super(props)
     this.state = { open: false }
+    this.handleClose = this.handleClose.bind(this)
   }
 
-  handleClose = () => this.setState({ open: false })
+  handleClose () {
+    this.setState({ open: false })
+  }
 
   render () {
     return (
