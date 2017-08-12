@@ -60,7 +60,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "node scripts/start.js",
     "start-server": "nodemon server.js -w server.js",
-    "start": "npm-run-all start-js start-server",
+    "start": "npm-run-all -p start-js start-server",
     "build": "npm run build-css && node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "test-without-watch": "cross-env CI=true npm test",
