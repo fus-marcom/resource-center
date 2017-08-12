@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import '../styles/video.css'
 
 class Tutorial extends Component {
   constructor (props) {
@@ -9,6 +8,7 @@ class Tutorial extends Component {
       topCoord: null
     }
   }
+
   componentDidMount () {
     const thisElement = ReactDOM.findDOMNode(this)
     const top = thisElement.getBoundingClientRect().top

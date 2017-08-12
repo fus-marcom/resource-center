@@ -6,7 +6,6 @@ import RaisedButton from '../components/MaterializeRaisedButton'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import { Link } from 'react-router-dom'
-import '../styles/inputFile.css'
 
 const PORT = process.env.UPLOADS_PORT || 9000
 const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
@@ -32,6 +31,10 @@ const styles = {
     width: '100%',
     opacity: 0
   }
+}
+
+const formatLabelToProperty = label => {
+  return label.split(' (')[0].toLowerCase().split(' ').join('-')
 }
 
 // https://github.com/Dogfalo/materialize/blob/master/js/forms.js#L192
@@ -70,7 +73,7 @@ class ServiceRequest extends Component {
       ...this.multiLineFields
     ].reduce(
       (acc, label) => ({
-        [this.formatLabelToProperty(label)]: '',
+        [formatLabelToProperty(label)]: '',
         ...acc
       }),
       {}
@@ -80,7 +83,7 @@ class ServiceRequest extends Component {
       ...this.rightCheckboxes
     ].reduce(
       (acc, label) => ({
-        [this.formatLabelToProperty(label)]: false,
+        [formatLabelToProperty(label)]: false,
         ...acc
       }),
       {}
@@ -96,10 +99,10 @@ class ServiceRequest extends Component {
     }
     Object.assign(this.state.form, stringProps, checkboxProps)
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleFilePath = this.handleFilePath.bind(this)
+    this.handleDialogClose = this.handleDialogClose.bind(this)
+    this.handleFormData = this.handleFormData.bind(this)
   }
-
-  formatLabelToProperty = label =>
-    label.split(' (')[0].toLowerCase().split(' ').join('-')
 
   handleInputChange (event) {
     const target = event.target
@@ -112,7 +115,7 @@ class ServiceRequest extends Component {
     this.setState({ form })
   }
 
-  handleFilePath = event => {
+  handleFilePath (event) {
     const target = event.target
     // Array.from converts array-like to array (so that map works)
     const files = Array.from(target.files)
@@ -126,7 +129,7 @@ class ServiceRequest extends Component {
     this.setState({ form })
   }
 
-  handleFormData = async () => {
+  async handleFormData () {
     const data = new FormData()
     for (const [key, val] of Object.entries(this.state.form)) {
       data.append(key, val)
@@ -164,7 +167,7 @@ class ServiceRequest extends Component {
     this.setState({ loadingDialogOpen: false })
   }
 
-  handleDialogClose = () => {
+  handleDialogClose () {
     this.setState({ resultDialogOpen: false })
   }
 
@@ -174,8 +177,8 @@ class ServiceRequest extends Component {
       <div className='col s12 m6' key={index}>
         <TextField
           floatingLabelText={label}
-          name={this.formatLabelToProperty(label)}
-          value={this.state.form[this.formatLabelToProperty(label)]}
+          name={formatLabelToProperty(label)}
+          value={this.state.form[formatLabelToProperty(label)]}
           onChange={this.handleInputChange}
           fullWidth
         />
@@ -184,8 +187,8 @@ class ServiceRequest extends Component {
       <div className='col s12 m6' key={index}>
         <TextField
           floatingLabelText={label}
-          name={this.formatLabelToProperty(label)}
-          value={this.state.form[this.formatLabelToProperty(label)]}
+          name={formatLabelToProperty(label)}
+          value={this.state.form[formatLabelToProperty(label)]}
           onChange={this.handleInputChange}
           multiLine
           rows={2}
@@ -195,8 +198,8 @@ class ServiceRequest extends Component {
     const CheckboxField = (label, index) =>
       <Checkbox
         label={label}
-        name={this.formatLabelToProperty(label)}
-        checked={this.state.form[this.formatLabelToProperty(label)]}
+        name={formatLabelToProperty(label)}
+        checked={this.state.form[formatLabelToProperty(label)]}
         key={index}
         onCheck={this.handleInputChange}
         style={styles.checkbox}

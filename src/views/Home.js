@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
-import '../styles/home.css'
 
 class Home extends Component {
   constructor (props) {
@@ -10,6 +9,7 @@ class Home extends Component {
       topCoord: null
     }
   }
+
   componentDidMount () {
     const thisElement = ReactDOM.findDOMNode(this)
     const top = thisElement.getBoundingClientRect().top

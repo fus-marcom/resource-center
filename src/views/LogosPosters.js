@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class LogosPosters extends Component {
-  render () {
-    return <h1>Logos and Posters View</h1>
-  }
+const LogosPosters = () => {
+  return <h1>Logos and Posters View</h1>
 }
 
 export default LogosPosters

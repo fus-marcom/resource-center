@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-import './styles/App.css'
-import './styles/materialize-grid.css'
+import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
@@ -27,33 +25,31 @@ import NotFound from './views/NotFound'
 
 injectTapEventPlugin()
 
-class App extends Component {
-  render () {
-    return (
-      <BrowserRouter>
-        <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
-          <div>
-            <SideNav />
+const App = () => {
+  return (
+    <BrowserRouter>
+      <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
+        <div>
+          <SideNav />
 
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/logos-posters' component={LogosPosters} />
-              <Route path='/logos' component={Logos} />
-              <Route path='/posters' component={Posters} />
-              <Route path='/letterhead' component={Letterhead} />
-              <Route path='/share-a-story' component={Story} />
-              <Route path='/planning-guide' component={PlanningGuide} />
-              <Route path='/services' component={Services} />
-              <Route path='/glossary' component={Glossary} />
-              <Route path='/service-request-form' component={ServiceRequest} />
-              <Route path='/tutorial' component={Tutorial} />
-              <Route component={NotFound} />
-            </Switch>
-          </div>
-        </MuiThemeProvider>
-      </BrowserRouter>
-    )
-  }
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/logos-posters' component={LogosPosters} />
+            <Route path='/logos' component={Logos} />
+            <Route path='/posters' component={Posters} />
+            <Route path='/letterhead' component={Letterhead} />
+            <Route path='/share-a-story' component={Story} />
+            <Route path='/planning-guide' component={PlanningGuide} />
+            <Route path='/services' component={Services} />
+            <Route path='/glossary' component={Glossary} />
+            <Route path='/service-request-form' component={ServiceRequest} />
+            <Route path='/tutorial' component={Tutorial} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </MuiThemeProvider>
+    </BrowserRouter>
+  )
 }
 
 export default App
