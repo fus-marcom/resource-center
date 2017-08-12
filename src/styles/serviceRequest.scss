@@ -1,0 +1,13 @@
+.col {
+    display: block;
+    margin-bottom: 16px;
+  
+    >div {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+}
+#planning-guide-checkbox {
+  padding-top: 15px;
+}

@@ -7,6 +7,7 @@ import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import { Link } from 'react-router-dom'
 import '../styles/inputFile.css'
+import '../styles/serviceRequest.css'
 
 const PORT = process.env.UPLOADS_PORT || 9000
 const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
