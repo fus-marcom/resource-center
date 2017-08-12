@@ -55,6 +55,11 @@ class Logos extends Component {
                 actions={
                   <div>
                     <FlatButton
+                      href={
+                        'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/' +
+                        logo.jpgUrl
+                      }
+                      download
                       label={
                         <span>
                           <DownloadIcon color='#ffb41f' />JPG
@@ -62,6 +67,11 @@ class Logos extends Component {
                       }
                     />
                     <FlatButton
+                      href={
+                        'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/' +
+                        logo.psdUrl
+                      }
+                      download
                       label={
                         <span>
                           <DownloadIcon color='#ffb41f' />PSD
@@ -106,7 +116,11 @@ class Logos extends Component {
               style={{ textAlign: 'left' }}
             >
               {Object.keys(tabs).map(tabKey =>
-                <MenuItem value={tabKey} primaryText={tabs[tabKey]} />
+                <MenuItem
+                  value={tabKey}
+                  primaryText={tabs[tabKey]}
+                  key={tabKey}
+                />
               )}
             </SelectField>
           </div>
