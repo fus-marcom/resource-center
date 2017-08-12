@@ -71,7 +71,7 @@ class Logos extends Component {
                         'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/' +
                         logo.psdUrl
                       }
-                      download
+                      download={logo.name}
                       label={
                         <span>
                           <DownloadIcon color='#ffb41f' />PSD
