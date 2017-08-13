@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
+import { Helmet } from 'react-helmet'
 import '../styles/home.css'
 
 class Home extends Component {
@@ -25,6 +26,9 @@ class Home extends Component {
           minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
         }}
       >
+        <Helmet>
+          <title>Home | Resource Center</title>
+        </Helmet>
         <div className='row' style={{ display: 'flex', flexWrap: 'wrap' }}>
           <h2 style={{ flex: '1 100%' }}>Hello! How can MarCom help you?</h2>
           <div className='col s12 m4 flex-div'>

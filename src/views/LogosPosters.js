@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet'
 
 class LogosPosters extends Component {
   render () {
-    return <h1>Logos and Posters View</h1>
+    return (
+      <div>
+        <Helmet>
+          <title>Logos & Posters | Resource Center</title>
+        </Helmet>
+        <h1>Logos and Posters View</h1>
+      </div>
+    )
   }
 }
 

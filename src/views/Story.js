@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from '../components/MaterializeRaisedButton'
+import { Helmet } from 'react-helmet'
 import '../styles/responsive-text.css'
 
 class Story extends Component {
   render () {
     return (
       <div className='container'>
+        <Helmet>
+          <title>Story | Resource Center</title>
+        </Helmet>
         <div className='row'>
           <div className='col s12 flow-text'>
             <p>

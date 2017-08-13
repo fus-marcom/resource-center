@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { Card, CardTitle, CardText } from 'material-ui/Card'
+import { Helmet } from 'react-helmet'
 
 class Posters extends Component {
   state = {}
   render () {
     return (
       <div className='container'>
+        <Helmet>
+          <title>Posters | Resource Center</title>
+        </Helmet>
         <div className='row'>
           <div className='col s12 m6'>
             <Card>
