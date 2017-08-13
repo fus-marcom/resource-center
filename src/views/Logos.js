@@ -113,7 +113,7 @@ class Logos extends Component {
               floatingLabelText='Logo Type'
               value={this.state.activeTab}
               onChange={this.handleChange}
-              style={{ textAlign: 'left' }}
+              style={{ textAlign: 'left', width: '100%' }}
             >
               {Object.keys(tabs).map(tabKey =>
                 <MenuItem
