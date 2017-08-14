@@ -21,24 +21,6 @@ class Posters extends Component {
   }
   render () {
     return (
-<<<<<<< HEAD
-      <div className='container'>
-        <Helmet>
-          <title>Posters | Resource Center</title>
-        </Helmet>
-        <div className='row'>
-          <div className='col s12 m6'>
-            <Card>
-              <CardTitle title='Card title' subtitle='Card subtitle' />
-              <CardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam
-                sed pellentesque. Aliquam dui mauris, mattis quis lacus id,
-                pellentesque lobortis odio.
-              </CardText>
-            </Card>
-=======
       <div
         className='container valign-wrapper'
         style={{
@@ -46,7 +28,7 @@ class Posters extends Component {
           minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
         }}
       >
-      <Helmet>
+        <Helmet>
           <title>Posters | Resource Center</title>
         </Helmet>
         <div
@@ -63,7 +45,6 @@ class Posters extends Component {
                 well as professionals.
               </GenericCard>
             </a>
->>>>>>> 5e1063c82aea2550c3a93cb83e4c7ecd315a796f
           </div>
           <div className='col s12 m6 flex-div'>
             <GenericCard cardTitle='Video Tutorials' hoverable>
