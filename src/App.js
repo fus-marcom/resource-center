@@ -23,6 +23,7 @@ import ServiceRequest from './views/ServiceRequest'
 import Services from './views/Services'
 import Story from './views/Story'
 import Tutorial from './views/Tutorial'
+import PosterVideos from './views/PosterVideos'
 import NotFound from './views/NotFound'
 
 injectTapEventPlugin()
@@ -47,6 +48,7 @@ class App extends Component {
               <Route path='/glossary' component={Glossary} />
               <Route path='/service-request-form' component={ServiceRequest} />
               <Route path='/tutorial' component={Tutorial} />
+              <Route path='/poster-videos' component={PosterVideos} />
               <Route component={NotFound} />
             </Switch>
           </div>
