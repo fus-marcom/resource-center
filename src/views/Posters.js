@@ -29,15 +29,17 @@ class Posters extends Component {
         >
           <h2 style={{ flex: '1 100%' }}>Poster Resources</h2>
           <div className='col s12 m6 flex-div'>
-            <GenericCard cardTitle='Create Your Own'>
-              Canva.com is a free graphic design tool with an easy to use
-              drag-and-drop interface and access to over a million photographs,
-              graphics, and fonts. It is used by non-designers as well as
-              professionals.
-            </GenericCard>
+            <a href='https://www.canva.com/'>
+              <GenericCard hoverable cardTitle='Create Your Own'>
+                Canva.com is a free graphic design tool with an easy to use
+                drag-and-drop interface and access to over a million
+                photographs, graphics, and fonts. It is used by non-designers as
+                well as professionals.
+              </GenericCard>
+            </a>
           </div>
           <div className='col s12 m6 flex-div'>
-            <GenericCard cardTitle='Video Tutorials'>
+            <GenericCard cardTitle='Video Tutorials' hoverable>
               Learn how to create posters in Powerpoint, Publisher, Photoshop,
               and InDesign.
             </GenericCard>
