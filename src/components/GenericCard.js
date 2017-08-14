@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Paper from 'material-ui/Paper'
 import {
   Card,
   CardHeader,
@@ -9,6 +10,20 @@ import {
 } from 'material-ui/Card'
 
 export class GenericCard extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { depth: 1 }
+    this.onMouseOver = this.onMouseOver.bind(this)
+    this.onMouseOut = this.onMouseOut.bind(this)
+  }
+  // From https://stackoverflow.com/a/37112044/4718107
+  onMouseOver () {
+    this.setState({ depth: 2 })
+  }
+  onMouseOut () {
+    this.setState({ depth: 1 })
+  }
+
   render () {
     const {
       headerTitle,
@@ -21,31 +36,38 @@ export class GenericCard extends Component {
       cardSubtitle,
       actions,
       children,
-      classes
+      classes,
+      hoverable
     } = this.props
 
     return (
-      <Card className={classes}>
-        {(headerTitle || headerAvatar) &&
-          <CardHeader
-            title={headerTitle}
-            subtitle={headerSubtitle}
-            avatar={headerAvatar}
-          />}
+      <Paper
+        zDepth={this.state.depth}
+        onMouseOver={hoverable && this.onMouseOver}
+        onMouseOut={hoverable && this.onMouseOut}
+      >
+        <Card className={classes} style={{ boxShadow: 'none' }}>
+          {(headerTitle || headerAvatar) &&
+            <CardHeader
+              title={headerTitle}
+              subtitle={headerSubtitle}
+              avatar={headerAvatar}
+            />}
 
-        {mediaImgSrc &&
-          <CardMedia className='img-container' overlay={overlay}>
-            <img src={mediaImgSrc} alt={mediaImgAlt} />
-          </CardMedia>}
-        {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
-        <CardText style={{ fontSize: '16px' }}>
-          {children}
-        </CardText>
-        {actions &&
-          <CardActions className='card-actions'>
-            {actions}
-          </CardActions>}
-      </Card>
+          {mediaImgSrc &&
+            <CardMedia className='img-container' overlay={overlay}>
+              <img src={mediaImgSrc} alt={mediaImgAlt} />
+            </CardMedia>}
+          {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
+          <CardText style={{ fontSize: '16px' }}>
+            {children}
+          </CardText>
+          {actions &&
+            <CardActions className='card-actions'>
+              {actions}
+            </CardActions>}
+        </Card>
+      </Paper>
     )
   }
 }
