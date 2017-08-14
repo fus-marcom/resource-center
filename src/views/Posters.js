@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
-import { Card, CardTitle, CardText } from 'material-ui/Card'
-import { Helmet } from 'react-helmet'
-=======
 import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
->>>>>>> 5e1063c82aea2550c3a93cb83e4c7ecd315a796f
+import { Helmet } from 'react-helmet'
 
 class Posters extends Component {
   constructor (props) {
