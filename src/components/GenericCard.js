@@ -43,6 +43,29 @@ export class GenericCard extends Component {
       link
     } = this.props
 
+    const CardContent = (
+      <Card className={classes} style={{ boxShadow: 'none' }}>
+        {(headerTitle || headerAvatar) &&
+          <CardHeader
+            title={headerTitle}
+            subtitle={headerSubtitle}
+            avatar={headerAvatar}
+          />}
+
+        {mediaImgSrc &&
+          <CardMedia className='img-container' overlay={overlay}>
+            <img src={mediaImgSrc} alt={mediaImgAlt} />
+          </CardMedia>}
+        {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
+        <CardText style={{ fontSize: '16px' }}>
+          {children}
+        </CardText>
+        {actions &&
+          <CardActions className='card-actions'>
+            {actions}
+          </CardActions>}
+      </Card>
+    )
     return (
       <Paper
         zDepth={this.state.depth}
@@ -51,51 +74,9 @@ export class GenericCard extends Component {
       >
         {link
           ? <Link to={link} isExact='true'>
-            <Card className={classes} style={{ boxShadow: 'none' }}>
-              {(headerTitle || headerAvatar) &&
-              <CardHeader
-                title={headerTitle}
-                subtitle={headerSubtitle}
-                avatar={headerAvatar}
-                  />}
-
-              {mediaImgSrc &&
-              <CardMedia className='img-container' overlay={overlay}>
-                <img src={mediaImgSrc} alt={mediaImgAlt} />
-              </CardMedia>}
-              {cardTitle &&
-              <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
-              <CardText style={{ fontSize: '16px' }}>
-                {children}
-              </CardText>
-              {actions &&
-              <CardActions className='card-actions'>
-                {actions}
-              </CardActions>}
-            </Card>
+            {' '}{CardContent}{' '}
           </Link>
-          : <Card className={classes} style={{ boxShadow: 'none' }}>
-            {(headerTitle || headerAvatar) &&
-            <CardHeader
-              title={headerTitle}
-              subtitle={headerSubtitle}
-              avatar={headerAvatar}
-                />}
-
-            {mediaImgSrc &&
-            <CardMedia className='img-container' overlay={overlay}>
-              <img src={mediaImgSrc} alt={mediaImgAlt} />
-            </CardMedia>}
-            {cardTitle &&
-            <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
-            <CardText style={{ fontSize: '16px' }}>
-              {children}
-            </CardText>
-            {actions &&
-            <CardActions className='card-actions'>
-              {actions}
-            </CardActions>}
-          </Card>}
+          : CardContent}
       </Paper>
     )
   }
