@@ -2,7 +2,7 @@
 
 New version of resource center for [Franciscan University of Steubenville](https://www.franciscan.edu/) built with [Create React App](https://github.com/facebookincubator/create-react-app) & [Material UI](https://github.com/callemall/material-ui). You can checkout the [FreeCodeCamp YouTube Channel](https://www.youtube.com/playlist?list=PLWKjhJtqVAbknyJ7hSrf1WKh_Xnv9RL1r) for live coding sessions & details of this project.
 
-To navigate your way through applications built with Create React App & the perform common tasks visit the offcial guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+To navigate your way through applications built with Create React App & perform common tasks visit the offcial guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ### About MyFranciscan
 [MyFranciscan](https://myfranciscan.franciscan.edu/ics) helps to connect students, faculty, staff, and guests of Franciscan University in one place. Visit the portal to get more information.
