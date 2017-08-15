@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
 import { Link } from 'react-router-dom'
+import debounce from 'lodash/debounce'
 import {
   Card,
   CardHeader,
@@ -14,20 +15,24 @@ export class GenericCard extends Component {
   constructor (props) {
     super(props)
     this.state = { depth: 1 }
-    this.onMouseOver = this.onMouseOver.bind(this)
-    this.onMouseOut = this.onMouseOut.bind(this)
   }
 
   // From https://stackoverflow.com/a/37112044/4718107
-  onMouseOver () {
-    this.setState({ depth: 2 })
-  }
-  onMouseOut () {
-    this.setState({ depth: 1 })
-  }
+  // debounce the function to 30 frames per second
+  onMouseOver = debounce(() => {
+    // don't mark the component as dirty by calling setState
+    // if the value isn't going to change
+    this.state.depth === 2 || this.setState({ depth: 2 })
+  }, 32)
+
+  onMouseOut = debounce(() => {
+    this.state.depth === 1 || this.setState({ depth: 1 })
+  }, 32)
 
   render () {
-    const {
+    const { hoverable, link } = this.props
+
+    const CardContent = ({
       headerTitle,
       headerSubtitle,
       headerAvatar,
@@ -38,12 +43,8 @@ export class GenericCard extends Component {
       cardSubtitle,
       actions,
       children,
-      classes,
-      hoverable,
-      link
-    } = this.props
-
-    const CardContent = (
+      classes
+    }) =>
       <Card className={classes} style={{ boxShadow: 'none' }}>
         {(headerTitle || headerAvatar) &&
           <CardHeader
@@ -65,7 +66,9 @@ export class GenericCard extends Component {
             {actions}
           </CardActions>}
       </Card>
-    )
+
+    const isInternal = link && link[0] === '/'
+
     return (
       <Paper
         zDepth={this.state.depth}
@@ -73,10 +76,14 @@ export class GenericCard extends Component {
         onMouseOut={hoverable && this.onMouseOut}
       >
         {link
-          ? <Link to={link} isExact='true'>
-            {' '}{CardContent}{' '}
-          </Link>
-          : CardContent}
+          ? isInternal
+            ? <Link to={link}>
+              <CardContent {...this.props} />
+            </Link>
+            : <a href={link} target='_blank'>
+              <CardContent {...this.props} />
+            </a>
+          : <CardContent {...this.props} />}
       </Paper>
     )
   }
