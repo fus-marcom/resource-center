@@ -7,6 +7,7 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import '../styles/logos.css'
 import { logos } from '../data/logoData.js'
+import { Helmet } from 'react-helmet'
 
 class Logos extends Component {
   state = {
@@ -88,6 +89,9 @@ class Logos extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>Logos | Resource Center</title>
+        </Helmet>
         <div className='row'>
           <div className='col s12 hide-on-med-and-down'>
             <ul className='tabs'>

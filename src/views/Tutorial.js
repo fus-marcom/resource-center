@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { Helmet } from 'react-helmet'
 import '../styles/video.css'
 
 class Tutorial extends Component {
@@ -18,6 +19,9 @@ class Tutorial extends Component {
   render () {
     return (
       <div className='container'>
+        <Helmet>
+          <title>Tutorial | Resource Center</title>
+        </Helmet>
         <div className='row' style={{ marginBottom: 0 }}>
           {/* Guess 64px the first render, then immediately adjust
               to a proper calculated value.

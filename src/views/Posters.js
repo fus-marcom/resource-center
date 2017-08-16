@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { GenericCard } from './../components/GenericCard'
+import { Helmet } from 'react-helmet'
 
 class Posters extends Component {
   constructor (props) {
@@ -23,6 +24,9 @@ class Posters extends Component {
           minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
         }}
       >
+        <Helmet>
+          <title>Posters | Resource Center</title>
+        </Helmet>
         <div
           className='row flow-text'
           style={{ display: 'flex', flexWrap: 'wrap' }}

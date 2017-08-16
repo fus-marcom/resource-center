@@ -6,6 +6,7 @@ import RaisedButton from '../components/MaterializeRaisedButton'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import '../styles/inputFile.css'
 import '../styles/serviceRequest.css'
 
@@ -205,6 +206,9 @@ class ServiceRequest extends Component {
 
     return (
       <div className='container'>
+        <Helmet>
+          <title>Service Request | Resource Center</title>
+        </Helmet>
         <div className='row'>
           <div className='col s12 flow-text'>
             <h2>Please use this form to request services.</h2>

@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import LetterheadCard from '../components/LetterheadCard'
+import { Helmet } from 'react-helmet'
 
 class Letterhead extends Component {
   render () {
     return (
       <div className='container'>
+        <Helmet>
+          <title>Letterhead | Resource Center</title>
+        </Helmet>
         <div className='row'>
           <div className='col s12'>
             <p>
