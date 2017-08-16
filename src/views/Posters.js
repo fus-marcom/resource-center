@@ -64,11 +64,12 @@ class Posters extends Component {
           </div>
           <div className='col s12 m6 flex-div'>
             <GenericCard cardTitle='Professional Design'>
-              Marie Highfield ’91 (<a href='tel:17402664926'>740-266-4926</a> /{' '}
+              Marie Highfield ’91 ( <a href='tel:17402664926'>740-266-4926</a> /{' '}
               <a href='mailto:mariehighfield@sbcglobal.net'>
                 mariehighfield@sbcglobal.net
-              </a>) is a freelance graphic designer who lives in Steubenville
-              and does many design projects for the University.
+              </a>{' '}
+              ) is a freelance graphic designer who lives in Steubenville and
+              does many design projects for the University.
             </GenericCard>
           </div>
           <div className='col s12 m6 flex-div'>
@@ -85,7 +86,7 @@ class Posters extends Component {
             </GenericCard>
           </div>
           <div className='col s12 m6 flex-div'>
-            <GenericCard cardTitle='University Logo'>
+            <GenericCard cardTitle='University Logo' hoverable link='/logos'>
               For all projects, please include the official Franciscan
               University logo, either in full color or one color of your choice.
             </GenericCard>
