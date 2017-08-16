@@ -3,6 +3,7 @@
 // From: https://github.com/Dogfalo/materialize/blob/master/sass/components/_typography.scss
 .flow-text{
   font-weight: 300;
+  line-height: 1.5;
   $i: 0;
   @while $i <= $intervals {
     @media only screen and (min-width : 360 + ($i * $interval-size)) {
