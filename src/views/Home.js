@@ -30,9 +30,9 @@ class Home extends Component {
           className='row flow-text'
           style={{ display: 'flex', flexWrap: 'wrap' }}
         >
-        <Helmet>
-          <title>Home | Resource Center</title>
-        </Helmet>
+          <Helmet>
+            <title>Home | Resource Center</title>
+          </Helmet>
           <h2 style={{ flex: '1 100%' }}>Hello! How can MarCom help you?</h2>
           <div className='col s12 m4 flex-div'>
             <GenericCard cardTitle='Brand Manual'>
