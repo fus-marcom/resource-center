@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Step, Stepper, StepButton } from 'material-ui/Stepper'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
+import throttle from 'lodash/throttle'
 
 const getStyles = () => {
   return {
@@ -28,7 +29,9 @@ const getStyles = () => {
 class PlanningGuide extends Component {
   state = {
     stepIndex: null,
-    visited: []
+    visited: [],
+    headerPositions: [],
+    scrollY: 0
   }
 
   componentWillMount () {
@@ -36,11 +39,43 @@ class PlanningGuide extends Component {
     this.setState({ visited: visited.concat(stepIndex) })
   }
 
+  componentDidMount = () => {
+    const headers = document.getElementsByTagName('h3')
+    let headerPositions = []
+    for (let i = 0; i < headers.length; i++) {
+      headerPositions.push(headers[i].offsetTop)
+    }
+    this.setState({ headerPositions: headerPositions })
+    this.trackScroll()
+  }
+
   componentWillUpdate (nextProps, nextState) {
     const { stepIndex, visited } = nextState
     if (visited.indexOf(stepIndex) === -1) {
       this.setState({ visited: visited.concat(stepIndex) })
     }
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener(
+      'scroll',
+      throttle(() => {
+        this.handleScroll()
+      }, 200)
+    )
+  }
+
+  trackScroll = () => {
+    window.addEventListener(
+      'scroll',
+      throttle(() => {
+        this.handleScroll()
+      }, 200)
+    )
+  }
+
+  handleScroll = e => {
+    this.setState({ scrollY: window.scrollY })
   }
 
   handleNext = () => {
@@ -140,7 +175,7 @@ class PlanningGuide extends Component {
               Please follow these guidelines before final approval.
             </h2>
             <div className='col s12'>
-              <h3>Plan Ahead</h3>
+              <h3 id='plan-ahead'>Plan Ahead</h3>
               <p>
                 Since not all projects are alike, the time needed to produce
                 them also varies. A simple press release may be completed in two
@@ -167,7 +202,7 @@ class PlanningGuide extends Component {
                 It limits our ability to help you when we are only given one or
                 two months to assist with a large-scale project.
               </p>
-              <h3>Budget Information</h3>
+              <h3 id='budget'>Budget Information</h3>
               <p>
                 In most cases, there is no charge for MarCom’s writing,
                 photography, and editing services, nor for content creation for
@@ -180,7 +215,7 @@ class PlanningGuide extends Component {
                 you after you submit your project request.
               </p>
 
-              <h3>Proof the Job in a Timely Manner</h3>
+              <h3 id='proof'>Proof the Job in a Timely Manner</h3>
               <p>
                 After a proof has been received, please look it over as soon as
                 possible. If, for some reason, you need to delay the job at this
@@ -193,7 +228,7 @@ class PlanningGuide extends Component {
                 See <Link to='glossary'>Common MarCom Terms</Link> for more
                 information.
               </p>
-              <h3>Services</h3>
+              <h3 id='services'>Services</h3>
               <p>
                 MarCom provides many services to help you complete your
                 marketing and communication projects.
