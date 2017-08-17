@@ -61,7 +61,16 @@
       "describe",
       "it",
       "beforeEach",
-      "expect"
+      "expect",
+      "handleClose",
+      "state",
+      "handleNext",
+      "handlePrev",
+      "handleChange",
+      "formatLabelToProperty",
+      "handleFilePath",
+      "handleFormData",
+      "handleDialogClose"
     ],
     "parser": "babel-eslint"
   }
