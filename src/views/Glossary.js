@@ -8,7 +8,7 @@ const Glossary = () =>
     </Helmet>
     <div className='container'>
       <div className='row flow-text'>
-        <h2>Common MarCom Terms</h2>
+        <h2 style={{ marginBottom: 0 }}>Common MarCom Terms</h2>
         <div className='col s12'>
           <dl>
             <dt>Banner Ad</dt>

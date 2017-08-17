@@ -135,13 +135,11 @@ class PlanningGuide extends Component {
         </div>
 
         <div className='container'>
-          <div className='row'>
-            <div className='col s12 flow-text'>
-              <h2>Please follow these guidelines before final approval.</h2>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col s12 flow-text'>
+          <div className='row flow-text'>
+            <h2 style={{ marginBottom: 0 }}>
+              Please follow these guidelines before final approval.
+            </h2>
+            <div className='col s12'>
               <h3>Plan Ahead</h3>
               <p>
                 Since not all projects are alike, the time needed to produce
