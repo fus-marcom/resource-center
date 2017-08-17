@@ -6,6 +6,7 @@ import SvgIcon from 'material-ui/SvgIcon'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import { logos } from '../data/logoData.js'
+import { Helmet } from 'react-helmet'
 
 class Logos extends Component {
   constructor (props) {
@@ -64,6 +65,11 @@ class Logos extends Component {
                 actions={
                   <div>
                     <FlatButton
+                      href={
+                        'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/' +
+                        logo.jpgUrl
+                      }
+                      download={logo.name}
                       label={
                         <span>
                           <DownloadIcon color='#ffb41f' />JPG
@@ -71,6 +77,11 @@ class Logos extends Component {
                       }
                     />
                     <FlatButton
+                      href={
+                        'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/' +
+                        logo.psdUrl
+                      }
+                      download={logo.name}
                       label={
                         <span>
                           <DownloadIcon color='#ffb41f' />PSD
@@ -87,6 +98,9 @@ class Logos extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>Logos | Resource Center</title>
+        </Helmet>
         <div className='row'>
           <div className='col s12 hide-on-med-and-down'>
             <ul className='tabs'>
@@ -112,7 +126,7 @@ class Logos extends Component {
               floatingLabelText='Logo Type'
               value={this.state.activeTab}
               onChange={this.handleChange}
-              style={{ textAlign: 'left' }}
+              style={{ textAlign: 'left', width: '100%' }}
             >
               {Object.keys(tabs).map(tabKey =>
                 <MenuItem
