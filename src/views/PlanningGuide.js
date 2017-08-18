@@ -1,10 +1,8 @@
+// eslint-disable-next-line
 /* global trackScroll handleScroll */
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-import { Step, Stepper, StepButton } from 'material-ui/Stepper'
-import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
 import throttle from 'lodash/throttle'
 
 const getStyles = () => {
@@ -17,27 +15,15 @@ const getStyles = () => {
     },
     content: {
       margin: '0 16px'
-    },
-    actions: {
-      marginTop: 12
-    },
-    backButton: {
-      marginRight: 12
     }
   }
 }
 
 class PlanningGuide extends Component {
   state = {
-    stepIndex: null,
-    visited: [],
     headerPositions: [],
-    scrollY: 0
-  }
-
-  componentWillMount () {
-    const { stepIndex, visited } = this.state
-    this.setState({ visited: visited.concat(stepIndex) })
+    scrollY: 0,
+    activeSection: 0
   }
 
   componentDidMount = () => {
@@ -48,13 +34,6 @@ class PlanningGuide extends Component {
     }
     this.setState({ headerPositions: headerPositions })
     this.trackScroll()
-  }
-
-  componentWillUpdate (nextProps, nextState) {
-    const { stepIndex, visited } = nextState
-    if (visited.indexOf(stepIndex) === -1) {
-      this.setState({ visited: visited.concat(stepIndex) })
-    }
   }
 
   componentWillUnmount () {
@@ -77,6 +56,20 @@ class PlanningGuide extends Component {
 
   handleScroll = e => {
     this.setState({ scrollY: window.scrollY })
+    switch (true) {
+      case this.state.scrollY < this.state.headerPositions[1] - 1:
+        this.setState({ activeSection: 0 })
+        break
+      case this.state.scrollY < this.state.headerPositions[2] - 1:
+        this.setState({ activeSection: 1 })
+        break
+      case this.state.scrollY < this.state.headerPositions[3] - 1:
+        this.setState({ activeSection: 2 })
+        break
+      default:
+        this.setState({ activeSection: 3 })
+        break
+    }
   }
 
   handleNext = () => {
@@ -93,20 +86,7 @@ class PlanningGuide extends Component {
     }
   }
 
-  getStepContent (stepIndex) {
-    switch (stepIndex) {
-      case 0:
-        return 'Select campaign settings...'
-      case 1:
-        return 'What is an ad group anyways?'
-      case 2:
-        return 'This is the bit I really care about!'
-      default:
-        return 'Click a step to get started.'
-    }
-  }
   render () {
-    const { stepIndex, visited } = this.state
     const styles = getStyles()
     return (
       <div>
@@ -115,59 +95,39 @@ class PlanningGuide extends Component {
         </Helmet>
 
         <div style={styles.root}>
-          <p>
-            <a
-              href='#'
-              onClick={event => {
-                event.preventDefault()
-                this.setState({ stepIndex: null, visited: [] })
-              }}
+          <ul>
+            <li
+              onClick={() =>
+                (document.body.scrollTop = this.state.headerPositions[0])}
+              style={{ fontWeight: this.state.activeSection === 0 && 500 }}
             >
-              Click here
-            </a>{' '}
-            to reset the example.
-          </p>
-          <Stepper linear={false} orientation='vertical'>
-            <Step
-              completed={visited.indexOf(0) !== -1}
-              active={stepIndex === 0}
+              Plan Ahead
+            </li>
+
+            <li
+              onClick={() =>
+                (document.body.scrollTop = this.state.headerPositions[1])}
+              style={{ fontWeight: this.state.activeSection === 1 && 500 }}
             >
-              <StepButton onClick={() => this.setState({ stepIndex: 0 })}>
-                Select campaign settings
-              </StepButton>
-            </Step>
-            <Step
-              completed={visited.indexOf(1) !== -1}
-              active={stepIndex === 1}
+              Budget
+            </li>
+
+            <li
+              onClick={() =>
+                (document.body.scrollTop = this.state.headerPositions[2])}
+              style={{ fontWeight: this.state.activeSection === 2 && 500 }}
             >
-              <StepButton onClick={() => this.setState({ stepIndex: 1 })}>
-                Create an ad group
-              </StepButton>
-            </Step>
-            <Step
-              completed={visited.indexOf(2) !== -1}
-              active={stepIndex === 2}
+              Proof the Job in a Timely Manner
+            </li>
+
+            <li
+              onClick={() =>
+                (document.body.scrollTop = this.state.headerPositions[3])}
+              style={{ fontWeight: this.state.activeSection === 3 && 500 }}
             >
-              <StepButton onClick={() => this.setState({ stepIndex: 2 })}>
-                Create an ad
-              </StepButton>
-            </Step>
-          </Stepper>
-          <div style={styles.content}>
-            <p>
-              {this.getStepContent(stepIndex)}
-            </p>
-            {stepIndex !== null &&
-              <div style={styles.actions}>
-                <FlatButton
-                  label='Back'
-                  disabled={stepIndex === 0}
-                  onClick={this.handlePrev}
-                  style={styles.backButton}
-                />
-                <RaisedButton label='Next' primary onClick={this.handleNext} />
-              </div>}
-          </div>
+              Services
+            </li>
+          </ul>
         </div>
 
         <div className='container'>
@@ -203,7 +163,7 @@ class PlanningGuide extends Component {
                 It limits our ability to help you when we are only given one or
                 two months to assist with a large-scale project.
               </p>
-              <h3 id='budget'>Budget Information</h3>
+              <h3 id='budget'>Budget</h3>
               <p>
                 In most cases, there is no charge for MarCom’s writing,
                 photography, and editing services, nor for content creation for
