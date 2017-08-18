@@ -70,7 +70,8 @@
       "formatLabelToProperty",
       "handleFilePath",
       "handleFormData",
-      "handleDialogClose"
+      "handleDialogClose",
+      "componentDidMount"
     ],
     "parser": "babel-eslint"
   }
