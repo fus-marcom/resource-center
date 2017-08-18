@@ -1,3 +1,6 @@
+// eslint-disable-next-line
+/* global onMouseOver onMouseOut */
+/* eslint no-undef: "error" */
 import React, { Component } from 'react'
 import Paper from 'material-ui/Paper'
 import { Link } from 'react-router-dom'
