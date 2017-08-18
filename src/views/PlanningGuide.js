@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import throttle from 'lodash/throttle'
+import '../styles/planning-guide.css'
 
 const getStyles = () => {
   return {
@@ -97,9 +98,9 @@ class PlanningGuide extends Component {
         <div style={styles.root}>
           <ul>
             <li
+              className={this.state.activeSection === 0 && 'active'}
               onClick={() =>
                 (document.body.scrollTop = this.state.headerPositions[0])}
-              style={{ fontWeight: this.state.activeSection === 0 && 500 }}
             >
               Plan Ahead
             </li>
@@ -107,7 +108,7 @@ class PlanningGuide extends Component {
             <li
               onClick={() =>
                 (document.body.scrollTop = this.state.headerPositions[1])}
-              style={{ fontWeight: this.state.activeSection === 1 && 500 }}
+              className={this.state.activeSection === 1 && 'active'}
             >
               Budget
             </li>
@@ -115,15 +116,15 @@ class PlanningGuide extends Component {
             <li
               onClick={() =>
                 (document.body.scrollTop = this.state.headerPositions[2])}
-              style={{ fontWeight: this.state.activeSection === 2 && 500 }}
+              className={this.state.activeSection === 2 && 'active'}
             >
-              Proof the Job in a Timely Manner
+              Proof
             </li>
 
             <li
               onClick={() =>
                 (document.body.scrollTop = this.state.headerPositions[3])}
-              style={{ fontWeight: this.state.activeSection === 3 && 500 }}
+              className={this.state.activeSection === 3 && 'active'}
             >
               Services
             </li>

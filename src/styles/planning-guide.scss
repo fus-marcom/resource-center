@@ -1,0 +1,15 @@
+$fus-yellow: #ffb41f;
+ul {
+  list-style: none;
+
+  li {
+    margin-bottom: 8px;
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  li.active {
+    font-weight: 500;
+    border-left: 2px solid $fus-yellow;
+  }
+}
