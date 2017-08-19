@@ -21,6 +21,7 @@ import NotFound from '../views/NotFound'
 import PlanningGuide from '../views/PlanningGuide'
 import Posters from '../views/Posters'
 import PosterVideos from '../views/PosterVideos'
+import ScrollIntoView from '../components/ScrollIntoView'
 import ServiceRequest from '../views/ServiceRequest'
 import Services from '../views/Services'
 import Story from '../views/Story'
@@ -31,26 +32,28 @@ injectTapEventPlugin()
 const Routes = () => {
   return (
     <BrowserRouter>
-      <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
-        <div>
-          <SideNav />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/logos-posters' component={LogosPosters} />
-            <Route path='/logos' component={Logos} />
-            <Route path='/posters' component={Posters} />
-            <Route path='/letterhead' component={Letterhead} />
-            <Route path='/share-a-story' component={Story} />
-            <Route path='/planning-guide' component={PlanningGuide} />
-            <Route path='/glossary' component={Glossary} />
-            <Route path='/services' component={Services} />
-            <Route path='/service-request-form' component={ServiceRequest} />
-            <Route path='/tutorial' component={Tutorial} />
-            <Route path='/poster-videos' component={PosterVideos} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </MuiThemeProvider>
+      <ScrollIntoView>
+        <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
+          <div>
+            <SideNav />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/logos-posters' component={LogosPosters} />
+              <Route path='/logos' component={Logos} />
+              <Route path='/posters' component={Posters} />
+              <Route path='/letterhead' component={Letterhead} />
+              <Route path='/share-a-story' component={Story} />
+              <Route path='/planning-guide' component={PlanningGuide} />
+              <Route path='/glossary' component={Glossary} />
+              <Route path='/services' component={Services} />
+              <Route path='/service-request-form' component={ServiceRequest} />
+              <Route path='/tutorial' component={Tutorial} />
+              <Route path='/poster-videos' component={PosterVideos} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </MuiThemeProvider>
+      </ScrollIntoView>
     </BrowserRouter>
   )
 }
