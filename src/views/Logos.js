@@ -9,31 +9,36 @@ import '../styles/logos.css'
 import { logos } from '../data/logoData.js'
 import { Helmet } from 'react-helmet'
 
+const tabs = {
+  all: 'All',
+  alumni: 'Alumni',
+  athletics: 'Athletics',
+  austrian: 'Austrian',
+  conference: 'Conference',
+  franciscan: 'Franciscan',
+  grad: 'Grad School',
+  iheart: 'IHeart',
+  online: 'Online',
+  pilgrimages: 'Pilgrimages',
+  press: 'Press',
+  seal: 'Seal'
+}
+
 class Logos extends Component {
-  state = {
-    activeTab: 'all',
-    data: logos,
-    type: 'all'
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      activeTab: 'all',
+      data: logos,
+      type: 'all'
+    }
   }
 
   handleChange = (event, index, value) => this.setState({ activeTab: value })
 
   render () {
     const { activeTab } = this.state
-    const tabs = {
-      all: 'All',
-      alumni: 'Alumni',
-      athletics: 'Athletics',
-      austrian: 'Austrian',
-      conference: 'Conference',
-      franciscan: 'Franciscan',
-      grad: 'Grad School',
-      iheart: 'IHeart',
-      online: 'Online',
-      pilgrimages: 'Pilgrimages',
-      press: 'Press',
-      seal: 'Seal'
-    }
 
     const DownloadIcon = props =>
       <SvgIcon {...props}>
