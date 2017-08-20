@@ -28,18 +28,18 @@ class PlanningGuide extends Component {
       scrollY: 0,
       activeSection: 0
     }
-    this.scrollSpy = throttle(this.handleScroll, 200)
+    this.handleScroll = throttle(this.handleScroll, 200)
   }
 
   componentDidMount () {
     this.setState({
       headerPositions: spliceHeaders([...document.getElementsByTagName('h3')])
     })
-    window.addEventListener('scroll', this.scrollSpy)
+    window.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount () {
-    window.removeEventListener('scroll', this.scrollSpy)
+    window.removeEventListener('scroll', this.handleScroll)
   }
 
   handleScroll = () => {
