@@ -38,9 +38,18 @@ class SideNav extends Component {
       <div>
         <AppBar
           title='Resource Center'
+          className='app-bar'
+          iconElementLeft={
+            <img
+              src={require('./../img/fus-log.svg')}
+              alt='Franciscan University Logo'
+              style={{ height: '50px' }}
+            />
+          }
           iconClassNameRight='muidocs-icon-navigation-expand-more'
           onLeftIconButtonTouchTap={() =>
             this.setState({ open: !this.state.open })}
+          style={{ backgroundColor: '#fff', color: '#21412a' }}
         />
         <Drawer
           open={this.state.open}

@@ -13,3 +13,16 @@ a {
   display: flex;
   align-items: center;
 }
+
+.app-bar {
+  background-color: #fff;
+  border-bottom: 3px solid #998643;
+
+  h1 {
+    color:#21412a !important;
+  }
+
+  svg {
+    fill: #21412a !important;
+  }
+}
