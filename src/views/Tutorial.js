@@ -49,7 +49,7 @@ class Tutorial extends Component {
                 please contact Jesse Weigel at{' '}
                 <a href='mailto:jweigel@franciscan.edu'>
                   jweigel@franciscan.edu
-                </a>{' '}
+                </a>
                 or <a href='tel:17402845305'> 740-284-5305</a>.
               </p>
             </div>
