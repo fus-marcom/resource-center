@@ -1,24 +1,12 @@
 // eslint-disable-next-line
-/* global trackScroll handleScroll */
+/* global trackScroll handleScroll setHeaders */
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
-import { Link } from 'react-router-dom'
 import throttle from 'lodash/throttle'
-import '../styles/planning-guide.css'
-import {
-  headerTitles,
-  planningGuideData,
-  servicesData,
-  styles
-} from '../data/planningGuideServicesData'
+import PlanningGuideNav from '../components/planningGuideNav'
+import PlanningGuidelines from '../components/PlanningGuidelines'
 
-const spliceHeaders = headers => {
-  let headerPositions = []
-  headers.forEach(elem => {
-    headerPositions.push(elem.offsetTop)
-  })
-  return headerPositions
-}
+import '../styles/planning-guide.css'
 
 class PlanningGuide extends Component {
   constructor (props) {
@@ -32,14 +20,15 @@ class PlanningGuide extends Component {
   }
 
   componentDidMount () {
-    this.setState({
-      headerPositions: spliceHeaders([...document.getElementsByTagName('h3')])
-    })
     window.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll)
+  }
+
+  setHeaders = headerPositions => {
+    this.setState({ headerPositions: headerPositions })
   }
 
   handleScroll = () => {
@@ -82,69 +71,12 @@ class PlanningGuide extends Component {
           <title>Planning Guide | Resource Center</title>
         </Helmet>
 
-        <div style={styles.root}>
-          <ul>
-            {headerTitles.map((head, key) => {
-              return (
-                <li
-                  key={key}
-                  className={this.state.activeSection === key && 'active'}
-                  onClick={() =>
-                    (document.body.scrollTop = this.state.headerPositions[key])}
-                >
-                  {head.title}
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+        <PlanningGuideNav
+          activeSection={this.state.activeSection}
+          headerPositions={this.state.headerPositions}
+        />
 
-        <div className='container'>
-          <div className='row flow-text'>
-            <h2 style={{ marginBottom: 0 }}>
-              Please follow these guidelines before final approval.
-            </h2>
-            <div className='col s12'>
-              {planningGuideData.map((item, key) => {
-                return (
-                  <span key={key}>
-                    <h3 id={item.id}>
-                      {item.title}
-                    </h3>
-                    {item.description.split('\n').map((paragraph, key) => {
-                      return (
-                        <p key={key}>
-                          {paragraph}
-                        </p>
-                      )
-                    })}
-                  </span>
-                )
-              })}
-              <p>
-                See <Link to='glossary'>Common MarCom Terms</Link> for more
-                information.
-              </p>
-              <h3 id='services'>Services</h3>
-              <p>
-                MarCom provides many services to help you complete your
-                marketing and communication projects.
-              </p>
-              {servicesData.map((service, key) => {
-                return (
-                  <dl key={key}>
-                    <dt>
-                      {service.title}
-                    </dt>
-                    <dd>
-                      {service.description}
-                    </dd>
-                  </dl>
-                )
-              })}
-            </div>
-          </div>
-        </div>
+        <PlanningGuidelines setHeaders={this.setHeaders} />
       </div>
     )
   }

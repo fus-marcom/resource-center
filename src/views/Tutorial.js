@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
 import '../styles/video.css'
 
@@ -11,22 +10,18 @@ class Tutorial extends Component {
     }
   }
   componentDidMount () {
-    const thisElement = ReactDOM.findDOMNode(this)
-    const top = thisElement.getBoundingClientRect().top
-    this.setState({ topCoord: top })
+    this.setState({
+      topCoord: this.refs.tutorialContainer.offsetTop
+    })
   }
 
   render () {
     return (
-      <div className='container'>
+      <div ref='tutorialContainer' className='container'>
         <Helmet>
           <title>Tutorial | Resource Center</title>
         </Helmet>
         <div className='row' style={{ marginBottom: 0 }}>
-          {/* Guess 64px the first render, then immediately adjust
-              to a proper calculated value.
-              This prevents the layout from breaking should the AppBar
-              ever change to anything other than 64px. */}
           <div
             className='col s12 valign-wrapper'
             style={{

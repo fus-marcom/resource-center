@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
@@ -14,13 +15,14 @@ class Posters extends Component {
 
   componentDidMount () {
     this.setState({
-      topCoord: document.getElementsByClassName('container')[0].offsetTop
+      topCoord: this.refs.pageContainer.offsetTop
     })
   }
 
   render () {
     return (
       <div
+        ref='pageContainer'
         className='container valign-wrapper'
         style={{
           marginBottom: 0,
@@ -36,36 +38,42 @@ class Posters extends Component {
           style={{ display: 'flex', flexWrap: 'wrap' }}
         >
           <h2 style={{ flex: '1 100%' }}>Poster Resources</h2>
-          {posterData.map((poster, key) => {
-            return (
-              <div key={key} className='col s12 m6 flex-div'>
-                <GenericCard
-                  hoverable={poster.hoverable}
-                  link={poster.link}
-                  cardTitle={poster.cardTitle}
-                >
-                  {poster.description}
-                  {poster.contactInfo !== undefined
-                    ? <div style={{ marginBottom: '0' }}>
-                      <br />
-                      {poster.contactInfo.map((contact, key) => {
-                        return (
-                          <p
-                            style={{ margin: '0 10px', textAlign: 'center' }}
-                            key={key}
-                            >
-                            <Link to={contact.link}>
-                              {contact.linkText}
-                            </Link>
-                          </p>
-                        )
-                      })}
-                    </div>
-                    : null}
-                </GenericCard>
-              </div>
-            )
-          })}
+          {_.map(
+            posterData,
+            ({ hoverable, link, cardTitle, description, contactInfo }, key) => {
+              return (
+                <div key={key} className='col s12 m6 flex-div'>
+                  <GenericCard
+                    hoverable={hoverable}
+                    link={link}
+                    cardTitle={cardTitle}
+                  >
+                    {description}
+                    {contactInfo !== undefined
+                      ? <div style={{ marginBottom: '0' }}>
+                        <br />
+                        {_.map(contactInfo, ({ link, linkText }, key) => {
+                          return (
+                            <p
+                              style={{
+                                margin: '0 10px',
+                                textAlign: 'center'
+                              }}
+                              key={key}
+                              >
+                              <Link to={link}>
+                                {linkText}
+                              </Link>
+                            </p>
+                          )
+                        })}
+                      </div>
+                      : null}
+                  </GenericCard>
+                </div>
+              )
+            }
+          )}
         </div>
       </div>
     )

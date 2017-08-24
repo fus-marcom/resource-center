@@ -1,5 +1,6 @@
+import _ from 'lodash'
 import React from 'react'
-import LetterheadCard from '../components/LetterheadCard'
+import LetterheadCard from '../components/letterheadCard'
 import { letterheadData } from '../data/letterheadData'
 import { Helmet } from 'react-helmet'
 
@@ -32,13 +33,13 @@ const Letterhead = () => {
         </div>
       </div>
       <div className='row'>
-        {letterheadData.map((letterhead, key) => {
+        {_.map(letterheadData, ({ image }, key) => {
           return (
             <LetterheadCard
               key={key}
               title='Card title'
               action='Action1'
-              image={letterhead.image}
+              image={image}
             />
           )
         })}
