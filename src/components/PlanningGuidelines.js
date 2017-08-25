@@ -28,9 +28,11 @@ class PlanningGuidelines extends PureComponent {
         />
         <div className='container'>
           <div className='row flow-text'>
-            <h2 style={{ marginBottom: 0 }}>
-              Please follow these guidelines before final approval.
-            </h2>
+            <div className='col s12'>
+              <h2 style={{ marginBottom: 0 }}>
+                Please follow these guidelines before final approval.
+              </h2>
+            </div>
             <div className='col s12'>
               {_.map(planningGuideData, ({ id, title, description }, key) => {
                 return (

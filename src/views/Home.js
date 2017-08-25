@@ -36,7 +36,9 @@ class Home extends Component {
           <Helmet>
             <title>Home | Resource Center</title>
           </Helmet>
-          <h2 style={{ flex: '1 100%' }}>Hello! How can MarCom help you?</h2>
+          <div className='col s12'>
+            <h2 style={{ flex: '1 100%' }}>Hello! How can MarCom help you?</h2>
+          </div>
 
           {_.map(genericCardData, ({ title, description }, key) => {
             return (

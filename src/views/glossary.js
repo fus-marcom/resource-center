@@ -11,7 +11,9 @@ const Glossary = () => {
       </Helmet>
       <div className='container'>
         <div className='row flow-text'>
-          <h2 style={{ marginBottom: 0 }}>Common MarCom Terms</h2>
+          <div className='col s12'>
+            <h2 style={{ marginBottom: 0 }}>Common MarCom Terms</h2>
+          </div>
           <div className='col s12'>
             {_.map(glossaryData, ({ title, description }, key) => {
               return (

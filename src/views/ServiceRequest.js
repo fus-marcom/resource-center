@@ -240,10 +240,12 @@ class ServiceRequest extends Component {
                 />
               </div>
               <div className='file-path-wrapper'>
-                <input
-                  value={fileValue}
+                <TextField
                   className='file-path validate'
-                  type='text'
+                  value={fileValue}
+                  multiLine
+                  rows={1}
+                  fullWidth
                   readOnly
                 />
               </div>

@@ -50,8 +50,7 @@ describe('Service Request Page', () => {
   it('allows to upload files and shows the filenames', async () => {
     const page = visit('/service-request-form')
     const fileInputSelector = '.file-upload input[type="file"]'
-    const filenamesSelector =
-      '.file-upload .file-path-wrapper > input[type="text"]'
+    const filenamesSelector = '.file-upload .file-path-wrapper textarea'
     const text = await page
       .upload(fileInputSelector, ['fake file 1.txt', 'fake file 2.txt'])
       .evaluate(sel => document.querySelector(sel).value, filenamesSelector)
