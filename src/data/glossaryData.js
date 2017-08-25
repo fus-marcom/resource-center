@@ -1,4 +1,4 @@
-export const glossaryData = [
+export default [
   {
     title: 'Banner Ad',
     description:

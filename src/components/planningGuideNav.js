@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React from 'react'
 import { headerTitles, styles } from '../data/planningGuideServicesData'
 
@@ -7,7 +7,7 @@ const PlanningGuideNav = ({ activeSection, scrollToItem }) => {
   return (
     <div style={root}>
       <ul>
-        {_.map(headerTitles, ({ title }, key) => {
+        {map(headerTitles, ({ title }, key) => {
           return (
             <li
               key={key}

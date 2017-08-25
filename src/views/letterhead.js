@@ -1,8 +1,8 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React from 'react'
-import LetterheadCard from '../components/letterheadCard'
-import { letterheadData } from '../data/letterheadData'
 import { Helmet } from 'react-helmet'
+import LetterheadCard from '../components/letterheadCard'
+import letterheadData from '../data/letterheadData'
 
 const Letterhead = () => {
   return (
@@ -33,7 +33,7 @@ const Letterhead = () => {
         </div>
       </div>
       <div className='row'>
-        {_.map(letterheadData, ({ image }, key) => {
+        {map(letterheadData, ({ image }, key) => {
           return (
             <LetterheadCard
               key={key}

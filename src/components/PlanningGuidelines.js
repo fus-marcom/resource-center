@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 /* global scrollToItem */
-import _ from 'lodash'
+import map from 'lodash/map'
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import { sliceHeaders } from './getTopCoord'
@@ -34,7 +34,7 @@ class PlanningGuidelines extends PureComponent {
               </h2>
             </div>
             <div className='col s12'>
-              {_.map(planningGuideData, ({ id, title, description }, key) => {
+              {map(planningGuideData, ({ id, title, description }, key) => {
                 return (
                   <span key={key}>
                     <h3 ref={title} id={id}>
@@ -61,7 +61,7 @@ class PlanningGuidelines extends PureComponent {
                 MarCom provides many services to help you complete your
                 marketing and communication projects.
               </p>
-              {_.map(servicesData, ({ title, description }, key) => {
+              {map(servicesData, ({ title, description }, key) => {
                 return (
                   <dl key={key}>
                     <dt>

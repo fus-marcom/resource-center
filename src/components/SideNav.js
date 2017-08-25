@@ -4,13 +4,10 @@ import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import SideBarItem from './sideBarItem'
 import { List } from 'material-ui/List'
-import { links } from '../data/linksData'
+import links from '../data/linksData'
 
 class SideNav extends Component {
-  constructor (props) {
-    super(props)
-    this.state = { open: false }
-  }
+  state = { open: false }
 
   handleClose = () => this.setState({ open: false })
 

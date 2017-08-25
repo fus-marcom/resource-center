@@ -1,4 +1,4 @@
-export const posterData = [
+export default [
   {
     cardTitle: 'Create Your Own',
     link: 'https://www.canva.com/',

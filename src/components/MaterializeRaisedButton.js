@@ -2,15 +2,10 @@ import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 
 class MaterializeRaisedButton extends Component {
-  constructor (props) {
-    super(props)
-    // We need to track the hovering ourselves because we cannot
-    // control the styles of material-ui's RaisedButton only when
-    // it is hovered. We override the styles all the time
-    this.state = {
-      hovered: false
-    }
-  }
+  // We need to track the hovering ourselves because we cannot
+  // control the styles of material-ui's RaisedButton only when
+  // it is hovered. We override the styles all the time
+  state = { hovered: false }
 
   render () {
     const overlayStyle = {

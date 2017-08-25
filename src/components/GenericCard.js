@@ -15,10 +15,7 @@ import {
 } from 'material-ui/Card'
 
 export class GenericCard extends Component {
-  constructor (props) {
-    super(props)
-    this.state = { depth: 1 }
-  }
+  state = { depth: 1 }
 
   // From https://stackoverflow.com/a/37112044/4718107
   // debounce the function to 30 frames per second

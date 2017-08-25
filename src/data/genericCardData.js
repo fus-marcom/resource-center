@@ -1,4 +1,4 @@
-export const genericCardData = [
+export default [
   {
     title: 'Brand Manual',
     description: 'Visual Brand Identity Manual.'

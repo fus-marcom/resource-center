@@ -1,4 +1,4 @@
-export const links = [
+export default [
   { isExact: true, linkTo: '/', text: 'Home' },
   { isExact: false, linkTo: '/logos', text: 'Logos' },
   { isExact: false, linkTo: '/posters', text: 'Posters' },

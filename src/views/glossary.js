@@ -1,7 +1,7 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { glossaryData } from '../data/glossaryData'
+import glossaryData from '../data/glossaryData'
 
 const Glossary = () => {
   return (
@@ -15,7 +15,7 @@ const Glossary = () => {
             <h2 style={{ marginBottom: 0 }}>Common MarCom Terms</h2>
           </div>
           <div className='col s12'>
-            {_.map(glossaryData, ({ title, description }, key) => {
+            {map(glossaryData, ({ title, description }, key) => {
               return (
                 <dl key={key}>
                   <dt>

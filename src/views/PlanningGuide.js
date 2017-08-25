@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 /* global trackScroll handleScroll setHeaders */
-import _ from 'lodash'
+import each from 'lodash/each'
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import throttle from 'lodash/throttle'
@@ -32,7 +32,7 @@ class PlanningGuide extends Component {
 
   handleScroll = () => {
     this.setState({ scrollY: window.scrollY }, () => {
-      _.each(this.state.headerPositions, (position, key) => {
+      each(this.state.headerPositions, (position, key) => {
         if (this.state.scrollY > position - 1) {
           this.setState({ activeSection: key })
         }

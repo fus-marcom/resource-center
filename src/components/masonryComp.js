@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import filter from 'lodash/filter'
 import React from 'react'
 import Masonry from 'react-masonry-component'
 import { GenericCard } from './../components/GenericCard'
@@ -8,7 +8,7 @@ import DownloadIcon from './downloadIcon'
 const MasonryComp = ({ data, activeTab }) => {
   return (
     <Masonry>
-      {_.filter(
+      {filter(
         data,
         logo => activeTab === 'all' || activeTab === logo.category
       ).map(({ thumbnailUrl, jpgUrl, name, psdUrl }, i) =>

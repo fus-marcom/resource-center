@@ -1,4 +1,4 @@
-export const letterheadData = [
+export default [
   {
     image: 'https://placeimg.com/600/776/nature'
   },

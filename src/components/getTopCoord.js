@@ -1,8 +1,8 @@
-import _ from 'lodash'
+import mapValues from 'lodash/mapValues'
 
 export const sliceHeaders = headers => {
   const headerPositions = []
-  _.mapValues(headers, ({ offsetTop }) => {
+  mapValues(headers, ({ offsetTop }) => {
     headerPositions.push(offsetTop)
   })
   return headerPositions

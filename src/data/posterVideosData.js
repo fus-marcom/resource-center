@@ -1,4 +1,4 @@
-export const posterVideos = [
+export default [
   {
     title: 'Powerpoint',
     url: 'https://www.youtube.com/embed/A4qXONix2aQ?rel=0'
