@@ -27,8 +27,7 @@ class Posters extends Component {
         className='container valign-wrapper'
         style={{
           marginBottom: 0,
-          minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`,
-          width: '100%'
+          minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
         }}
       >
         <Helmet>

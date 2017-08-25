@@ -25,7 +25,9 @@ class SideNav extends Component {
             />
           }
           className='app-bar'
-          iconElementRight={<h1>Resource Center</h1>}
+          iconElementRight={
+            <h1 className='hide-on-small-only'>Resource Center</h1>
+          }
           onLeftIconButtonTouchTap={() =>
             this.setState({ open: !this.state.open })}
           style={{ backgroundColor: '#fff', color: '#21412a' }}
