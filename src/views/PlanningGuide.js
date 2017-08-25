@@ -3,9 +3,7 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import throttle from 'lodash/throttle'
-import PlanningGuideNav from '../components/planningGuideNav'
 import PlanningGuidelines from '../components/PlanningGuidelines'
-
 import '../styles/planning-guide.css'
 
 class PlanningGuide extends Component {
@@ -70,13 +68,11 @@ class PlanningGuide extends Component {
         <Helmet>
           <title>Planning Guide | Resource Center</title>
         </Helmet>
-
-        <PlanningGuideNav
+        <PlanningGuidelines
+          setHeaders={this.setHeaders}
           activeSection={this.state.activeSection}
           headerPositions={this.state.headerPositions}
         />
-
-        <PlanningGuidelines setHeaders={this.setHeaders} />
       </div>
     )
   }

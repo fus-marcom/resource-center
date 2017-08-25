@@ -242,3 +242,18 @@ export const logos = [
     psdUrl: 'FranciscanLogo/Horizontal/FULogoBW.psd'
   }
 ]
+
+export const tabs = {
+  all: 'All',
+  alumni: 'Alumni',
+  athletics: 'Athletics',
+  austrian: 'Austrian',
+  conference: 'Conference',
+  franciscan: 'Franciscan',
+  grad: 'Grad School',
+  iheart: 'IHeart',
+  online: 'Online',
+  pilgrimages: 'Pilgrimages',
+  press: 'Press',
+  seal: 'Seal'
+}

@@ -28,7 +28,7 @@ export const planningGuideData = [
   },
   {
     id: 'proof',
-    title: 'Proof the Job in a Timely Manner',
+    title: 'Proof',
     description:
       'After a proof has been received, please look it over as soon as possible. If, for some reason, you need to delay the job at this point, please notify your MarCom contact person. Mark any corrections on the proof, and send it back to MarCom as soon as possible. The publication will not be sent to print until a final sign off is given.'
   }

@@ -1,29 +1,10 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
-import SideBarItem from './SideBarItem'
+import SideBarItem from './sideBarItem'
 import { List } from 'material-ui/List'
-
-/*
-  Add you nav links here..
-    isExact: if true it will be an exact path
-    linkTo: the path you want to go
-    text: title of the nav item
-*/
-
-const links = [
-  { isExact: true, linkTo: '/', text: 'Home' },
-  { isExact: false, linkTo: '/logos', text: 'Logos' },
-  { isExact: false, linkTo: '/posters', text: 'Posters' },
-  { isExact: false, linkTo: '/letterhead', text: 'Letterhead' },
-  { isExact: false, linkTo: '/share-a-story', text: 'Share a Story' },
-  {
-    isExact: false,
-    linkTo: '/service-request-form',
-    text: 'Service Request Form'
-  },
-  { isExact: false, linkTo: '/tutorial', text: 'Tutorial' }
-]
+import { links } from '../data/linksData'
 
 class SideNav extends Component {
   constructor (props) {
@@ -48,14 +29,14 @@ class SideNav extends Component {
           onRequestChange={open => this.setState({ open })}
         >
           <List>
-            {links.map((link, i) => {
+            {_.map(links, ({ isExact, linkTo, text }, key) => {
               return (
                 <SideBarItem
-                  isExact={link.isExact}
-                  linkTo={link.linkTo}
-                  primaryText={link.text}
+                  isExact={isExact}
+                  linkTo={linkTo}
+                  primaryText={text}
                   onClick={this.handleClose}
-                  key={i}
+                  key={key}
                 />
               )
             })}
