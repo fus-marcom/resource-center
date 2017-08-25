@@ -58,8 +58,7 @@ class Posters extends Component {
                           return (
                             <p
                               style={{
-                                margin: '0 10px',
-                                textAlign: 'center'
+                                margin: '0 10px'
                               }}
                               key={key}
                               >
