@@ -68,8 +68,13 @@ export class GenericCard extends Component {
             <CardMedia className='img-container' overlay={overlay}>
               <img src={mediaImgSrc} alt={mediaImgAlt} />
             </CardMedia>}
-          {cardTitle && <CardTitle title={cardTitle} subtitle={cardSubtitle} />}
-          <CardText style={{ fontSize: '16px' }}>
+          {cardTitle &&
+            <CardTitle
+              title={cardTitle}
+              subtitle={cardSubtitle}
+              style={{ paddingBottom: '0' }}
+            />}
+          <CardText style={{ fontSize: '16px', paddingTop: '0' }}>
             {children}
           </CardText>
           {actions &&
