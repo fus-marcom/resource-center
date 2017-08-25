@@ -33,7 +33,9 @@ class PlanningGuide extends Component {
   handleScroll = () => {
     this.setState({ scrollY: window.scrollY }, () => {
       _.each(this.state.headerPositions, (position, key) => {
-        if (this.state.scrollY > position - 1) { this.setState({ activeSection: key }) }
+        if (this.state.scrollY > position - 1) {
+          this.setState({ activeSection: key })
+        }
       })
     })
   }
@@ -61,7 +63,6 @@ class PlanningGuide extends Component {
         <PlanningGuidelines
           setHeaders={this.setHeaders}
           activeSection={this.state.activeSection}
-          headerPositions={this.state.headerPositions}
         />
       </div>
     )
