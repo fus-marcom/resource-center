@@ -43,8 +43,8 @@ export const posterData = [
         linkText: '740-283-6354'
       },
       {
-        link: 'mailto:mariehighfield@sbcglobal.net',
-        linkText: 'mariehighfield@sbcglobal.net'
+        link: 'mailto:mailservices@franciscan.edu',
+        linkText: 'mailservices@franciscan.edu'
       }
     ]
   },

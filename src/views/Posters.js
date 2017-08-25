@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { GenericCard } from './../components/GenericCard'
 import { posterData } from '../data/posterData'
+import '../styles/posters.css'
 
 class Posters extends Component {
   constructor (props) {
@@ -38,6 +39,7 @@ class Posters extends Component {
           style={{ display: 'flex', flexWrap: 'wrap' }}
         >
           <h2 style={{ flex: '1 100%' }}>Poster Resources</h2>
+
           {_.map(
             posterData,
             ({ hoverable, link, cardTitle, description, contactInfo }, key) => {
