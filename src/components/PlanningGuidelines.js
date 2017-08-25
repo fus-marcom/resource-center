@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 /* global scrollToItem */
 import _ from 'lodash'
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import { sliceHeaders } from './getTopCoord'
 import {
@@ -10,7 +10,7 @@ import {
 } from '../data/planningGuideServicesData'
 import PlanningGuideNav from '../components/planningGuideNav'
 
-class PlanningGuidelines extends Component {
+class PlanningGuidelines extends PureComponent {
   componentDidMount () {
     this.props.setHeaders(sliceHeaders(this.refs))
   }
