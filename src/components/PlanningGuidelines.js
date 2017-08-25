@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { sliceHeaders } from './getTopCord'
+import { sliceHeaders } from './getTopCoord'
 import {
   planningGuideData,
   servicesData
