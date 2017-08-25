@@ -25,7 +25,6 @@ class PlanningGuidelines extends PureComponent {
         <PlanningGuideNav
           scrollToItem={this.scrollToItem}
           activeSection={this.props.activeSection}
-          headerPositions={this.props.headerPositions}
         />
         <div className='container'>
           <div className='row flow-text'>

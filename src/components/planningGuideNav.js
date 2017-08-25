@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React from 'react'
 import { headerTitles, styles } from '../data/planningGuideServicesData'
 
-const PlanningGuideNav = ({ activeSection, headerPositions, scrollToItem }) => {
+const PlanningGuideNav = ({ activeSection, scrollToItem }) => {
   const { root } = styles
   return (
     <div style={root}>
