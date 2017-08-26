@@ -45,6 +45,7 @@ class Posters extends Component {
                     hoverable={hoverable}
                     link={link}
                     cardTitle={cardTitle}
+                    className={hoverable ? 'hoverable' : ''}
                   >
                     {description}
                     {contactInfo !== undefined
