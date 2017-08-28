@@ -2,7 +2,6 @@
 /* global onMouseOver onMouseOut */
 /* eslint no-undef: "error" */
 import React, { Component } from 'react'
-import Paper from 'material-ui/Paper'
 import { Link } from 'react-router-dom'
 import debounce from 'lodash/debounce'
 import {
@@ -40,7 +39,6 @@ export class GenericCard extends Component {
       cardSubtitle,
       cardTitle,
       children,
-      classes,
       headerAvatar,
       headerSubtitle,
       headerTitle,
@@ -50,36 +48,35 @@ export class GenericCard extends Component {
       overlay,
       zDepth
     }) =>
-      <div className={className || 'fix-height'}>
-        <Paper zDepth={zDepth} style={{ height: '100%' }}>
-          <Card className={classes} style={{ boxShadow: 'none' }}>
-            {(headerTitle || headerAvatar) &&
-              <CardHeader
-                title={headerTitle}
-                subtitle={headerSubtitle}
-                avatar={headerAvatar}
-              />}
+      <Card
+        className={`${className} card z-depth-1`}
+        style={{ height: '100%' }}
+      >
+        {(headerTitle || headerAvatar) &&
+          <CardHeader
+            title={headerTitle}
+            subtitle={headerSubtitle}
+            avatar={headerAvatar}
+          />}
 
-            {mediaImgSrc &&
-              <CardMedia className='img-container' overlay={overlay}>
-                <img src={mediaImgSrc} alt={mediaImgAlt} />
-              </CardMedia>}
-            {cardTitle &&
-              <CardTitle
-                title={cardTitle}
-                subtitle={cardSubtitle}
-                style={{ paddingBottom: '0' }}
-              />}
-            <CardText style={{ fontSize: '16px', paddingTop: '0' }}>
-              {children}
-            </CardText>
-            {actions &&
-              <CardActions className='card-actions'>
-                {actions}
-              </CardActions>}
-          </Card>
-        </Paper>
-      </div>
+        {mediaImgSrc &&
+          <CardMedia className='img-container' overlay={overlay}>
+            <img src={mediaImgSrc} alt={mediaImgAlt} />
+          </CardMedia>}
+        {cardTitle &&
+          <CardTitle
+            title={cardTitle}
+            subtitle={cardSubtitle}
+            style={{ paddingBottom: '0' }}
+          />}
+        <CardText style={{ fontSize: '16px', paddingTop: '0' }}>
+          {children}
+        </CardText>
+        {actions &&
+          <CardActions className='card-actions'>
+            {actions}
+          </CardActions>}
+      </Card>
 
     const isInternal = link && link[0] === '/'
 
