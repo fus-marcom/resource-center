@@ -41,7 +41,6 @@ class Posters extends Component {
               return (
                 <div key={key} className='col s12 m6 flex-div'>
                   <GenericCard
-                    hoverable={hoverable}
                     link={link}
                     cardTitle={cardTitle}
                     className={hoverable ? 'hoverable' : ''}
