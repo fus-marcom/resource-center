@@ -5,6 +5,7 @@
   "homepage": "https://fus-marcom.github.io/resource-center",
   "dependencies": {
     "electron": "^1.6.11",
+    "file-type": "^6.1.0",
     "formidable": "^1.1.1",
     "gh-pages": "^1.0.0",
     "material-ui": "^0.18.6",

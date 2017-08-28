@@ -7,6 +7,7 @@ const helper = require('sendgrid').mail
 const app = express()
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
 const fetch = require('node-fetch')
+const fileType = require('file-type')
 
 const PORT = process.env.SERVER_PORT || 9000
 // const CLIENT_PORT = process.env.PORT || 3000
@@ -111,6 +112,7 @@ app.post('/uploads', function (req, res) {
   //       if there was an error
 
   form.on('fileBegin', function (name, file) {
+    console.log(fileType(file))
     file.path = path.join(UPLOAD_DIR, file.name)
   })
 
