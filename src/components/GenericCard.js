@@ -22,8 +22,7 @@ export class GenericCard extends Component {
       headerTitle,
       mediaImgAlt,
       mediaImgSrc,
-      overlay,
-      zDepth
+      overlay
     }) =>
       <Card
         className={`${className} card z-depth-1`}

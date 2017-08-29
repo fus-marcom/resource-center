@@ -6,9 +6,9 @@ export default [
     hoverable: true
   },
   {
-    title: 'Logos and Posters',
-    description: 'Official Franciscan University Logos and Poster Resources.',
-    link: '/logos-posters',
+    title: 'Logos',
+    description: 'Official Franciscan University Logos.',
+    link: '/logos',
     hoverable: true
   },
   {
@@ -35,6 +35,24 @@ export default [
     title: 'Powerpoint',
     description: 'Official Franciscan University Powerpoint template.',
     link: 'https://www.canva.com/',
+    hoverable: true
+  },
+  {
+    title: 'Posters',
+    description: 'Resources for creating posters.',
+    link: '/posters',
+    hoverable: true
+  },
+  {
+    title: 'Glossary',
+    description: 'Common MarCom terms and definitions.',
+    link: '/glossary',
+    hoverable: true
+  },
+  {
+    title: 'Tutorial',
+    description: 'Video guide of the Resource Center.',
+    link: '/tutorial',
     hoverable: true
   }
 ]
