@@ -7,7 +7,6 @@ const helper = require('sendgrid').mail
 const app = express()
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
 const fetch = require('node-fetch')
-const fileType = require('file-type')
 
 const PORT = process.env.SERVER_PORT || 9000
 // const CLIENT_PORT = process.env.PORT || 3000
@@ -93,6 +92,7 @@ app.get('/*', function (req, res) {
 
 app.post('/uploads', function (req, res) {
   const form = new formidable.IncomingForm()
+  form.maxFileSize = 2
 
   // In any case send the cors headers (even on error)
   res.header('Access-Control-Allow-Origin', CORS)
@@ -112,8 +112,14 @@ app.post('/uploads', function (req, res) {
   //       if there was an error
 
   form.on('fileBegin', function (name, file) {
-    console.log(fileType(file))
-    file.path = path.join(UPLOAD_DIR, file.name)
+    // https://stackoverflow.com/a/30550190/4718107
+    const fileType = file.type.split('/').pop()
+
+    if (fileType === 'jpg' || fileType === 'png' || fileType === 'plain') {
+      file.path = path.join(UPLOAD_DIR, file.name)
+    } else {
+      console.log('incorrect file type: ' + fileType)
+    }
   })
 
   form.on('file', function (name, file) {
