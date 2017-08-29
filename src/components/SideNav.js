@@ -1,10 +1,11 @@
-import _ from 'lodash'
+import map from 'lodash/map'
 import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import SideBarItem from './sideBarItem'
 import { List } from 'material-ui/List'
 import links from '../data/linksData'
+import fusLogo from '../img/fus-logo.svg'
 
 class SideNav extends Component {
   state = { open: false }
@@ -15,12 +16,7 @@ class SideNav extends Component {
     return (
       <div>
         <AppBar
-          title={
-            <img
-              src={require('./../img/fus-log.svg')}
-              alt='Franciscan University Logo'
-            />
-          }
+          title={<img src={fusLogo} alt='Franciscan University Logo' />}
           className='app-bar'
           iconElementRight={
             <h1 className='hide-on-small-only'>Resource Center</h1>
@@ -35,7 +31,7 @@ class SideNav extends Component {
           onRequestChange={open => this.setState({ open })}
         >
           <List>
-            {_.map(links, ({ isExact, linkTo, text }, key) => {
+            {map(links, ({ isExact, linkTo, text }, key) => {
               return (
                 <SideBarItem
                   isExact={isExact}
