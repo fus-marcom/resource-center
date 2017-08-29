@@ -17,7 +17,7 @@ import {
 
 import { fade } from 'material-ui/utils/colorManipulator'
 import spacing from 'material-ui/styles/spacing'
-/* import 'typography' from 'material-ui/styles/typography' */
+/* import typography from 'material-ui/styles/typography' */
 
 export default {
   spacing: spacing,
@@ -37,18 +37,19 @@ export default {
     pickerHeaderColor: '#21412a',
     clockCircleColor: fade(darkBlack, 0.07),
     shadowColor: fullBlack
-  }
+  },
   /*
   * What style you can edit to components from theme...
   * Source: https://github.com/callemall/material-ui/blob/master/src/styles/getMuiTheme.js
-
+  */
   appBar: {
-      color: palette.primary1Color,
-      textColor: palette.alternateTextColor,
-      height: spacing.desktopKeylineIncrement,
-      titleFontWeight: typography.fontWeightNormal,
-      padding: spacing.desktopGutter,
-    },
+    // color: palette.primary1Color,
+    // textColor: palette.alternateTextColor,
+    // height: spacing.desktopKeylineIncrement,
+    // titleFontWeight: typography.fontWeightNormal,
+    padding: 24 // Change this value to change the padding right and left of the AppBar
+  }
+  /*
     avatar: {
       color: palette.canvasColor,
       backgroundColor: emphasize(palette.canvasColor, 0.26),
