@@ -1,11 +1,15 @@
 import map from 'lodash/map'
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import posterVideos from '../data/posterVideosData'
 import '../styles/video.css'
 
 const PosterVideos = () => {
   return (
     <div className='container'>
+      <Helmet>
+        <title>Poster Videos | Resource</title>
+      </Helmet>
       <div className='row'>
         <div className='col s12 flow-text'>
           <h2>Poster Video Tutorials</h2>
