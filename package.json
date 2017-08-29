@@ -2,7 +2,6 @@
   "name": "resource-center",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://fus-marcom.github.io/resource-center",
   "dependencies": {
     "electron": "^1.6.11",
     "formidable": "^1.1.1",
