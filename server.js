@@ -114,9 +114,9 @@ app.post('/uploads', function (req, res) {
   form.on('fileBegin', function (name, file) {
     // https://stackoverflow.com/a/30550190/4718107
     const fileType = file.type.split('/').pop()
-    const fileTypes = /(zip|pdf|doc.*|xls.*|ppt.*|mp3|txt|plain|rar|wma|mov|avi|wmv|flv|wav|jp?g|psd|png)$/i
-
-    if (fileTypes.test(fileType)) {
+    const fileTypes = /(zip|pdf|doc.*|xls.*|ppt.*|mp3|txt|plain|rar|wma|mov|avi|wmv|mp4|flv|wav|jpe?g|psd|png)$/i
+    console.log(form.bytesReceived)
+    if (fileTypes.test(fileType) && form.bytesExpected < 10 * 1024 * 1024) {
       file.path = path.join(UPLOAD_DIR, file.name)
     } else {
       console.log('incorrect file type: ' + fileType)
