@@ -114,8 +114,9 @@ app.post('/uploads', function (req, res) {
   form.on('fileBegin', function (name, file) {
     // https://stackoverflow.com/a/30550190/4718107
     const fileType = file.type.split('/').pop()
+    const fileTypes = /(zip|pdf|doc.*|xls.*|ppt.*|mp3|txt|plain|rar|wma|mov|avi|wmv|flv|wav|jp?g|psd|png)$/i
 
-    if (fileType === 'jpg' || fileType === 'png' || fileType === 'plain') {
+    if (fileTypes.test(fileType)) {
       file.path = path.join(UPLOAD_DIR, file.name)
     } else {
       console.log('incorrect file type: ' + fileType)
