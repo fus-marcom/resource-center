@@ -115,12 +115,20 @@ app.post('/uploads', function (req, res) {
     // https://stackoverflow.com/a/30550190/4718107
     const fileType = file.type.split('/').pop()
     const fileExtension = file.name.split('.').pop()
-    const fileTypes = /(zip|pdf|doc.*|xls.*|ppt.*|mp3|plain|rar|wma|mov|avi|wmv|mp4|flv|wav|jpe?g|psd|png)$/i
-    const fileExtensions = /(zip|pdf|doc.*|xls.*|ppt.*|mp3|txt|plain|rar|wma|mov|avi|wmv|mp4|flv|wav|jpe?g|psd|png)$/i
+    const hasDots = file.name.match('.').length > 1
+    const hasSlash = file.name.includes('/')
+    const fileTypes = /(vnd.rar|pdf|msword|vnd.openxmlformats-officedocument.wordprocessingml.document|vnd.openxmlformats-officedocument.spreadsheetml.sheet|vnd.ms-excel|vnd.ms-powerpoint|vnd.openxmlformats-officedocument.presentationml.presentation|mp4|mpeg|plain|zip|quicktime|avi|wav|jpeg|octet-stream|png)$/i
+    const fileExtensions = /(zip|pdf|docx?|xlsx?|pptx?|mp3|txt|plain|rar|wma|mov|avi|wmv|mp4|flv|wav|jpe?g|psd|png)$/i
+    // https://docs.nodejitsu.com/articles/file-system/security/introduction/
+    const posionNullBytesCheck = file.name.indexOf('\0') !== -1
 
     console.log(fileExtensions.test(fileExtension))
     if (
+      !posionNullBytesCheck &&
       fileTypes.test(fileType) &&
+      fileExtensions.test(fileExtension) &&
+      !hasDots &&
+      !hasSlash &&
       form.bytesExpected < 10 * 1024 * 1024 &&
       form.bytesReceived < 10 * 1024 * 1024
     ) {
