@@ -101,7 +101,11 @@ class ServiceRequest extends Component {
   }
 
   formatLabelToProperty = label =>
-    label.split(' (')[0].toLowerCase().split(' ').join('-')
+    label
+      .split(' (')[0]
+      .toLowerCase()
+      .split(' ')
+      .join('-')
 
   handleInputChange (event) {
     const target = event.target
@@ -172,7 +176,7 @@ class ServiceRequest extends Component {
 
   render () {
     const fileValue = this.state.form.fileInput || 'Select a file to upload'
-    const SingleLineField = (label, index) =>
+    const SingleLineField = (label, index) => (
       <div className='col s12 m6' key={index}>
         <TextField
           floatingLabelText={label}
@@ -180,9 +184,11 @@ class ServiceRequest extends Component {
           value={this.state.form[this.formatLabelToProperty(label)]}
           onChange={this.handleInputChange}
           fullWidth
+          id={`${this.formatLabelToProperty(label)}-field`}
         />
       </div>
-    const MultiLineField = (label, index) =>
+    )
+    const MultiLineField = (label, index) => (
       <div className='col s12 m6' key={index}>
         <TextField
           floatingLabelText={label}
@@ -192,9 +198,11 @@ class ServiceRequest extends Component {
           multiLine
           rows={2}
           fullWidth
+          id={`${this.formatLabelToProperty(label)}-field`}
         />
       </div>
-    const CheckboxField = (label, index) =>
+    )
+    const CheckboxField = (label, index) => (
       <Checkbox
         label={label}
         name={this.formatLabelToProperty(label)}
@@ -203,6 +211,7 @@ class ServiceRequest extends Component {
         onCheck={this.handleInputChange}
         style={styles.checkbox}
       />
+    )
 
     return (
       <div className='container'>
@@ -247,6 +256,7 @@ class ServiceRequest extends Component {
                   rows={1}
                   fullWidth
                   readOnly
+                  id='file-path-field'
                 />
               </div>
             </div>
