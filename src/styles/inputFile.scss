@@ -46,10 +46,6 @@
 .z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 }
-
-*, *:before, *:after {
-    box-sizing: inherit;
-}
 .file-field span {
     cursor: pointer;
 }
@@ -79,17 +75,10 @@ button, input, optgroup, select, textarea {
     margin: 0;
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
 .file-field .file-path-wrapper {
     overflow: hidden;
     padding-left: 10px;
-}
-*, *:before, *:after {
-    box-sizing: inherit;
-}
+
 
 .file-field input.file-path {
     width: 100%;
@@ -119,8 +108,4 @@ button, input, optgroup, select, textarea {
     color: inherit;
     font: inherit;
     margin: 0;
-}
-
-*, *:before, *:after {
-    box-sizing: inherit;
 }
