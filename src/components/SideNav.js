@@ -6,6 +6,7 @@ import SideBarItem from './sideBarItem'
 import { List } from 'material-ui/List'
 import links from '../data/linksData'
 import fusLogo from '../img/fus-logo.svg'
+import { Link } from 'react-router-dom'
 
 class SideNav extends Component {
   state = { open: false }
@@ -16,7 +17,11 @@ class SideNav extends Component {
     return (
       <div>
         <AppBar
-          title={<img src={fusLogo} alt='Franciscan University Logo' />}
+          title={
+            <Link to='/' >
+              <img src={fusLogo} alt='Franciscan University Logo' />
+            </Link>
+            }
           className='app-bar'
           iconElementRight={
             <h1 className='hide-on-small-only'>Resource Center</h1>
