@@ -66,10 +66,23 @@ class ServiceRequest extends Component {
       loadingDialogOpen: false,
       resultDialogOpen: false,
       resultDialogText: null,
-      resultDialogSuccess: true
+      resultDialogSuccess: true,
+      canSubmit: false
     }
     Object.assign(this.state.form, checkboxProps)
     this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+  enableSubmit = e => {
+    if (e.target.checked) {
+      this.setState({
+        canSubmit: true
+      })
+    } else {
+      this.setState({
+        canSubmit: false
+      })
+    }
   }
 
   notifyFormError = () => {
@@ -179,8 +192,6 @@ class ServiceRequest extends Component {
         </div>
         <div className='row'>
           <Formsy.Form
-            onValid={this.enableButton}
-            onInvalid={this.disableButton}
             onValidSubmit={this.handleFormData}
             onInvalidSubmit={this.notifyFormError}
           >
@@ -262,6 +273,7 @@ class ServiceRequest extends Component {
                 type='submit'
                 id='submit-button'
                 primary
+                disabled={!this.state.canSubmit}
               />
               <div id='planning-guide-checkbox'>
                 <FormsyCheckbox
@@ -281,6 +293,7 @@ class ServiceRequest extends Component {
                   }
                   style={styles.checkbox}
                   inputStyle={{ width: '35px' }}
+                  onChange={this.enableSubmit}
                 />
               </div>
             </div>
