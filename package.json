@@ -6,6 +6,8 @@
   "dependencies": {
     "electron": "^1.6.11",
     "formidable": "^1.1.1",
+    "formsy-material-ui": "^0.6.2",
+    "formsy-react": "^0.19.5",
     "gh-pages": "^1.0.0",
     "material-ui": "^0.18.6",
     "node-sass": "^4.5.3",
