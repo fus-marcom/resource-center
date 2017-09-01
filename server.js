@@ -90,8 +90,76 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+// Handle Story form submissions
+app.post('/story-form', function (req, res) {
+  const form = new formidable.IncomingForm()
+  // In any case send the cors headers (even on error)
+  res.header('Access-Control-Allow-Origin', CORS)
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+
+  form.parse(req)
+
+  const fields = {}
+  let fieldsString = ''
+  form.on('field', (name, value) => {
+    fields[name] = value
+    fieldsString = fieldsString + `${name}: ${value}<br />`
+  })
+
+  // Handle a possible error while parsing the request
+  // We need a variable in this scope to hold whether there was an error
+  // because we need to know that in a different callback
+  let error = false
+  form.on('error', err => {
+    error = true
+    console.log('Error while parsing request to /story-form: ' + err)
+    res
+      .status(400) // Bad request
+      .json({ success: false, status: 'Error parsing the request' })
+  })
+
+  form.on('end', () => {
+    // The end event is fired even if an error occurs, so we
+    // need to prevent from sending a second response, otherwise the
+    // server crashes
+    if (error) return
+    console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
+
+    // Here is a good place to send the emails since we have the fields
+    // We don't want to actually send emails during testing since it
+    // would send a test email on every single commit
+    if (ENABLE_SEND_EMAILS) {
+      const toEmail = new helper.Email('jesseweigel@gmail.com')
+      const fromEmail = new helper.Email('test@example.com')
+      const subject = 'New Suggest a Story Form Submission'
+      const content = new helper.Content('text/html', fieldsString)
+      const mail = new helper.Mail(fromEmail, subject, toEmail, content)
+      const request = makeSgRequest(mail)
+      console.log('Sending email...')
+      sg.API(request, function (error, response) {
+        if (error) {
+          console.log('Error response received')
+        }
+        console.log(response.statusCode)
+        console.log(response.body)
+        console.log(response.headers)
+      })
+    }
+
+    // Send the success response
+    res
+      .status(200)
+      .json({ success: true, status: 'Form successfully submitted' })
+  })
+})
+
+// Handle Service Request Form Submissions
 app.post('/uploads', function (req, res) {
   const form = new formidable.IncomingForm()
+  form.maxFileSize = 2
 
   // In any case send the cors headers (even on error)
   res.header('Access-Control-Allow-Origin', CORS)
@@ -111,7 +179,30 @@ app.post('/uploads', function (req, res) {
   //       if there was an error
 
   form.on('fileBegin', function (name, file) {
-    file.path = path.join(UPLOAD_DIR, file.name)
+    // https://stackoverflow.com/a/30550190/4718107
+    const fileType = file.type.split('/').pop()
+    const fileExtension = file.name.split('.').pop()
+    const hasDots = file.name.match('.').length > 1
+    const hasSlash = file.name.includes('/')
+    const fileTypes = /(vnd.rar|pdf|msword|vnd.openxmlformats-officedocument.wordprocessingml.document|vnd.openxmlformats-officedocument.spreadsheetml.sheet|vnd.ms-excel|vnd.ms-powerpoint|vnd.openxmlformats-officedocument.presentationml.presentation|mp4|mpeg|plain|zip|quicktime|avi|wav|jpeg|octet-stream|png)$/i
+    const fileExtensions = /(zip|pdf|docx?|xlsx?|pptx?|mp3|txt|plain|rar|wma|mov|avi|wmv|mp4|flv|wav|jpe?g|psd|png)$/i
+    // https://docs.nodejitsu.com/articles/file-system/security/introduction/
+    const posionNullBytesCheck = file.name.indexOf('\0') !== -1
+
+    console.log(fileExtensions.test(fileExtension))
+    if (
+      !posionNullBytesCheck &&
+      fileTypes.test(fileType) &&
+      fileExtensions.test(fileExtension) &&
+      !hasDots &&
+      !hasSlash &&
+      form.bytesExpected < 10 * 1024 * 1024 &&
+      form.bytesReceived < 10 * 1024 * 1024
+    ) {
+      file.path = path.join(UPLOAD_DIR, file.name)
+    } else {
+      console.log('incorrect file type: ' + fileType)
+    }
   })
 
   form.on('file', function (name, file) {

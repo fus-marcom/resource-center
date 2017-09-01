@@ -2,9 +2,9 @@
   "name": "resource-center",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://fus-marcom.github.io/resource-center",
   "dependencies": {
     "electron": "^1.6.11",
+    "file-type": "^6.1.0",
     "formidable": "^1.1.1",
     "formsy-material-ui": "^0.6.2",
     "formsy-react": "^0.19.5",
