@@ -90,6 +90,73 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
+// Handle Story form submissions
+app.post('/story-form', function (req, res) {
+  const form = new formidable.IncomingForm()
+  // In any case send the cors headers (even on error)
+  res.header('Access-Control-Allow-Origin', CORS)
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+
+  form.parse(req)
+
+  const fields = {}
+  let fieldsString = ''
+  form.on('field', (name, value) => {
+    fields[name] = value
+    fieldsString = fieldsString + `${name}: ${value}<br />`
+  })
+
+  // Handle a possible error while parsing the request
+  // We need a variable in this scope to hold whether there was an error
+  // because we need to know that in a different callback
+  let error = false
+  form.on('error', err => {
+    error = true
+    console.log('Error while parsing request to /story-form: ' + err)
+    res
+      .status(400) // Bad request
+      .json({ success: false, status: 'Error parsing the request' })
+  })
+
+  form.on('end', () => {
+    // The end event is fired even if an error occurs, so we
+    // need to prevent from sending a second response, otherwise the
+    // server crashes
+    if (error) return
+    console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
+
+    // Here is a good place to send the emails since we have the fields
+    // We don't want to actually send emails during testing since it
+    // would send a test email on every single commit
+    if (ENABLE_SEND_EMAILS) {
+      const toEmail = new helper.Email('jesseweigel@gmail.com')
+      const fromEmail = new helper.Email('test@example.com')
+      const subject = 'New Suggest a Story Form Submission'
+      const content = new helper.Content('text/html', fieldsString)
+      const mail = new helper.Mail(fromEmail, subject, toEmail, content)
+      const request = makeSgRequest(mail)
+      console.log('Sending email...')
+      sg.API(request, function (error, response) {
+        if (error) {
+          console.log('Error response received')
+        }
+        console.log(response.statusCode)
+        console.log(response.body)
+        console.log(response.headers)
+      })
+    }
+
+    // Send the success response
+    res
+      .status(200)
+      .json({ success: true, status: 'Form successfully submitted' })
+  })
+})
+
+// Handle Service Request Form Submissions
 app.post('/uploads', function (req, res) {
   const form = new formidable.IncomingForm()
   form.maxFileSize = 2
