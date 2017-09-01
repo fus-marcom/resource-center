@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-/* global notifyFormError */
+/* global notifyFormError alert alertHi enableSubmit */
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
@@ -11,10 +11,16 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import '../styles/inputFile.css'
 import '../styles/serviceRequest.css'
+import infoLogo from '../img/info.svg'
 
 import Formsy from 'formsy-react'
 import { FormsyText, FormsyCheckbox } from 'formsy-material-ui/lib'
-import { singleLineFields, multiLineFields } from '../data/serviceRequestFields'
+import {
+  singleLineFields,
+  multiLineFields,
+  leftCheckboxes,
+  rightCheckboxes
+} from '../data/serviceRequestFields'
 
 const fileExtensions =
   'application/vnd.rar, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, audio/mp4, audio/mpeg, text/plain, application/zip, video/quicktime, video/avi, audio/wav, image/jpeg, application/octet-stream, image/png'
@@ -33,28 +39,9 @@ const styles = {
 class ServiceRequest extends Component {
   constructor (props) {
     super(props)
-    this.leftCheckboxes = [
-      'Simple1',
-      'Simple2',
-      'Simple3',
-      'Simple4',
-      'Simple5',
-      'Simple6'
-    ]
-    this.rightCheckboxes = [
-      'Simple7',
-      'Simple8',
-      'Simple9',
-      'Simple10',
-      'Simple11',
-      'Simple12'
-    ]
-    const checkboxProps = [
-      ...this.leftCheckboxes,
-      ...this.rightCheckboxes
-    ].reduce(
-      (acc, label) => ({
-        [this.formatLabelToProperty(label)]: false,
+    const checkboxProps = [...leftCheckboxes, ...rightCheckboxes].reduce(
+      (acc, label, index) => ({
+        [this.formatLabelToProperty(label.name)]: false,
         ...acc
       }),
       {}
@@ -162,23 +149,15 @@ class ServiceRequest extends Component {
 
     this.setState({ loadingDialogOpen: false })
   }
-
+  alertHi = () => {
+    alert('Hi from the info button')
+  }
   handleDialogClose = () => {
     this.setState({ resultDialogOpen: false })
   }
 
   render () {
     const fileValue = this.state.form.fileInput || 'Select a file to upload'
-    const CheckboxField = (label, index) => (
-      <Checkbox
-        label={label}
-        name={this.formatLabelToProperty(label)}
-        checked={this.state.form[this.formatLabelToProperty(label)]}
-        key={index}
-        onCheck={this.handleInputChange}
-        style={styles.checkbox}
-      />
-    )
 
     return (
       <div className='container'>
@@ -258,14 +237,56 @@ class ServiceRequest extends Component {
               </div>
             </div>
             <div className='col s12 m6'>
-              {this.leftCheckboxes.map((label, index) =>
-                CheckboxField(label, index)
-              )}
+              {leftCheckboxes.map((label, index) => (
+                <div>
+                  <Checkbox
+                    label={label.name}
+                    name={label.name.toLowerCase()}
+                    checked={this.state.form[label.name.toLowerCase()]}
+                    key={index}
+                    onCheck={this.handleInputChange}
+                    style={styles.checkbox}
+                    inputStyle={styles.inputStyle}
+                  />
+                  <img
+                    onClick={this.alertHi}
+                    style={{
+                      position: 'relative',
+                      top: -40,
+                      right: -200,
+                      zIndex: 2
+                    }}
+                    src={infoLogo}
+                    alt='Info Button'
+                  />
+                </div>
+              ))}
             </div>
             <div className='col s12 m6'>
-              {this.rightCheckboxes.map((label, index) =>
-                CheckboxField(label, index)
-              )}
+              {rightCheckboxes.map((label, index) => (
+                <div>
+                  <Checkbox
+                    label={label.name}
+                    name={label.name.toLowerCase()}
+                    checked={this.state.form[label.name.toLowerCase()]}
+                    key={index}
+                    onCheck={this.handleInputChange}
+                    style={styles.checkbox}
+                    inputStyle={styles.inputStyle}
+                  />
+                  <img
+                    onClick={this.alertHi}
+                    style={{
+                      position: 'relative',
+                      top: -40,
+                      right: -200,
+                      zIndex: 2
+                    }}
+                    src={infoLogo}
+                    alt='Info Button'
+                  />
+                </div>
+              ))}
             </div>
             <div className='col s12'>
               <RaisedButton
