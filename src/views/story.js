@@ -75,7 +75,7 @@ class Story extends Component {
       this.setState({
         resultDialogOpen: true,
         resultDialogSuccess: true,
-        resultDialogText: 'Your story suggestions was sent successfully.'
+        resultDialogText: 'Your story suggestion was sent successfully.'
       })
     } catch (err) {
       const msg =
