@@ -1,5 +1,10 @@
 export const singleLineFields = [
-  { name: 'Name', required: true, type: 'isAlpha', error: 'Not a valid name' },
+  {
+    name: 'Name',
+    required: true,
+    type: 'isAlpha',
+    error: 'Not a valid name'
+  },
   {
     name: 'Email',
     required: true,
@@ -8,7 +13,7 @@ export const singleLineFields = [
   },
   {
     name: 'Phone',
-    required: true,
+    required: false,
     type: 'isNumeric',
     error: 'Not a valid phone number'
   },
@@ -28,31 +33,31 @@ export const multiLineFields = [
   },
   {
     name: 'Project Goal',
-    required: true,
+    required: false,
     type: 'isAlphanumeric',
     error: 'Not a valid goal'
   },
   {
     name: 'Project Budget',
-    required: true,
+    required: false,
     type: 'isNumeric',
     error: 'Not a valid number'
   },
   {
     name: 'Key Messages',
-    required: true,
+    required: false,
     type: 'isAlphanumeric',
     error: 'Not a valid key message'
   },
   {
     name: 'Primary Target Audience',
-    required: true,
+    required: false,
     type: 'isAlphanumeric',
     error: 'Not a valid target'
   },
   {
     name: 'Secondary Target Audience',
-    required: true,
+    required: false,
     type: 'isAlphanumeric',
     error: 'Not a valid target'
   },

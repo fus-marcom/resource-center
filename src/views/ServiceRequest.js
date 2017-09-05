@@ -1,7 +1,6 @@
 // eslint-disable-next-line
 /* global notifyFormError alert alertHi enableSubmit */
 import React, { Component } from 'react'
-import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
 import Checkbox from 'material-ui/Checkbox'
 import IconCheckbox from '../components/iconCheckbox'
@@ -49,7 +48,8 @@ class ServiceRequest extends Component {
     )
     this.state = {
       form: {
-        fileInput: null
+        fileInput: null,
+        fileValid: true
       },
       loadingDialogOpen: false,
       resultDialogOpen: false,
@@ -104,8 +104,17 @@ class ServiceRequest extends Component {
     // Array.from converts array-like to array (so that map works)
     const files = Array.from(target.files)
     let fileNames = null
+    const formState = this.state.form
+    formState.fileValid = true
+    this.setState({ formState })
     if (files.length > 0) {
       fileNames = files.map(f => f.name).join(', ')
+      files.map(
+        f =>
+          fileExtensions.match(f.type) === null
+            ? (formState.fileValid = false)
+            : ''
+      )
     }
 
     const form = Object.assign({}, this.state.form)
@@ -199,6 +208,7 @@ class ServiceRequest extends Component {
                   onChange={this.handleInputChange}
                   fullWidth
                   id={`${field.name.toLowerCase()}-field`}
+                  multiLine
                   required={field.required}
                   validations={field.type}
                   validationError={field.error}
@@ -225,14 +235,19 @@ class ServiceRequest extends Component {
                   />
                 </div>
                 <div className='file-path-wrapper'>
-                  <TextField
+                  <FormsyText
                     className='file-path validate'
                     value={fileValue}
                     multiLine
                     rows={1}
                     fullWidth
                     readOnly
+                    name='upload-text-field'
                     id='file-path-field'
+                    validations={{
+                      myCustomIsFiveValidation: () => this.state.form.fileValid
+                    }}
+                    validationError='Error'
                   />
                 </div>
               </div>
