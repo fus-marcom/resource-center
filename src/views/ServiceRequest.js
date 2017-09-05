@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
 import Checkbox from 'material-ui/Checkbox'
+import IconCheckbox from '../components/iconCheckbox'
 import RaisedButton from '../components/MaterializeRaisedButton'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
@@ -238,38 +239,27 @@ class ServiceRequest extends Component {
             </div>
             <div className='col s12 m6'>
               {leftCheckboxes.map((label, index) => (
-                <div>
-                  <Checkbox
-                    label={label.name}
-                    name={label.name.toLowerCase()}
-                    checked={this.state.form[label.name.toLowerCase()]}
-                    key={index}
-                    onCheck={this.handleInputChange}
-                    style={styles.checkbox}
-                    inputStyle={styles.inputStyle}
-                  />
-                  <img
-                    onClick={this.alertHi}
-                    style={{
-                      position: 'relative',
-                      top: -40,
-                      right: -200,
-                      zIndex: 2
-                    }}
-                    src={infoLogo}
-                    alt='Info Button'
-                  />
-                </div>
+                <IconCheckbox
+                  label={label.name}
+                  name={label.name.toLowerCase()}
+                  checked={this.state.form[label.name.toLowerCase()]}
+                  key={index + label.name}
+                  handleCheck={this.handleInputChange}
+                  style={styles.checkbox}
+                  inputStyle={styles.inputStyle}
+                  clickHandler={this.alertHi}
+                  src={infoLogo}
+                  alt='Info Button'
+                />
               ))}
             </div>
             <div className='col s12 m6'>
               {rightCheckboxes.map((label, index) => (
-                <div>
+                <div key={index + label.name}>
                   <Checkbox
                     label={label.name}
                     name={label.name.toLowerCase()}
                     checked={this.state.form[label.name.toLowerCase()]}
-                    key={index}
                     onCheck={this.handleInputChange}
                     style={styles.checkbox}
                     inputStyle={styles.inputStyle}
