@@ -92,7 +92,6 @@ class ServiceRequest extends Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-
     const form = Object.assign({}, this.state.form)
     form[name] = value
 
@@ -159,9 +158,7 @@ class ServiceRequest extends Component {
 
     this.setState({ loadingDialogOpen: false })
   }
-  alertHi = () => {
-    alert('Hi from the info button')
-  }
+
   handleDialogClose = () => {
     this.setState({ resultDialogOpen: false })
   }
@@ -257,14 +254,16 @@ class ServiceRequest extends Component {
                 <IconCheckbox
                   label={label.name}
                   name={label.name.toLowerCase()}
-                  checked={this.state.form[label.name.toLowerCase()]}
+                  isChecked={this.state.form[label.name.toLowerCase()]}
                   key={index + label.name}
-                  handleCheck={this.handleInputChange}
+                  handleCheck={event => this.handleInputChange(event)}
                   style={styles.checkbox}
                   inputStyle={styles.inputStyle}
-                  clickHandler={this.alertHi}
                   src={infoLogo}
                   alt='Info Button'
+                  icon={label.icon ? label.icon : false}
+                  dialogText={label.dialogText && label.dialogText}
+                  dialogTitle={label.dialogTitle && label.dialogTitle}
                 />
               ))}
             </div>

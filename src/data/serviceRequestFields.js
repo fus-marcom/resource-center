@@ -76,12 +76,42 @@ export const multiLineFields = [
 ]
 
 export const leftCheckboxes = [
-  { name: 'Photography', info: 'Info Text 1' },
-  { name: 'Simple2', info: 'Info Text 2' },
-  { name: 'Simple3', info: 'Info Text 3' },
-  { name: 'Simple4', info: 'Info Text 4' },
-  { name: 'Simple5', info: 'Info Text 5' },
-  { name: 'Simple6', info: 'Info Text 6' }
+  {
+    name: 'Photography',
+    info: 'Info Text 1',
+    icon: true,
+    dialogTitle: 'Photography',
+    dialogText: `<p>Photography in addition to events listed below is dependent upon student photographer availability.</p><h3>Events covered:</h3>
+    <ul>
+      <li>Graduation </li>
+      <li>Nursing Graduation</li>
+      <li>Alumni Awards</li>
+      <li>Faculty Awards</li>
+      <li>Employee Breakfast</li>
+      <li>Move-In Day</li>
+      <li>Poverello Award</li>
+      <li>Founders Association Awards</li>
+      <li>March for Life</li>
+      <li>Rehearsal for Anathan Theatre</li>
+      <li>Bishop's Requests</li>
+      <li>Homecoming Events</li>
+      <li>Festival of Praise (1)</li>
+      <li>High Profile Talks</li>
+      <li>Feast of St. Francis Mass</li>
+      <li>Resurrection Party</li>
+      <li>Holy Thursday Mass</li>
+      <li>Baccalaureate Mass</li>
+      <li>Opening of Orientation</li>
+      <li>Opening Convocation and Mass</li>
+      <li>Oath of Fidelity</li>
+      <li>Vocations Fair</li>
+    </ul>`
+  },
+  { name: 'Simple2', info: 'Info Text 2', icon: false },
+  { name: 'Simple3', info: 'Info Text 3', icon: false },
+  { name: 'Simple4', info: 'Info Text 4', icon: false },
+  { name: 'Simple5', info: 'Info Text 5', icon: false },
+  { name: 'Simple6', info: 'Info Text 6', icon: false }
 ]
 
 export const rightCheckboxes = [

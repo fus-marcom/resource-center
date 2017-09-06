@@ -6,7 +6,7 @@ const PlanningGuideNav = ({ activeSection, scrollToItem }) => {
   const { root } = styles
   return (
     <div style={root}>
-      <ul>
+      <ul className='scroll-spy-nav'>
         {map(headerTitles, ({ title }, key) => {
           return (
             <li
