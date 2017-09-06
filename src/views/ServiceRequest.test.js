@@ -30,7 +30,10 @@ describe('Service Request Page', () => {
   it('does not navigate away when clicking on Planning Guide (modal or new tab)', async () => {
     const page = visit('/service-request-form')
     const linkSelector = '#planning-guide-checkbox a'
-    const path = await page.click(linkSelector).path().end()
+    const path = await page
+      .click(linkSelector)
+      .path()
+      .end()
 
     expect(path).toEqual('/service-request-form')
   })
@@ -72,7 +75,11 @@ describe('Service Request Page', () => {
     const page = visit('/service-request-form')
     const fileInputSelector = '.file-upload input[type="file"]'
     await page
+      .insert('input[name="name"]', 'abc')
+      .insert('input[name="email"]', 'test@test.com')
+      .insert('textarea[name="project description"]', 'abc')
       .upload(fileInputSelector, tempfile)
+      .click('#planning-guide-checkbox input')
       .click('#submit-button')
       .wait(1000)
       .end()

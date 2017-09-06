@@ -18,7 +18,7 @@ class Home extends Component {
     return (
       <div
         ref='homepageContainer'
-        className='container valign-wrapper'
+        className='container'
         style={{
           marginBottom: 0,
           minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
@@ -39,7 +39,10 @@ class Home extends Component {
             genericCardData,
             ({ hoverable, link, title, description }, key) => {
               return (
-                <div key={key} className='col s12 m4 flex-div'>
+                <div
+                  key={key}
+                  className='col s12 m4 flex-div home-card-container'
+                >
                   <GenericCard
                     cardTitle={title}
                     link={link}

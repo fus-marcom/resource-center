@@ -8,3 +8,21 @@
     flex-grow: 1;
   }
 }
+
+.home-card-container {
+  // span {
+  //   border-left: solid 3px #ffb41f;
+  //   line-height: 24px !important;
+  //   padding-left: 4px;
+  //   margin: 8px 0 8px -7px;
+  // }
+
+  .hoverable {
+    border-left: solid 4px #ffb41f;
+
+
+    &:hover {
+      border-left: solid 4px #21412a;
+    }
+  }
+}
