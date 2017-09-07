@@ -10,36 +10,37 @@ const Letterhead = () => {
       <Helmet>
         <title>Letterhead | Resource Center</title>
       </Helmet>
-      <div className='row'>
+      <div className='row flow-text'>
+        <div className='col s12'>
+          <h2 style={{ marginBottom: 0 }}>Letterhead</h2>
+        </div>
         <div className='col s12'>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Father Sean Sheridan, TOR, has approved an official Franciscan
+            University letter-writing style he would like all departments to
+            adopt when writing University correspondence on electronic or
+            printed University letterhead. Please review the sample letter and
+            letter-writing instructions provided here for assistance.
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            We have provided an electronic letterhead template for your use. For
+            print correspondence, we ask that you order official University
+            letterhead on quality paper stock from Victoria Bell, Print Services
+            Manager, Mail and Print Services Office (<a href='mailto:vbell@franciscan.edu'>
+              vbell@franciscan.edu
+            </a>/<a href='tel:17402846354'>740-283-6354</a>).
           </p>
         </div>
       </div>
       <div className='row'>
-        {map(letterheadData, ({ image }, key) => {
+        {map(letterheadData, ({ image, title, url, actionText }, key) => {
           return (
             <LetterheadCard
               key={key}
-              title='Card title'
-              action='Action1'
+              title={title}
+              actionText={actionText}
               image={image}
+              url={url}
             />
           )
         })}

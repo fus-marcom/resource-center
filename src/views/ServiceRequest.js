@@ -2,7 +2,6 @@
 /* global notifyFormError alert alertHi enableSubmit */
 import React, { Component } from 'react'
 import DatePicker from 'material-ui/DatePicker'
-import Checkbox from 'material-ui/Checkbox'
 import IconCheckbox from '../components/iconCheckbox'
 import RaisedButton from '../components/MaterializeRaisedButton'
 import Dialog from 'material-ui/Dialog'
@@ -198,6 +197,7 @@ class ServiceRequest extends Component {
                   required={field.required}
                   validations={field.type}
                   validationError={field.error}
+                  className='formsy-input'
                 />
               </div>
             ))}
@@ -214,6 +214,7 @@ class ServiceRequest extends Component {
                   required={field.required}
                   validations={field.type}
                   validationError={field.error}
+                  className='formsy-multiline'
                 />
               </div>
             ))}
@@ -234,11 +235,12 @@ class ServiceRequest extends Component {
                     ref={input => {
                       this.uploadInput = input
                     }}
+                    className='formsy-input'
                   />
                 </div>
                 <div className='file-path-wrapper'>
                   <FormsyText
-                    className='file-path validate'
+                    className='file-path validate formsy-multiline'
                     value={fileValue}
                     multiLine
                     rows={1}
@@ -274,27 +276,20 @@ class ServiceRequest extends Component {
             </div>
             <div className='col s12 m6'>
               {rightCheckboxes.map((label, index) => (
-                <div key={index + label.name}>
-                  <Checkbox
-                    label={label.name}
-                    name={label.name.toLowerCase()}
-                    checked={this.state.form[label.name.toLowerCase()]}
-                    onCheck={this.handleInputChange}
-                    style={styles.checkbox}
-                    inputStyle={styles.inputStyle}
-                  />
-                  <img
-                    onClick={this.alertHi}
-                    style={{
-                      position: 'relative',
-                      top: -40,
-                      right: -200,
-                      zIndex: 2
-                    }}
-                    src={infoLogo}
-                    alt='Info Button'
-                  />
-                </div>
+                <IconCheckbox
+                  label={label.name}
+                  name={label.name.toLowerCase()}
+                  isChecked={this.state.form[label.name.toLowerCase()]}
+                  key={index + label.name}
+                  handleCheck={event => this.handleInputChange(event)}
+                  style={styles.checkbox}
+                  inputStyle={styles.inputStyle}
+                  src={infoLogo}
+                  alt='Info Button'
+                  icon={label.icon ? label.icon : false}
+                  dialogText={label.dialogText && label.dialogText}
+                  dialogTitle={label.dialogTitle && label.dialogTitle}
+                />
               ))}
             </div>
             <div className='col s12'>

@@ -129,8 +129,11 @@ class Story extends Component {
         <Helmet>
           <title>Story | Resource Center</title>
         </Helmet>
-        <div className='row'>
-          <div className='col s12 flow-text'>
+        <div className='row flow-text'>
+          <div className='col s12'>
+            <h2 style={{ marginBottom: 0 }}>Suggest a Story</h2>
+          </div>
+          <div className='col s12'>
             <p>
               The Marketing and Communications Department shares the
               accomplishments of Franciscan University faculty, students, staff,

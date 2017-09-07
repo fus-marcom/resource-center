@@ -3,7 +3,6 @@
 **/
 
 import {
-  pinkA200,
   grey100,
   grey300,
   grey400,
@@ -26,7 +25,7 @@ export default {
     primary1Color: '#21412a',
     primary2Color: '#21412a',
     primary3Color: grey400,
-    accent1Color: pinkA200,
+    accent1Color: '#ffb41f',
     accent2Color: grey100,
     accent3Color: grey500,
     textColor: darkBlack,

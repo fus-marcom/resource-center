@@ -1,3 +1,4 @@
+/* global handleDialogOpen handleDialogClose */
 import React, { Component } from 'react'
 import Checkbox from 'material-ui/Checkbox'
 import Dialog from 'material-ui/Dialog'
@@ -28,13 +29,13 @@ class IconCheckbox extends Component {
           inputStyle={this.props.inputStyle}
         />
         {this.props.icon && (
-          <div>
+          <div style={{ position: 'relative' }}>
             <img
               onClick={this.handleDialogOpen}
               style={{
-                position: 'relative',
-                top: -40,
-                right: -200,
+                position: 'absolute',
+                top: '-40px',
+                right: '200px',
                 zIndex: 2
               }}
               src={this.props.src}
@@ -45,6 +46,7 @@ class IconCheckbox extends Component {
               modal={false}
               open={this.state.DialogOpen}
               onRequestClose={this.handleDialogClose}
+              autoScrollBodyContent
               actions={[
                 <FlatButton
                   label='Ok'

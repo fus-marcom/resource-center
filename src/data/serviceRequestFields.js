@@ -78,7 +78,6 @@ export const multiLineFields = [
 export const leftCheckboxes = [
   {
     name: 'Photography',
-    info: 'Info Text 1',
     icon: true,
     dialogTitle: 'Photography',
     dialogText: `<p>Photography in addition to events listed below is dependent upon student photographer availability.</p><h3>Events covered:</h3>
@@ -107,18 +106,18 @@ export const leftCheckboxes = [
       <li>Vocations Fair</li>
     </ul>`
   },
-  { name: 'Simple2', info: 'Info Text 2', icon: false },
-  { name: 'Simple3', info: 'Info Text 3', icon: false },
-  { name: 'Simple4', info: 'Info Text 4', icon: false },
-  { name: 'Simple5', info: 'Info Text 5', icon: false },
-  { name: 'Simple6', info: 'Info Text 6', icon: false }
+  { name: 'Simple2' },
+  { name: 'Simple3' },
+  { name: 'Simple4' },
+  { name: 'Simple5' },
+  { name: 'Simple6' }
 ]
 
 export const rightCheckboxes = [
-  { name: 'Simple7', info: 'Info Text 7' },
-  { name: 'Simple8', info: 'Info Text 8' },
-  { name: 'Simple9', info: 'Info Text 9' },
-  { name: 'Simple10', info: 'Info Text 10' },
-  { name: 'Simple11', info: 'Info Text 11' },
-  { name: 'Simple12', info: 'Info Text 12' }
+  { name: 'Simple7' },
+  { name: 'Simple8' },
+  { name: 'Simple9' },
+  { name: 'Simple10' },
+  { name: 'Simple11' },
+  { name: 'Simple12' }
 ]

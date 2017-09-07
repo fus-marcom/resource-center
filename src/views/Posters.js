@@ -18,7 +18,7 @@ class Posters extends Component {
     return (
       <div
         ref='pageContainer'
-        className='container valign-wrapper'
+        className='container'
         style={{
           marginBottom: 0,
           minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
@@ -46,8 +46,8 @@ class Posters extends Component {
                     className={hoverable ? 'hoverable' : ''}
                   >
                     {description}
-                    {contactInfo !== undefined
-                      ? <div style={{ marginBottom: '0' }}>
+                    {contactInfo !== undefined ? (
+                      <div style={{ marginBottom: '0' }}>
                         <br />
                         {map(contactInfo, ({ link, linkText }, key) => {
                           return (
@@ -56,15 +56,13 @@ class Posters extends Component {
                                 margin: '0 10px'
                               }}
                               key={key}
-                              >
-                              <Link to={link}>
-                                {linkText}
-                              </Link>
+                            >
+                              <Link to={link}>{linkText}</Link>
                             </p>
                           )
                         })}
                       </div>
-                      : null}
+                    ) : null}
                   </GenericCard>
                 </div>
               )

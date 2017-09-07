@@ -16,7 +16,6 @@ import Glossary from '../views/glossary'
 import Home from '../views/Home'
 import Letterhead from '../views/letterhead'
 import Logos from '../views/Logos'
-import LogosPosters from '../views/logosPosters'
 import NotFound from '../views/notFound'
 import PlanningGuide from '../views/PlanningGuide'
 import Posters from '../views/Posters'
@@ -38,7 +37,7 @@ const Routes = () => {
             <SideNav />
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route path='/logos-posters' component={LogosPosters} />
+
               <Route path='/logos' component={Logos} />
               <Route path='/posters' component={Posters} />
               <Route path='/letterhead' component={Letterhead} />

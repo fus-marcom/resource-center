@@ -1,14 +1,34 @@
 export default [
   {
-    image: 'https://placeimg.com/600/776/nature'
+    title: 'Sample Letterhead',
+    image:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/Letterhead/LetterHeadSample-md.jpg',
+    actionText: 'View',
+    url:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/Letterhead/LetterHeadSample.jpg'
   },
   {
-    image: 'https://placeimg.com/600/776/animals'
+    title: 'Letter Writing Guide',
+    image:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/Letterhead/WritingGuide.jpg',
+    actionText: 'Download',
+    url:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/Letterhead/Instructions.pdf'
   },
   {
-    image: 'https://placeimg.com/600/776/arch'
+    title: 'Page One Template',
+    image:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/Letterhead/LtrHdPg1-md.jpg',
+    actionText: 'Download',
+    url:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/Letterhead/LtrHdBlank1.dotm'
   },
   {
-    image: 'https://placeimg.com/600/776/tech'
+    title: 'Page Two Template',
+    image:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/Letterhead/LtrHdPg2-md.jpg',
+    actionText: 'Download',
+    url:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/Letterhead/LtrHdPg2.docx'
   }
 ]
