@@ -76,6 +76,12 @@ export const multiLineFields = [
 ]
 
 export const leftCheckboxes = [
+  { name: 'Citation Writing' },
+  { name: 'Direct Mail Piece' },
+  { name: 'Editing/Proofreading' },
+  { name: 'Email Blast' },
+  { name: 'Event Program' },
+  { name: 'Invitations' },
   {
     name: 'Photography',
     icon: true,
@@ -106,18 +112,22 @@ export const leftCheckboxes = [
       <li>Vocations Fair</li>
     </ul>`
   },
-  { name: 'Simple2' },
-  { name: 'Simple3' },
-  { name: 'Simple4' },
-  { name: 'Simple5' },
-  { name: 'Simple6' }
+  { name: 'Print Ad' },
+  { name: 'Printed Literature (Brochure,Viewbook)' },
+  { name: 'Radio Ad' },
+  { name: 'Reprint/Update Existing Piece' }
 ]
 
 export const rightCheckboxes = [
-  { name: 'Simple7' },
-  { name: 'Simple8' },
-  { name: 'Simple9' },
-  { name: 'Simple10' },
-  { name: 'Simple11' },
-  { name: 'Simple12' }
+  { name: 'Social Media (New Platform/Feed)' },
+  { name: 'Social Media Ad' },
+  { name: 'Social Media Post' },
+  { name: 'Television Ad' },
+  { name: 'Video' },
+  { name: 'Website (Content Update)' },
+  { name: 'Website (Event Posting)' },
+  { name: 'Website (New Page/Section)' },
+  { name: 'Writing' },
+  { name: 'Other' },
+  { name: 'Not sure what I need' }
 ]
