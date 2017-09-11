@@ -8,7 +8,10 @@ import '../styles/responsive-text.css'
 
 const PORT = process.env.UPLOADS_PORT || 9000
 const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
-const UPLOAD_URL = `http://${HOST}:${PORT}/story-form`
+const UPLOAD_URL =
+  process.env.NODE_ENV === 'production'
+    ? `https://${HOST}/story-form`
+    : `http://${HOST}:${PORT}/story-form`
 
 class Story extends Component {
   constructor (props) {

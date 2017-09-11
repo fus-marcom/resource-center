@@ -18,10 +18,10 @@ class SideNav extends Component {
       <div>
         <AppBar
           title={
-            <Link to='/' >
+            <Link to='/'>
               <img src={fusLogo} alt='Franciscan University Logo' />
             </Link>
-            }
+          }
           className='app-bar'
           iconElementRight={
             <h1 className='hide-on-small-only'>Resource Center</h1>

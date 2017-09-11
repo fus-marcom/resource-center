@@ -2,7 +2,8 @@ export default [
   {
     title: 'Brand Manual',
     description: 'Visual Brand Identity Manual.',
-    link: 'https://www.canva.com/',
+    link:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/LogoManual2.pdf',
     hoverable: true
   },
   {
@@ -34,7 +35,8 @@ export default [
   {
     title: 'Powerpoint',
     description: 'Official Franciscan University Powerpoint template.',
-    link: 'https://www.canva.com/',
+    link:
+      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/PowerPointPres.pptx',
     hoverable: true
   },
   {
