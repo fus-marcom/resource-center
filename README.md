@@ -24,3 +24,6 @@ You can just download the .zip file. Extract the contents, then move to the proj
 > npm start
 ```
 Now Fork the project from [here](https://github.com/fus-marcom/resource-center), make your changes and open a [Pull](https://github.com/fus-marcom/resource-center/pulls) Request.
+
+### Learning Git
+Those who are not yet familiar with Git but want to learn more about how to use it, check out this [Codecademy course](https://www.codecademy.com/learn/learn-git) or this [FCC video tutorial series](https://www.youtube.com/watch?v=vR-y_2zWrIE&list=PLWKjhJtqVAbkFiqHnNaxpOPhh9tSWMXIF) on Git & GitHub.
