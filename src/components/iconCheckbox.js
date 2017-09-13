@@ -19,7 +19,7 @@ class IconCheckbox extends Component {
 
   render () {
     return (
-      <div>
+      <div style={{ display: this.props.icon ? 'flex' : 'block' }}>
         <Checkbox
           label={this.props.label}
           name={this.props.name}
@@ -29,13 +29,10 @@ class IconCheckbox extends Component {
           inputStyle={this.props.inputStyle}
         />
         {this.props.icon && (
-          <div style={{ position: 'relative' }}>
+          <div style={{ marginLeft: '8px' }}>
             <img
               onClick={this.handleDialogOpen}
               style={{
-                position: 'absolute',
-                top: '-40px',
-                right: '200px',
                 zIndex: 2
               }}
               src={this.props.src}
