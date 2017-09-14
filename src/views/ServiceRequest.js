@@ -190,7 +190,9 @@ class ServiceRequest extends Component {
             {singleLineFields.map((field, index) => (
               <div className='col s12 m6' key={index}>
                 <FormsyText
-                  floatingLabelText={field.name}
+                  floatingLabelText={
+                    field.required ? field.name + ' *' : field.name
+                  }
                   name={field.name.toLowerCase()}
                   value={this.state.form[field.name]}
                   onChange={this.handleInputChange}
@@ -206,7 +208,9 @@ class ServiceRequest extends Component {
             {multiLineFields.map((field, index) => (
               <div className='col s12 m6' key={index}>
                 <FormsyText
-                  floatingLabelText={field.name}
+                  floatingLabelText={
+                    field.required ? field.name + ' *' : field.name
+                  }
                   name={field.name.toLowerCase()}
                   value={this.state.form[field.name]}
                   onChange={this.handleInputChange}
@@ -287,7 +291,9 @@ class ServiceRequest extends Component {
                     label.conditionalFields.map(field => (
                       <FormsyText
                         key={field.name}
-                        floatingLabelText={field.name}
+                        floatingLabelText={
+                          field.required ? field.name + ' *' : field.name
+                        }
                         name={field.name.toLowerCase()}
                         value={this.state.form[field.name]}
                         onChange={this.handleInputChange}
@@ -326,7 +332,9 @@ class ServiceRequest extends Component {
                     label.conditionalFields.map(field => (
                       <FormsyText
                         key={field.name}
-                        floatingLabelText={field.name}
+                        floatingLabelText={
+                          field.required ? field.name + ' *' : field.name
+                        }
                         name={field.name.toLowerCase()}
                         value={this.state.form[field.name]}
                         onChange={this.handleInputChange}
@@ -366,7 +374,8 @@ class ServiceRequest extends Component {
                         style={{ fontWeight: 500 }}
                       >
                         Planning Guide
-                      </Link>
+                      </Link>{' '}
+                      *
                     </span>
                   }
                   style={styles.checkbox}
