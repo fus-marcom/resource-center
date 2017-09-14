@@ -266,38 +266,80 @@ class ServiceRequest extends Component {
             </div>
             <div className='col s12 m6 checkbox-col'>
               {leftCheckboxes.map((label, index) => (
-                <IconCheckbox
-                  label={label.name}
-                  name={label.name.toLowerCase()}
-                  isChecked={this.state.form[label.name.toLowerCase()]}
-                  key={index + label.name}
-                  handleCheck={event => this.handleInputChange(event)}
-                  style={styles.checkbox}
-                  inputStyle={styles.inputStyle}
-                  src={infoLogo}
-                  alt='Info Button'
-                  icon={label.icon ? label.icon : false}
-                  dialogText={label.dialogText && label.dialogText}
-                  dialogTitle={label.dialogTitle && label.dialogTitle}
-                />
+                <div>
+                  <IconCheckbox
+                    label={label.name}
+                    name={label.name.toLowerCase()}
+                    isChecked={this.state.form[label.name.toLowerCase()]}
+                    key={index + label.name}
+                    handleCheck={event => this.handleInputChange(event)}
+                    style={styles.checkbox}
+                    inputStyle={styles.inputStyle}
+                    src={infoLogo}
+                    alt='Info Button'
+                    icon={label.icon ? label.icon : false}
+                    dialogText={label.dialogText && label.dialogText}
+                    dialogTitle={label.dialogTitle && label.dialogTitle}
+                    conditionalFields={label.conditionalFields}
+                  />
+                  {label.conditionalFields &&
+                    this.state.form[label.name.toLowerCase()] &&
+                    label.conditionalFields.map(field => (
+                      <FormsyText
+                        key={field.name}
+                        floatingLabelText={field.name}
+                        name={field.name.toLowerCase()}
+                        value={this.state.form[field.name]}
+                        onChange={this.handleInputChange}
+                        fullWidth
+                        id={`${field.name.toLowerCase()}-field`}
+                        required={field.required}
+                        validations={field.type}
+                        validationError={field.error}
+                        className='formsy-input'
+                        style={{ margin: '0 0 8px 0' }}
+                      />
+                    ))}
+                </div>
               ))}
             </div>
             <div className='col s12 m6 checkbox-col'>
               {rightCheckboxes.map((label, index) => (
-                <IconCheckbox
-                  label={label.name}
-                  name={label.name.toLowerCase()}
-                  isChecked={this.state.form[label.name.toLowerCase()]}
-                  key={index + label.name}
-                  handleCheck={event => this.handleInputChange(event)}
-                  style={styles.checkbox}
-                  inputStyle={styles.inputStyle}
-                  src={infoLogo}
-                  alt='Info Button'
-                  icon={label.icon ? label.icon : false}
-                  dialogText={label.dialogText && label.dialogText}
-                  dialogTitle={label.dialogTitle && label.dialogTitle}
-                />
+                <div>
+                  <IconCheckbox
+                    label={label.name}
+                    name={label.name.toLowerCase()}
+                    isChecked={this.state.form[label.name.toLowerCase()]}
+                    key={index + label.name}
+                    handleCheck={event => this.handleInputChange(event)}
+                    style={styles.checkbox}
+                    inputStyle={styles.inputStyle}
+                    src={infoLogo}
+                    alt='Info Button'
+                    icon={label.icon ? label.icon : false}
+                    dialogText={label.dialogText && label.dialogText}
+                    dialogTitle={label.dialogTitle && label.dialogTitle}
+                    conditionalFields={label.conditionalFields}
+                  />
+                  {label.conditionalFields &&
+                    this.state.form[label.name.toLowerCase()] &&
+                    label.conditionalFields.map(field => (
+                      <FormsyText
+                        key={field.name}
+                        floatingLabelText={field.name}
+                        name={field.name.toLowerCase()}
+                        value={this.state.form[field.name]}
+                        onChange={this.handleInputChange}
+                        fullWidth
+                        id={`${field.name.toLowerCase()}-field`}
+                        required={field.required}
+                        validations={field.type}
+                        validationError={field.error}
+                        className='formsy-input'
+                        style={{ margin: '0 0 8px 0' }}
+                      />
+                    ))}
+                </div>
               ))}
             </div>
             <div className='col s12' style={{ marginTop: '16px' }}>

@@ -110,7 +110,19 @@ export const leftCheckboxes = [
       <li>Opening Convocation and Mass</li>
       <li>Oath of Fidelity</li>
       <li>Vocations Fair</li>
-    </ul>`
+    </ul>`,
+    conditionalFields: [
+      {
+        name: 'Photography Event Time',
+        required: true,
+        type: null
+      },
+      {
+        name: 'Photography Event Location',
+        required: true,
+        type: null
+      }
+    ]
   },
   { name: 'Print Ad' },
   { name: 'Printed Literature (Brochure,Viewbook)' },
@@ -123,7 +135,21 @@ export const rightCheckboxes = [
   { name: 'Social Media Ad' },
   { name: 'Social Media Post' },
   { name: 'Television Ad' },
-  { name: 'Video' },
+  {
+    name: 'Video',
+    conditionalFields: [
+      {
+        name: 'Video Event Time',
+        required: true,
+        type: null
+      },
+      {
+        name: 'Video Event Location',
+        required: true,
+        type: null
+      }
+    ]
+  },
   { name: 'Website (Content Update)' },
   { name: 'Website (Event Posting)' },
   { name: 'Website (New Page/Section)' },
