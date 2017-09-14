@@ -2,7 +2,7 @@ export const singleLineFields = [
   {
     name: 'Name',
     required: true,
-    type: 'isAlpha',
+    type: 'minLength:3',
     error: 'Not a valid name'
   },
   {
@@ -14,13 +14,13 @@ export const singleLineFields = [
   {
     name: 'Phone',
     required: false,
-    type: 'isNumeric',
+    type: 'minLength:3',
     error: 'Not a valid phone number'
   },
   {
     name: 'Department',
     required: false,
-    type: 'isAlphanumeric',
+    type: null,
     error: 'Text is not valid'
   }
 ]
@@ -28,37 +28,37 @@ export const multiLineFields = [
   {
     name: 'Project Description',
     required: true,
-    type: 'isAlphanumeric',
+    type: null,
     error: 'Not a valid project description'
   },
   {
     name: 'Project Goal',
     required: false,
-    type: 'isAlphanumeric',
+    type: null,
     error: 'Not a valid goal'
   },
   {
     name: 'Project Budget',
     required: false,
-    type: 'isNumeric',
+    type: null,
     error: 'Not a valid number'
   },
   {
     name: 'Key Messages',
     required: false,
-    type: 'isAlphanumeric',
+    type: null,
     error: 'Not a valid key message'
   },
   {
     name: 'Primary Target Audience',
     required: false,
-    type: 'isAlphanumeric',
+    type: null,
     error: 'Not a valid target'
   },
   {
     name: 'Secondary Target Audience',
     required: false,
-    type: 'isAlphanumeric',
+    type: null,
     error: 'Not a valid target'
   },
   {
@@ -70,7 +70,7 @@ export const multiLineFields = [
   {
     name: 'Comments',
     required: false,
-    type: 'isAlphanumeric',
+    type: null,
     error: 'Not a valid comment'
   }
 ]

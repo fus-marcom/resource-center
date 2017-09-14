@@ -177,7 +177,9 @@ class ServiceRequest extends Component {
         </Helmet>
         <div className='row'>
           <div className='col s12 flow-text'>
-            <h2>Please use this form to request services.</h2>
+            <h2 style={{ marginBottom: 0 }}>
+              Please use this form to request services.
+            </h2>
           </div>
         </div>
         <div className='row'>
@@ -218,10 +220,16 @@ class ServiceRequest extends Component {
                 />
               </div>
             ))}
-            <div className='col s12 m6'>
+            <div
+              className='col s12 m6'
+              style={{ marginTop: '16px', marginBottom: '16px' }}
+            >
               <DatePicker hintText='Desired Completion Date' />
             </div>
-            <div className='col s12 m6 file-upload'>
+            <div
+              className='col s12 m6 file-upload'
+              style={{ marginBottom: '16px' }}
+            >
               <label for='upload' className='file-field input-field'>
                 <div className='btn'>
                   <span>Upload Files</span>
@@ -292,11 +300,14 @@ class ServiceRequest extends Component {
                 />
               ))}
             </div>
-            <div className='col s12'>
+            <div className='col s12' style={{ marginTop: '16px' }}>
               <RaisedButton
                 label='Submit'
                 type='submit'
                 id='submit-button'
+                buttonStyle={{
+                  cursor: this.state.canSubmit ? 'pointer' : 'not-allowed'
+                }}
                 primary
                 disabled={!this.state.canSubmit}
               />
