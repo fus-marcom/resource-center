@@ -1,35 +1,15 @@
+import map from 'lodash/map'
 import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
-import SideBarItem from './SideBarItem'
+import SideBarItem from './sideBarItem'
 import { List } from 'material-ui/List'
-
-/*
-  Add you nav links here..
-    isExact: if true it will be an exact path
-    linkTo: the path you want to go
-    text: title of the nav item
-*/
-
-const links = [
-  { isExact: true, linkTo: '/', text: 'Home' },
-  { isExact: false, linkTo: '/logos', text: 'Logos' },
-  { isExact: false, linkTo: '/posters', text: 'Posters' },
-  { isExact: false, linkTo: '/letterhead', text: 'Letterhead' },
-  { isExact: false, linkTo: '/share-a-story', text: 'Share a Story' },
-  {
-    isExact: false,
-    linkTo: '/service-request-form',
-    text: 'Service Request Form'
-  },
-  { isExact: false, linkTo: '/tutorial', text: 'Tutorial' }
-]
+import links from '../data/linksData'
+import fusLogo from '../img/fus-logo.svg'
+import { Link } from 'react-router-dom'
 
 class SideNav extends Component {
-  constructor (props) {
-    super(props)
-    this.state = { open: false }
-  }
+  state = { open: false }
 
   handleClose = () => this.setState({ open: false })
 
@@ -37,10 +17,18 @@ class SideNav extends Component {
     return (
       <div>
         <AppBar
-          title='Resource Center'
-          iconClassNameRight='muidocs-icon-navigation-expand-more'
+          title={
+            <Link to='/'>
+              <img src={fusLogo} alt='Franciscan University Logo' />
+            </Link>
+          }
+          className='app-bar'
+          iconElementRight={
+            <h1 className='hide-on-small-only'>Resource Center</h1>
+          }
           onLeftIconButtonTouchTap={() =>
             this.setState({ open: !this.state.open })}
+          style={{ backgroundColor: '#fff', color: '#21412a' }}
         />
         <Drawer
           open={this.state.open}
@@ -48,14 +36,14 @@ class SideNav extends Component {
           onRequestChange={open => this.setState({ open })}
         >
           <List>
-            {links.map((link, i) => {
+            {map(links, ({ isExact, linkTo, text }, key) => {
               return (
                 <SideBarItem
-                  isExact={link.isExact}
-                  linkTo={link.linkTo}
-                  primaryText={link.text}
+                  isExact={isExact}
+                  linkTo={linkTo}
+                  primaryText={text}
                   onClick={this.handleClose}
-                  key={i}
+                  key={key}
                 />
               )
             })}

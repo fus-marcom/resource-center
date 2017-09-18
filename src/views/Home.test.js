@@ -24,6 +24,6 @@ describe('Home Page', () => {
       .evaluate(sel => document.querySelectorAll(sel).length, selector)
       .end()
 
-    expect(cardCount).toEqual(6)
+    expect(cardCount).toEqual(9)
   })
 })

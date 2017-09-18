@@ -1,28 +1,25 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import { Helmet } from 'react-helmet'
 import '../styles/video.css'
+import { logPageView } from '../utils/analytics'
 
 class Tutorial extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      topCoord: null
-    }
-  }
+  state = { topCoord: null }
+
   componentDidMount () {
-    const thisElement = ReactDOM.findDOMNode(this)
-    const top = thisElement.getBoundingClientRect().top
-    this.setState({ topCoord: top })
+    this.setState({
+      topCoord: this.refs.tutorialContainer.offsetTop
+    })
+    logPageView()
   }
 
   render () {
     return (
-      <div className='container'>
+      <div ref='tutorialContainer' className='container'>
+        <Helmet>
+          <title>Tutorial | Resource Center</title>
+        </Helmet>
         <div className='row' style={{ marginBottom: 0 }}>
-          {/* Guess 64px the first render, then immediately adjust
-              to a proper calculated value.
-              This prevents the layout from breaking should the AppBar
-              ever change to anything other than 64px. */}
           <div
             className='col s12 valign-wrapper'
             style={{
@@ -45,7 +42,7 @@ class Tutorial extends Component {
                 please contact Jesse Weigel at{' '}
                 <a href='mailto:jweigel@franciscan.edu'>
                   jweigel@franciscan.edu
-                </a>{' '}
+                </a>
                 or <a href='tel:17402845305'> 740-284-5305</a>.
               </p>
             </div>

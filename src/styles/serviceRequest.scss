@@ -1,0 +1,27 @@
+.file-field {
+  margin-bottom: 16px;
+  display: block;
+  cursor: pointer;
+
+  input {
+    z-index: -1;
+  }
+}
+
+.file-path-wrapper {
+  pointer-events: none;
+
+  textarea {
+    margin-top: 0 !important;
+  }
+}
+
+.checkbox-col {
+  display: flex;
+  flex-direction: column;
+
+}
+
+#planning-guide-checkbox {
+  padding-top: 15px;
+}

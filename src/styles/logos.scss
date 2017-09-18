@@ -1,0 +1,45 @@
+$fus-yellow: #ffb41f;
+$fus-light-blue: #8e9fbc;
+$fus-dark-blue:  #1f2a44;
+$fus-green:      #21412a;
+$fus-gold:       #998643;
+$link-color: $fus-yellow;
+
+.tabs {
+  list-style-type: none;
+  text-align: center;
+
+  .tab {
+    margin: 0 2px;
+    display: inline;
+
+    a {
+      padding: 8px;
+    }
+  }
+}
+
+.logo-card-container {
+  margin-bottom: 24px;
+
+  .img-container {
+    padding: 8px 8px 0 8px;
+  }
+
+  .card-actions {
+    border-top: 1px solid rgba(160,160,160,0.2);
+  }
+
+  a {
+    width: 50%;
+
+    span {
+      color: $link-color;
+
+      svg {
+        vertical-align: middle;
+      }
+    }
+
+  }
+}

@@ -1,36 +1,42 @@
+// eslint-disable-next-line
+/* global notifyFormError enableSubmit */
 import React, { Component } from 'react'
-import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
-import Checkbox from 'material-ui/Checkbox'
+import IconCheckbox from '../components/iconCheckbox'
 import RaisedButton from '../components/MaterializeRaisedButton'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import '../styles/inputFile.css'
+import '../styles/serviceRequest.css'
+import infoLogo from '../img/info.svg'
+import { logPageView } from '../utils/analytics'
+
+import Formsy from 'formsy-react'
+import { FormsyText, FormsyCheckbox } from 'formsy-material-ui/lib'
+import {
+  singleLineFields,
+  multiLineFields,
+  leftCheckboxes,
+  rightCheckboxes
+} from '../data/serviceRequestFields'
+
+const fileExtensions =
+  'application/vnd.rar, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, audio/mp4, audio/mpeg, text/plain, application/zip, video/quicktime, video/avi, audio/wav, image/jpeg, application/octet-stream, image/png'
 
 const PORT = process.env.SERVER_PORT || 9000
 const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
-const UPLOAD_URL = `http://${HOST}:${PORT}/uploads`
+const UPLOAD_URL =
+  process.env.NODE_ENV === 'production'
+    ? `https://${HOST}/uploads`
+    : `http://${HOST}:${PORT}/uploads`
 
 const styles = {
-  block: {
-    maxWidth: 250
-  },
   checkbox: {
-    marginBottom: 16
-  },
-  button: {
-    margin: 12
-  },
-  exampleImageInput: {
-    cursor: 'pointer',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-    width: '100%',
-    opacity: 0
+    marginBottom: 16,
+    width: 'auto',
+    display: 'flex'
   }
 }
 
@@ -38,74 +44,63 @@ const styles = {
 class ServiceRequest extends Component {
   constructor (props) {
     super(props)
-    this.singleLineFields = ['Name', 'Email', 'Phone', 'Department']
-    this.multiLineFields = [
-      'Project Description',
-      'Project Goal',
-      'Project Budget',
-      'Key Messages',
-      'Primary Target Audience',
-      'Secondary Target Audience',
-      'Project Contact (if other than yourself)',
-      'Comments'
-    ]
-    this.leftCheckboxes = [
-      'Simple1',
-      'Simple2',
-      'Simple3',
-      'Simple4',
-      'Simple5',
-      'Simple6'
-    ]
-    this.rightCheckboxes = [
-      'Simple7',
-      'Simple8',
-      'Simple9',
-      'Simple10',
-      'Simple11',
-      'Simple12'
-    ]
-    const stringProps = [
-      ...this.singleLineFields,
-      ...this.multiLineFields
-    ].reduce(
-      (acc, label) => ({
-        [this.formatLabelToProperty(label)]: '',
-        ...acc
-      }),
-      {}
-    )
-    const checkboxProps = [
-      ...this.leftCheckboxes,
-      ...this.rightCheckboxes
-    ].reduce(
-      (acc, label) => ({
-        [this.formatLabelToProperty(label)]: false,
+    const checkboxProps = [...leftCheckboxes, ...rightCheckboxes].reduce(
+      (acc, label, index) => ({
+        [this.formatLabelToProperty(label.name)]: false,
         ...acc
       }),
       {}
     )
     this.state = {
       form: {
-        fileInput: null
+        fileInput: null,
+        fileValid: true
       },
       loadingDialogOpen: false,
       resultDialogOpen: false,
       resultDialogText: null,
-      resultDialogSuccess: true
+      resultDialogSuccess: true,
+      canSubmit: false
     }
-    Object.assign(this.state.form, stringProps, checkboxProps)
+    Object.assign(this.state.form, checkboxProps)
     this.handleInputChange = this.handleInputChange.bind(this)
   }
 
+  componentDidMount = () => {
+    logPageView()
+  }
+
+  enableSubmit = e => {
+    if (e.target.checked) {
+      this.setState({
+        canSubmit: true
+      })
+    } else {
+      this.setState({
+        canSubmit: false
+      })
+    }
+  }
+
+  notifyFormError = () => {
+    this.setState({
+      resultDialogOpen: true,
+      resultDialogSuccess: false,
+      resultDialogText: 'Something went wrong. Check for errors and try again.'
+    })
+  }
+
   formatLabelToProperty = label =>
-    label.split(' (')[0].toLowerCase().split(' ').join('-')
+    label
+      .split(' (')[0]
+      .toLowerCase()
+      .split(' ')
+      .join('-')
 
   handleInputChange (event) {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-
     const form = Object.assign({}, this.state.form)
     form[name] = value
 
@@ -117,8 +112,17 @@ class ServiceRequest extends Component {
     // Array.from converts array-like to array (so that map works)
     const files = Array.from(target.files)
     let fileNames = null
+    const formState = this.state.form
+    formState.fileValid = true
+    this.setState({ formState })
     if (files.length > 0) {
       fileNames = files.map(f => f.name).join(', ')
+      files.map(
+        f =>
+          fileExtensions.match(f.type) === null
+            ? (formState.fileValid = false)
+            : ''
+      )
     }
 
     const form = Object.assign({}, this.state.form)
@@ -170,116 +174,222 @@ class ServiceRequest extends Component {
 
   render () {
     const fileValue = this.state.form.fileInput || 'Select a file to upload'
-    const SingleLineField = (label, index) =>
-      <div className='col s12 m6' key={index}>
-        <TextField
-          floatingLabelText={label}
-          name={this.formatLabelToProperty(label)}
-          value={this.state.form[this.formatLabelToProperty(label)]}
-          onChange={this.handleInputChange}
-          fullWidth
-        />
-      </div>
-    const MultiLineField = (label, index) =>
-      <div className='col s12 m6' key={index}>
-        <TextField
-          floatingLabelText={label}
-          name={this.formatLabelToProperty(label)}
-          value={this.state.form[this.formatLabelToProperty(label)]}
-          onChange={this.handleInputChange}
-          multiLine
-          rows={2}
-          fullWidth
-        />
-      </div>
-    const CheckboxField = (label, index) =>
-      <Checkbox
-        label={label}
-        name={this.formatLabelToProperty(label)}
-        checked={this.state.form[this.formatLabelToProperty(label)]}
-        key={index}
-        onCheck={this.handleInputChange}
-        style={styles.checkbox}
-      />
 
     return (
       <div className='container'>
+        <Helmet>
+          <title>Service Request | Resource Center</title>
+        </Helmet>
         <div className='row'>
           <div className='col s12 flow-text'>
-            <h2>Please use this form to request services.</h2>
+            <h2 style={{ marginBottom: 0 }}>
+              Please use this form to request services.
+            </h2>
           </div>
         </div>
         <div className='row'>
-          {this.singleLineFields.map((label, index) =>
-            SingleLineField(label, index)
-          )}
-          {this.multiLineFields.map((label, index) =>
-            MultiLineField(label, index)
-          )}
-          <div className='col s12 m6'>
-            <DatePicker hintText='Desired Completion Date' />
-          </div>
-          <div className='col s12 m6 file-upload'>
-            <div className='file-field input-field'>
-              <div className='btn'>
-                <span>Upload Files</span>
-                <input
-                  id='upload'
-                  name='upload[]'
-                  type='file'
-                  multiple
-                  onChange={this.handleFilePath}
-                  ref={input => {
-                    this.uploadInput = input
-                  }}
+          <Formsy.Form
+            onValidSubmit={this.handleFormData}
+            onInvalidSubmit={this.notifyFormError}
+          >
+            {singleLineFields.map((field, index) => (
+              <div className='col s12 m6' key={index}>
+                <FormsyText
+                  floatingLabelText={
+                    field.required ? field.name + ' *' : field.name
+                  }
+                  name={field.name.toLowerCase()}
+                  value={this.state.form[field.name]}
+                  onChange={this.handleInputChange}
+                  fullWidth
+                  id={`${field.name.toLowerCase()}-field`}
+                  required={field.required}
+                  validations={field.type}
+                  validationError={field.error}
+                  className='formsy-input'
                 />
               </div>
-              <div className='file-path-wrapper'>
-                <input
-                  value={fileValue}
-                  className='file-path validate'
-                  type='text'
-                  readOnly
+            ))}
+            {multiLineFields.map((field, index) => (
+              <div className='col s12 m6' key={index}>
+                <FormsyText
+                  floatingLabelText={
+                    field.required ? field.name + ' *' : field.name
+                  }
+                  name={field.name.toLowerCase()}
+                  value={this.state.form[field.name]}
+                  onChange={this.handleInputChange}
+                  fullWidth
+                  id={`${field.name.toLowerCase()}-field`}
+                  multiLine
+                  required={field.required}
+                  validations={field.type}
+                  validationError={field.error}
+                  className='formsy-multiline'
                 />
               </div>
+            ))}
+            <div
+              className='col s12 m6'
+              style={{ marginTop: '16px', marginBottom: '16px' }}
+            >
+              <DatePicker hintText='Desired Completion Date' />
             </div>
-          </div>
-          <div className='col s12 m6'>
-            {this.leftCheckboxes.map((label, index) =>
-              CheckboxField(label, index)
-            )}
-          </div>
-          <div className='col s12 m6'>
-            {this.rightCheckboxes.map((label, index) =>
-              CheckboxField(label, index)
-            )}
-          </div>
-          <div className='col s12'>
-            <RaisedButton
-              label='Submit'
-              id='submit-button'
-              onClick={this.handleFormData}
-              primary
-            />
-            <div id='planning-guide-checkbox'>
-              <Checkbox
-                label={
-                  <span>
-                    I have read the{' '}
-                    <Link
-                      to='/planning-guide'
-                      target='_blank'
-                      style={{ fontWeight: 500 }}
-                    >
-                      Planning Guide
-                    </Link>
-                  </span>
-                }
-                style={styles.checkbox}
-                inputStyle={{ width: '35px' }}
+            <div
+              className='col s12 m6 file-upload'
+              style={{ marginBottom: '16px' }}
+            >
+              <label for='upload' className='file-field input-field'>
+                <div className='btn'>
+                  <span>Upload Files</span>
+                  <input
+                    id='upload'
+                    name='upload[]'
+                    type='file'
+                    multiple
+                    accept={fileExtensions}
+                    onChange={this.handleFilePath}
+                    ref={input => {
+                      this.uploadInput = input
+                    }}
+                    className='formsy-input'
+                  />
+                </div>
+                <div className='file-path-wrapper'>
+                  <FormsyText
+                    className='file-path validate formsy-multiline'
+                    value={fileValue}
+                    multiLine
+                    rows={1}
+                    fullWidth
+                    readOnly
+                    name='upload-text-field'
+                    id='file-path-field'
+                    validations={{
+                      myCustomIsFiveValidation: () => this.state.form.fileValid
+                    }}
+                    validationError='Error'
+                  />
+                </div>
+              </label>
+            </div>
+            <div className='col s12 m6 checkbox-col'>
+              {leftCheckboxes.map((label, index) => (
+                <div>
+                  <IconCheckbox
+                    label={label.name}
+                    name={label.name.toLowerCase()}
+                    isChecked={this.state.form[label.name.toLowerCase()]}
+                    key={index + label.name}
+                    handleCheck={event => this.handleInputChange(event)}
+                    style={styles.checkbox}
+                    inputStyle={styles.inputStyle}
+                    src={infoLogo}
+                    alt='Info Button'
+                    icon={label.icon ? label.icon : false}
+                    dialogText={label.dialogText && label.dialogText}
+                    dialogTitle={label.dialogTitle && label.dialogTitle}
+                    conditionalFields={label.conditionalFields}
+                  />
+                  {label.conditionalFields &&
+                    this.state.form[label.name.toLowerCase()] &&
+                    label.conditionalFields.map(field => (
+                      <FormsyText
+                        key={field.name}
+                        floatingLabelText={
+                          field.required ? field.name + ' *' : field.name
+                        }
+                        name={field.name.toLowerCase()}
+                        value={this.state.form[field.name]}
+                        onChange={this.handleInputChange}
+                        fullWidth
+                        id={`${field.name.toLowerCase()}-field`}
+                        required={field.required}
+                        validations={field.type}
+                        validationError={field.error}
+                        className='formsy-input'
+                        style={{ margin: '0 0 8px 0' }}
+                      />
+                    ))}
+                </div>
+              ))}
+            </div>
+            <div className='col s12 m6 checkbox-col'>
+              {rightCheckboxes.map((label, index) => (
+                <div>
+                  <IconCheckbox
+                    label={label.name}
+                    name={label.name.toLowerCase()}
+                    isChecked={this.state.form[label.name.toLowerCase()]}
+                    key={index + label.name}
+                    handleCheck={event => this.handleInputChange(event)}
+                    style={styles.checkbox}
+                    inputStyle={styles.inputStyle}
+                    src={infoLogo}
+                    alt='Info Button'
+                    icon={label.icon ? label.icon : false}
+                    dialogText={label.dialogText && label.dialogText}
+                    dialogTitle={label.dialogTitle && label.dialogTitle}
+                    conditionalFields={label.conditionalFields}
+                  />
+                  {label.conditionalFields &&
+                    this.state.form[label.name.toLowerCase()] &&
+                    label.conditionalFields.map(field => (
+                      <FormsyText
+                        key={field.name}
+                        floatingLabelText={
+                          field.required ? field.name + ' *' : field.name
+                        }
+                        name={field.name.toLowerCase()}
+                        value={this.state.form[field.name]}
+                        onChange={this.handleInputChange}
+                        fullWidth
+                        id={`${field.name.toLowerCase()}-field`}
+                        required={field.required}
+                        validations={field.type}
+                        validationError={field.error}
+                        className='formsy-input'
+                        style={{ margin: '0 0 8px 0' }}
+                      />
+                    ))}
+                </div>
+              ))}
+            </div>
+            <div className='col s12' style={{ marginTop: '16px' }}>
+              <RaisedButton
+                label='Submit'
+                type='submit'
+                id='submit-button'
+                buttonStyle={{
+                  cursor: this.state.canSubmit ? 'pointer' : 'not-allowed'
+                }}
+                primary
+                disabled={!this.state.canSubmit}
               />
+              <div id='planning-guide-checkbox'>
+                <FormsyCheckbox
+                  name='planning-guide-check'
+                  required
+                  label={
+                    <span>
+                      I have read the{' '}
+                      <Link
+                        to='/planning-guide'
+                        target='_blank'
+                        style={{ fontWeight: 500 }}
+                      >
+                        Planning Guide
+                      </Link>{' '}
+                      *
+                    </span>
+                  }
+                  style={styles.checkbox}
+                  inputStyle={{ width: '35px' }}
+                  onChange={this.enableSubmit}
+                />
+              </div>
             </div>
-          </div>
+          </Formsy.Form>
         </div>
         <Dialog title='Loading...' modal open={this.state.loadingDialogOpen}>
           Sending service request

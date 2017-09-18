@@ -9,8 +9,12 @@
 # production
 /build
 
+# package-lock.json
+package-lock.json
+
 # misc
 .DS_Store
+package-lock.json
 .env.local
 .env.development.local
 .env.test.local
@@ -25,3 +29,4 @@ yarn-error.log*
 src/**/*.css
 
 /uploads
+test-upload.txt

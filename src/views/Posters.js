@@ -1,89 +1,75 @@
+import map from 'lodash/map'
 import React, { Component } from 'react'
-import { Card, CardTitle, CardText } from 'material-ui/Card'
+import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+import { GenericCard } from './../components/GenericCard'
+import posterData from '../data/posterData'
+import { logPageView } from '../utils/analytics'
 
 class Posters extends Component {
-  state = {}
+  state = { topCoord: null }
+
+  componentDidMount () {
+    this.setState({
+      topCoord: this.refs.pageContainer.offsetTop
+    })
+    logPageView()
+  }
+
   render () {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col s12 m6'>
-            <Card>
-              <CardTitle title='Card title' subtitle='Card subtitle' />
-              <CardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam
-                sed pellentesque. Aliquam dui mauris, mattis quis lacus id,
-                pellentesque lobortis odio.
-              </CardText>
-            </Card>
-          </div>
-          <div className='col s12 m6'>
-            <Card>
-              <CardTitle title='Card title' subtitle='Card subtitle' />
-              <CardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam
-                sed pellentesque. Aliquam dui mauris, mattis quis lacus id,
-                pellentesque lobortis odio.
-              </CardText>
-            </Card>
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col s12 m6'>
-            <Card>
-              <CardTitle title='Card title' subtitle='Card subtitle' />
-              <CardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam
-                sed pellentesque. Aliquam dui mauris, mattis quis lacus id,
-                pellentesque lobortis odio.
-              </CardText>
-            </Card>
+      <div
+        ref='pageContainer'
+        className='container'
+        style={{
+          marginBottom: 0,
+          minHeight: `calc(100vh - ${this.state.topCoord || '64'}px)`
+        }}
+      >
+        <Helmet>
+          <title>Posters | Resource Center</title>
+        </Helmet>
+        <div
+          className='row flow-text'
+          style={{ display: 'flex', flexWrap: 'wrap' }}
+        >
+          <div className='col s12'>
+            <h2 style={{ flex: '1 100%' }}>Poster Resources</h2>
           </div>
 
-          <div className='col s12 m6'>
-            <Card>
-              <CardTitle title='Card title' subtitle='Card subtitle' />
-              <CardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam
-                sed pellentesque. Aliquam dui mauris, mattis quis lacus id,
-                pellentesque lobortis odio.
-              </CardText>
-            </Card>
-          </div>
-        </div>
-        <div className='row'>
-          <div className='col s12 m6'>
-            <Card>
-              <CardTitle title='Card title' subtitle='Card subtitle' />
-              <CardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam
-                sed pellentesque. Aliquam dui mauris, mattis quis lacus id,
-                pellentesque lobortis odio.
-              </CardText>
-            </Card>
-          </div>
-          <div className='col s12 m6'>
-            <Card>
-              <CardTitle title='Card title' subtitle='Card subtitle' />
-              <CardText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam
-                sed pellentesque. Aliquam dui mauris, mattis quis lacus id,
-                pellentesque lobortis odio.
-              </CardText>
-            </Card>
-          </div>
+          {map(
+            posterData,
+            ({ hoverable, link, cardTitle, description, contactInfo }, key) => {
+              return (
+                <div key={key} className='col s12 m6 flex-div'>
+                  <GenericCard
+                    link={link}
+                    cardTitle={cardTitle}
+                    className={hoverable ? 'hoverable' : ''}
+                  >
+                    {description}
+                    {contactInfo !== undefined ? (
+                      <div style={{ marginBottom: '0' }}>
+                        <br />
+                        {map(contactInfo, ({ link, linkText }, key) => {
+                          return (
+                            <p
+                              style={{
+                                margin: '0 10px'
+                              }}
+                              key={key}
+                            >
+                              <Link to={link}>{linkText}</Link>
+                            </p>
+                          )
+                        })}
+                      </div>
+                    ) : null}
+                  </GenericCard>
+                </div>
+              )
+            }
+          )}
         </div>
       </div>
     )

@@ -17,18 +17,18 @@ describe('Letterhead page', () => {
     expect(letterheadCount).toEqual(4)
   })
 
-  it('has 4 images from placeimg.com', async () => {
+  it('has 4 images', async () => {
     const page = visit('/letterhead')
-    const selector = '.letterhead-card img[src*="placeimg.com"]'
+    const selector = '.letterhead-card img'
     const letterheadCount = await page
       .evaluate(sel => document.querySelectorAll(sel).length, selector)
       .end()
     expect(letterheadCount).toEqual(4)
   })
 
-  it('has at least one letterhead with a button', async () => {
+  it('has at least one letterhead with a link', async () => {
     const page = visit('/letterhead')
-    const buttonIsVisible = await page.visible('.letterhead-card button').end()
+    const buttonIsVisible = await page.visible('.letterhead-card a').end()
     expect(buttonIsVisible).toEqual(true)
   })
 
