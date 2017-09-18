@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { GenericCard } from './../components/GenericCard'
 import posterData from '../data/posterData'
+import { logPageView } from '../utils/analytics'
 
 class Posters extends Component {
   state = { topCoord: null }
@@ -12,6 +13,7 @@ class Posters extends Component {
     this.setState({
       topCoord: this.refs.pageContainer.offsetTop
     })
+    logPageView()
   }
 
   render () {

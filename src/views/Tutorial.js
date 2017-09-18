@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import '../styles/video.css'
+import { logPageView } from '../utils/analytics'
 
 class Tutorial extends Component {
   state = { topCoord: null }
@@ -9,6 +10,7 @@ class Tutorial extends Component {
     this.setState({
       topCoord: this.refs.tutorialContainer.offsetTop
     })
+    logPageView()
   }
 
   render () {

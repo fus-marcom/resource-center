@@ -5,6 +5,7 @@ import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import { Helmet } from 'react-helmet'
 import '../styles/responsive-text.css'
+import { logPageView } from '../utils/analytics'
 
 const PORT = process.env.UPLOADS_PORT || 9000
 const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
@@ -39,6 +40,10 @@ class Story extends Component {
     }
     Object.assign(this.state.form, stringProps)
     this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+  componentDidMount = () => {
+    logPageView()
   }
 
   formatLabelToProperty = label =>

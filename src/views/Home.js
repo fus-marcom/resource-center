@@ -4,6 +4,7 @@ import { GenericCard } from '../components/GenericCard'
 import { Helmet } from 'react-helmet'
 import genericCardData from '../data/genericCardData'
 import '../styles/home.css'
+import { logPageView } from '../utils/analytics'
 
 class Home extends Component {
   state = { topCoord: null }
@@ -12,6 +13,7 @@ class Home extends Component {
     this.setState({
       topCoord: this.refs.homepageContainer.offsetTop
     })
+    logPageView()
   }
 
   render () {

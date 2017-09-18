@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet'
 import throttle from 'lodash/throttle'
 import PlanningGuidelines from '../components/PlanningGuidelines'
 import '../styles/planning-guide.css'
+import { logPageView } from '../utils/analytics'
 
 class PlanningGuide extends Component {
   constructor (props) {
@@ -20,6 +21,7 @@ class PlanningGuide extends Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
+    logPageView()
   }
 
   componentWillUnmount () {

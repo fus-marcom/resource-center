@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet'
 import '../styles/inputFile.css'
 import '../styles/serviceRequest.css'
 import infoLogo from '../img/info.svg'
+import { logPageView } from '../utils/analytics'
 
 import Formsy from 'formsy-react'
 import { FormsyText, FormsyCheckbox } from 'formsy-material-ui/lib'
@@ -63,6 +64,10 @@ class ServiceRequest extends Component {
     }
     Object.assign(this.state.form, checkboxProps)
     this.handleInputChange = this.handleInputChange.bind(this)
+  }
+
+  componentDidMount = () => {
+    logPageView()
   }
 
   enableSubmit = e => {
