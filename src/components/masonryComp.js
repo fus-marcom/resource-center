@@ -4,6 +4,7 @@ import Masonry from 'react-masonry-component'
 import { GenericCard } from './../components/GenericCard'
 import FlatButton from 'material-ui/FlatButton'
 import DownloadIcon from './downloadIcon'
+import { logEvent } from '../utils/analytics'
 
 const MasonryComp = ({ data, activeTab }) => {
   return (
@@ -11,7 +12,7 @@ const MasonryComp = ({ data, activeTab }) => {
       {filter(
         data,
         logo => activeTab === 'all' || activeTab === logo.category
-      ).map(({ thumbnailUrl, jpgUrl, name, psdUrl }, i) =>
+      ).map(({ thumbnailUrl, jpgUrl, name, psdUrl }, i) => (
         <div className='col s12 m6 l4 xl3 logo-card-container' key={i}>
           <GenericCard
             classes='logo-card'
@@ -32,6 +33,7 @@ const MasonryComp = ({ data, activeTab }) => {
                       <DownloadIcon color='#ffb41f' />JPG
                     </span>
                   }
+                  onClick={() => logEvent('Logo Download (JPG)', name)}
                 />
                 <FlatButton
                   href={
@@ -44,12 +46,13 @@ const MasonryComp = ({ data, activeTab }) => {
                       <DownloadIcon color='#ffb41f' />PSD
                     </span>
                   }
+                  onClick={() => logEvent('Logo Download (PSD)', name)}
                 />
               </div>
             }
           />
         </div>
-      )}
+      ))}
     </Masonry>
   )
 }

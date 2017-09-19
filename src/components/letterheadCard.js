@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardTitle, CardActions, CardMedia } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
+import { logEvent } from '../utils/analytics'
 
 const LetterheadCard = ({ image, title, url, actionText }) => {
   return (
@@ -14,7 +15,11 @@ const LetterheadCard = ({ image, title, url, actionText }) => {
         </CardMedia>
         <CardTitle title={title} />
         <CardActions>
-          <FlatButton label={actionText} href={url} />
+          <FlatButton
+            label={actionText}
+            href={url}
+            onClick={() => logEvent('Letterhead Download', title)}
+          />
         </CardActions>
       </Card>
     </div>
