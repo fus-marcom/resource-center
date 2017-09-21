@@ -26,4 +26,10 @@ You can just download the .zip file. Extract the contents, then move to the proj
 Now Fork the project from [here](https://github.com/fus-marcom/resource-center), make your changes and open a [Pull](https://github.com/fus-marcom/resource-center/pulls) Request.
 
 ### Learning Git
-Those who are not yet familiar with Git but want to learn more about how to use it, check out this [Codecademy course](https://www.codecademy.com/learn/learn-git) or this [FCC video tutorial series](https://www.youtube.com/watch?v=vR-y_2zWrIE&list=PLWKjhJtqVAbkFiqHnNaxpOPhh9tSWMXIF) on Git & GitHub.
+Those who are not yet familiar with Git but want to learn more about how to use it, check out these resources to dive into git workflow -
+- [Git - Documentation](https://git-scm.com/doc)
+- [Codecademy course](https://www.codecademy.com/learn/learn-git)
+- [FCC video tutorial series](https://www.youtube.com/watch?v=vR-y_2zWrIE&list=PLWKjhJtqVAbkFiqHnNaxpOPhh9tSWMXIF)
+- [How to Use Git and GitHub - FREE course on Udacity](https://www.udacity.com/course/how-to-use-git-and-github--ud775#)
+- [Getting Git Right - Tutorials on Atlassian](https://www.atlassian.com/git)
+- [List of useful resources & references](https://gist.github.com/eashish93/3eca6a90fef1ea6e586b7ec211ff72a5)
