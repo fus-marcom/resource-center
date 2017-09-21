@@ -18,7 +18,7 @@ class Story extends Component {
   constructor (props) {
     super(props)
     this.singleLineFields = ['Name', 'Email']
-    this.multiLineFields = ['Project Description']
+    this.multiLineFields = ['Story']
 
     const stringProps = [
       ...this.singleLineFields,

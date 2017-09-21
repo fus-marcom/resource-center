@@ -128,6 +128,8 @@ app.post('/story-form', function (req, res) {
     if (error) return
     console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
 
+    const emailBody = `Thank you for your submission!<br / <br />${fieldsString}`
+
     // Here is a good place to send the emails since we have the fields
     // We don't want to actually send emails during testing since it
     // would send a test email on every single commit
@@ -135,7 +137,7 @@ app.post('/story-form', function (req, res) {
       const toEmail = new helper.Email('jesseweigel@gmail.com')
       const fromEmail = new helper.Email('test@example.com')
       const subject = 'New Suggest a Story Form Submission'
-      const content = new helper.Content('text/html', fieldsString)
+      const content = new helper.Content('text/html', emailBody)
       const mail = new helper.Mail(fromEmail, subject, toEmail, content)
       const request = makeSgRequest(mail)
       console.log('Sending email...')
