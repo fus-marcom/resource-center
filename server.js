@@ -3,9 +3,9 @@ const express = require('express')
 const path = require('path')
 const fs = require('fs')
 const formidable = require('formidable')
-const helper = require('sendgrid').mail
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const app = express()
-const sg = require('sendgrid')(process.env.SENDGRID_API_KEY)
 const fetch = require('node-fetch')
 
 const PORT = process.env.SERVER_PORT || 9000
@@ -33,13 +33,6 @@ if (ENABLE_WRIKE) {
 } else {
   console.info('Wrike integration is disabled')
 }
-
-const makeSgRequest = body =>
-  sg.emptyRequest({
-    method: 'POST',
-    path: '/v3/mail/send',
-    body: body.toJSON()
-  })
 
 // This converts {a:1, b:2} into 'a=1&b=2'
 const queryParams = obj =>
@@ -128,27 +121,24 @@ app.post('/story-form', function (req, res) {
     if (error) return
     console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
 
-    const emailBody = `Thank you for your submission!<br / <br />${fieldsString}`
+    const emailBody = `Thank you for your submission!<br /> <br />${fieldsString}`
 
     // Here is a good place to send the emails since we have the fields
     // We don't want to actually send emails during testing since it
     // would send a test email on every single commit
     if (ENABLE_SEND_EMAILS) {
-      const toEmail = new helper.Email('jesseweigel@gmail.com')
-      const fromEmail = new helper.Email('test@example.com')
-      const subject = 'New Suggest a Story Form Submission'
-      const content = new helper.Content('text/html', emailBody)
-      const mail = new helper.Mail(fromEmail, subject, toEmail, content)
-      const request = makeSgRequest(mail)
-      console.log('Sending email...')
-      sg.API(request, function (error, response) {
-        if (error) {
-          console.log('Error response received')
-        }
-        console.log(response.statusCode)
-        console.log(response.body)
-        console.log(response.headers)
-      })
+      const msg = {
+        to: fields.email,
+        bcc: 'jweigel@franciscan.edu',
+        from: 'test@example.com',
+        subject: 'Suggest a Story Form Submission',
+        text: 'Story suggestion submitted successfully!',
+        html: emailBody
+      }
+      sgMail
+        .send(msg)
+        .then(() => console.log('Mail sent successfully'))
+        .catch(error => console.error(error.toString()))
     }
 
     // Send the success response
@@ -243,27 +233,26 @@ app.post('/uploads', function (req, res) {
     if (error) return
     console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
 
+    const emailBody = `Thank you for your request!<br /> <br />${fieldsString}`
+
     // TODO: Validate fields
 
     // Here is a good place to send the emails since we have the fields
     // We don't want to actually send emails during testing since it
     // would send a test email on every single commit
     if (ENABLE_SEND_EMAILS) {
-      const toEmail = new helper.Email('jesseweigel@gmail.com')
-      const fromEmail = new helper.Email('test@example.com')
-      const subject = 'New Service Request Form Submission'
-      const content = new helper.Content('text/html', fieldsString)
-      const mail = new helper.Mail(fromEmail, subject, toEmail, content)
-      const request = makeSgRequest(mail)
-      console.log('Sending email...')
-      sg.API(request, function (error, response) {
-        if (error) {
-          console.log('Error response received')
-        }
-        console.log(response.statusCode)
-        console.log(response.body)
-        console.log(response.headers)
-      })
+      const msg = {
+        to: fields.email,
+        bcc: 'jweigel@franciscan.edu',
+        from: 'test@example.com',
+        subject: 'New Service Request Form Submission',
+        text: 'Request submitted successfully!',
+        html: emailBody
+      }
+      sgMail
+        .send(msg)
+        .then(() => console.log('Mail sent successfully'))
+        .catch(error => console.error(error.toString()))
     }
 
     // Create project and attach files in wrike
