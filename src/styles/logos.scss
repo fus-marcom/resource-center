@@ -9,13 +9,17 @@ $link-color: $fus-yellow;
   list-style-type: none;
   text-align: center;
 
+  .active {
+    font-weight: 500;
+  }
+
   .tab {
     margin: 0 2px;
     display: inline;
+    padding: 8px;
+    color: $fus-yellow;
+    cursor: pointer;
 
-    a {
-      padding: 8px;
-    }
   }
 }
 
