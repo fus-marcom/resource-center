@@ -99,7 +99,9 @@ app.post('/story-form', function (req, res) {
   let fieldsString = ''
   form.on('field', (name, value) => {
     fields[name] = value
-    fieldsString = fieldsString + `${name}: ${value}<br />`
+    fieldsString =
+      fieldsString +
+      `<span><span style='text-transform: capitalize;'>${name}</span>: ${value}</span><br /><br />`
   })
 
   // Handle a possible error while parsing the request
@@ -121,7 +123,7 @@ app.post('/story-form', function (req, res) {
     if (error) return
     console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
 
-    const emailBody = `Thank you for your submission!<br /> <br />${fieldsString}`
+    const emailBody = `Thank you for your submission!<br /><br />${fieldsString}`
 
     // Here is a good place to send the emails since we have the fields
     // We don't want to actually send emails during testing since it
@@ -129,8 +131,12 @@ app.post('/story-form', function (req, res) {
     if (ENABLE_SEND_EMAILS) {
       const msg = {
         to: fields.email,
-        bcc: 'jweigel@franciscan.edu',
-        from: 'test@example.com',
+        bcc:
+          process.env.NODE_ENV === 'production'
+            ? process.env.STORY_EMAILS
+            : 'jweigel@franciscan.edu',
+        from: 'resourcecenter@franciscan.edu',
+        replyTo: 'jweigel@franciscan.edu',
         subject: 'Suggest a Story Form Submission',
         text: 'Story suggestion submitted successfully!',
         html: emailBody
@@ -211,7 +217,11 @@ app.post('/uploads', function (req, res) {
   let fieldsString = ''
   form.on('field', (name, value) => {
     fields[name] = value
-    fieldsString = fieldsString + `${name}: ${value}<br />`
+    fieldsString =
+      value !== 'false' && name !== 'fileValid' && value !== 'null'
+        ? fieldsString +
+          `<span><span style='text-transform: capitalize;'>${name}</span>: ${value}</span><br /><br />`
+        : fieldsString
   })
 
   // Handle a possible error while parsing the request
@@ -243,8 +253,12 @@ app.post('/uploads', function (req, res) {
     if (ENABLE_SEND_EMAILS) {
       const msg = {
         to: fields.email,
-        bcc: 'jweigel@franciscan.edu',
-        from: 'test@example.com',
+        bcc:
+          process.env.NODE_ENV === 'production'
+            ? process.env.SRF_EMAILS
+            : 'jweigel@franciscan.edu',
+        from: 'resourcecenter@franciscan.edu',
+        replyTo: process.env.SRF_REPLY,
         subject: 'New Service Request Form Submission',
         text: 'Request submitted successfully!',
         html: emailBody
