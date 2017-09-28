@@ -33,15 +33,12 @@ class Logos extends Component {
           <div className='col s12 hide-on-med-and-down'>
             <ul className='tabs'>
               {map(tabs, (tab, tabKey) => (
-                <li className='tab' key={tabKey + 'li'}>
-                  <a
-                    key={tabKey}
-                    href={'#' + tabKey}
-                    className={tabKey === activeTab && 'active'}
-                    onClick={() => this.setState({ activeTab: tabKey })}
-                  >
-                    {tabs[tabKey]}
-                  </a>
+                <li
+                  className={`tab ${tabKey === activeTab && 'active'}`}
+                  key={tabKey + 'li'}
+                  onClick={() => this.setState({ activeTab: tabKey })}
+                >
+                  {tabs[tabKey]}
                 </li>
               ))}
             </ul>
