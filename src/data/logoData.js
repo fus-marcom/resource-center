@@ -24,14 +24,6 @@ export const logos = [
     psdUrl: 'Conference/ConferenceC.psd'
   },
   {
-    name: 'Year of Mercy',
-    number: 4,
-    category: 'yom',
-    thumbnailUrl: 'YearOfMercy/YMMark15-thumb.jpg',
-    jpgUrl: 'YearOfMercy/YMMark15.jpg',
-    psdUrl: 'YearOfMercy/YMMark15.psd'
-  },
-  {
     name: 'LogoStC',
     number: 5,
     category: 'franciscan',

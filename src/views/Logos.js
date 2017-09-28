@@ -10,7 +10,7 @@ import { logPageView } from '../utils/analytics'
 
 class Logos extends Component {
   state = {
-    activeTab: 'all',
+    activeTab: 'franciscan',
     data: logos,
     type: 'all'
   }
