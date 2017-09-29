@@ -104,22 +104,6 @@ export const logos = [
     psdUrl: 'FranciscanLogo/Divisions/Alumni/AlumniRStC.psd'
   },
   {
-    name: 'Grad School St BW',
-    number: 15,
-    category: 'grad',
-    thumbnailUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStBW-thumb.jpg',
-    jpgUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStBW.jpg',
-    psdUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStBW.psd'
-  },
-  {
-    name: 'Grad School St C',
-    number: 16,
-    category: 'grad',
-    thumbnailUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStC-thumb.jpg',
-    jpgUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStC.jpg',
-    psdUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStC.psd'
-  },
-  {
     name: 'Online VB',
     number: 17,
     category: 'online',
@@ -242,7 +226,6 @@ export const tabs = {
   austrian: 'Austrian',
   conference: 'Conference',
   franciscan: 'Franciscan',
-  grad: 'Grad School',
   iheart: 'IHeart',
   online: 'Online',
   pilgrimages: 'Pilgrimages',
