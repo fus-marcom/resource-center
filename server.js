@@ -133,7 +133,11 @@ app.post('/story-form', function (req, res) {
         to: fields.email,
         bcc:
           process.env.NODE_ENV === 'production'
-            ? process.env.STORY_EMAILS
+            ? [
+              'jweigel@franciscan.edu',
+              process.env.STORY_EMAIL1,
+              process.env.STORY_EMAIL2
+            ]
             : 'jweigel@franciscan.edu',
         from: 'resourcecenter@franciscan.edu',
         replyTo: 'jweigel@franciscan.edu',
@@ -255,7 +259,7 @@ app.post('/uploads', function (req, res) {
         to: fields.email,
         bcc:
           process.env.NODE_ENV === 'production'
-            ? process.env.SRF_EMAILS
+            ? ['jweigel@franciscan.edu', process.env.SRF_EMAIL]
             : 'jweigel@franciscan.edu',
         from: 'resourcecenter@franciscan.edu',
         replyTo: process.env.SRF_REPLY,
@@ -306,4 +310,8 @@ app.post('/uploads', function (req, res) {
   })
 })
 
-app.listen(PORT, _ => console.info(`Server listening on PORT ${PORT}...`))
+app.listen(PORT, _ =>
+  console.info(
+    `Server listening on PORT ${PORT}... Mode ${process.env.NODE_ENV}`
+  )
+)
