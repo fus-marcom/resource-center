@@ -6,7 +6,6 @@ import { Helmet } from 'react-helmet'
 import { logos, tabs } from '../data/logoData.js'
 import MasonryComp from '../components/masonryComp'
 import '../styles/logos.css'
-import { logPageView } from '../utils/analytics'
 import { Tabs, Tab } from 'material-ui/Tabs'
 
 class Logos extends Component {
@@ -15,12 +14,6 @@ class Logos extends Component {
     data: logos,
     type: 'all'
   }
-
-  componentDidMount = () => {
-    logPageView()
-  }
-
-  handleChange = (event, index, value) => this.setState({ activeTab: value })
 
   handleTabChange = value => {
     this.setState({
@@ -55,7 +48,7 @@ class Logos extends Component {
             <SelectField
               floatingLabelText='Logo Type'
               value={this.state.activeTab}
-              onChange={this.handleChange}
+              onChange={(event, index, value) => this.handleTabChange(value)}
               style={{ textAlign: 'left', width: '100%' }}
             >
               {map(tabs, (tab, tabKey) => (
