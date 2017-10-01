@@ -24,14 +24,6 @@ export const logos = [
     psdUrl: 'Conference/ConferenceC.psd'
   },
   {
-    name: 'Year of Mercy',
-    number: 4,
-    category: 'yom',
-    thumbnailUrl: 'YearOfMercy/YMMark15-thumb.jpg',
-    jpgUrl: 'YearOfMercy/YMMark15.jpg',
-    psdUrl: 'YearOfMercy/YMMark15.psd'
-  },
-  {
     name: 'LogoStC',
     number: 5,
     category: 'franciscan',
@@ -110,22 +102,6 @@ export const logos = [
     thumbnailUrl: 'FranciscanLogo/Divisions/Alumni/AlumniRStC-thumb.jpg',
     jpgUrl: 'FranciscanLogo/Divisions/Alumni/AlumniRStC.jpg',
     psdUrl: 'FranciscanLogo/Divisions/Alumni/AlumniRStC.psd'
-  },
-  {
-    name: 'Grad School St BW',
-    number: 15,
-    category: 'grad',
-    thumbnailUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStBW-thumb.jpg',
-    jpgUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStBW.jpg',
-    psdUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStBW.psd'
-  },
-  {
-    name: 'Grad School St C',
-    number: 16,
-    category: 'grad',
-    thumbnailUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStC-thumb.jpg',
-    jpgUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStC.jpg',
-    psdUrl: 'FranciscanLogo/Divisions/GradSchool/GradSchStC.psd'
   },
   {
     name: 'Online VB',
@@ -250,7 +226,6 @@ export const tabs = {
   austrian: 'Austrian',
   conference: 'Conference',
   franciscan: 'Franciscan',
-  grad: 'Grad School',
   iheart: 'IHeart',
   online: 'Online',
   pilgrimages: 'Pilgrimages',

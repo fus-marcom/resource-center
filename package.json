@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sendgrid/mail": "^6.1.4",
     "electron": "^1.6.11",
     "file-type": "^6.1.0",
     "formidable": "^1.1.1",
@@ -19,8 +20,7 @@
     "react-masonry-component": "^5.0.7",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.11",
-    "react-tap-event-plugin": "^2.0.1",
-    "sendgrid": "^5.2.0"
+    "react-tap-event-plugin": "^2.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -74,7 +74,8 @@
       "handleFilePath",
       "handleFormData",
       "handleDialogClose",
-      "componentDidMount"
+      "componentDidMount",
+      "handleTabChange"
     ],
     "parser": "babel-eslint"
   }

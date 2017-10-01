@@ -7,10 +7,11 @@ import { logos, tabs } from '../data/logoData.js'
 import MasonryComp from '../components/masonryComp'
 import '../styles/logos.css'
 import { logPageView } from '../utils/analytics'
+import { Tabs, Tab } from 'material-ui/Tabs'
 
 class Logos extends Component {
   state = {
-    activeTab: 'all',
+    activeTab: 'franciscan',
     data: logos,
     type: 'all'
   }
@@ -21,6 +22,12 @@ class Logos extends Component {
 
   handleChange = (event, index, value) => this.setState({ activeTab: value })
 
+  handleTabChange = value => {
+    this.setState({
+      activeTab: value
+    })
+  }
+
   render () {
     const { activeTab } = this.state
 
@@ -29,20 +36,18 @@ class Logos extends Component {
         <Helmet>
           <title>Logos | Resource Center</title>
         </Helmet>
+
+        <Tabs
+          value={activeTab}
+          onChange={this.handleTabChange}
+          className='hide-on-med-and-down'
+        >
+          {map(tabs, (tab, tabKey) => (
+            <Tab label={tabs[tabKey]} value={tabKey} key={tabKey + 'tab'} />
+          ))}
+        </Tabs>
+
         <div className='row'>
-          <div className='col s12 hide-on-med-and-down'>
-            <ul className='tabs'>
-              {map(tabs, (tab, tabKey) => (
-                <li
-                  className={`tab ${tabKey === activeTab && 'active'}`}
-                  key={tabKey + 'li'}
-                  onClick={() => this.setState({ activeTab: tabKey })}
-                >
-                  {tabs[tabKey]}
-                </li>
-              ))}
-            </ul>
-          </div>
           <div
             className='col s12 hide-on-large-only'
             style={{ textAlign: 'center' }}
