@@ -1,6 +1,6 @@
 import '../styles/App.css'
 import '../styles/materialize-grid.css'
-import React, { Component } from 'react'
+import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
@@ -25,49 +25,36 @@ import ServiceRequest from '../views/ServiceRequest'
 import Services from '../views/services'
 import Story from '../views/story'
 import Tutorial from '../views/Tutorial'
-import { initGA } from '../utils/analytics'
 
 injectTapEventPlugin()
 
-class Routes extends Component {
-  componentDidMount () {
-    if (!window.GA_INTIALIZED) {
-      initGA()
-      window.GA_INTIALIZED = true
-    }
-  }
+const Routes = () => {
+  return (
+    <BrowserRouter>
+      <ScrollIntoView>
+        <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
+          <div>
+            <SideNav />
+            <Switch>
+              <Route exact path='/' component={Home} />
 
-  render () {
-    return (
-      <BrowserRouter>
-        <ScrollIntoView>
-          <MuiThemeProvider muiTheme={getMuiTheme(fusTheme)}>
-            <div>
-              <SideNav />
-              <Switch>
-                <Route exact path='/' component={Home} />
-
-                <Route path='/logos' component={Logos} />
-                <Route path='/posters' component={Posters} />
-                <Route path='/letterhead' component={Letterhead} />
-                <Route path='/share-a-story' component={Story} />
-                <Route path='/planning-guide' component={PlanningGuide} />
-                <Route path='/glossary' component={Glossary} />
-                <Route path='/services' component={Services} />
-                <Route
-                  path='/service-request-form'
-                  component={ServiceRequest}
-                />
-                <Route path='/tutorial' component={Tutorial} />
-                <Route path='/poster-videos' component={PosterVideos} />
-                <Route component={NotFound} />
-              </Switch>
-            </div>
-          </MuiThemeProvider>
-        </ScrollIntoView>
-      </BrowserRouter>
-    )
-  }
+              <Route path='/logos' component={Logos} />
+              <Route path='/posters' component={Posters} />
+              <Route path='/letterhead' component={Letterhead} />
+              <Route path='/share-a-story' component={Story} />
+              <Route path='/planning-guide' component={PlanningGuide} />
+              <Route path='/glossary' component={Glossary} />
+              <Route path='/services' component={Services} />
+              <Route path='/service-request-form' component={ServiceRequest} />
+              <Route path='/tutorial' component={Tutorial} />
+              <Route path='/poster-videos' component={PosterVideos} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </MuiThemeProvider>
+      </ScrollIntoView>
+    </BrowserRouter>
+  )
 }
 
 export default Routes
