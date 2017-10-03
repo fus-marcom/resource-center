@@ -7,6 +7,7 @@ const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const app = express()
 const fetch = require('node-fetch')
+const xssFilters = require('xss-filters')
 
 const PORT = process.env.SERVER_PORT || 9000
 // const CLIENT_PORT = process.env.PORT || 3000
@@ -101,7 +102,9 @@ app.post('/story-form', function (req, res) {
     fields[name] = value
     fieldsString =
       fieldsString +
-      `<span><span style='text-transform: capitalize;'>${name}</span>: ${value}</span><br /><br />`
+      `<span><span style='text-transform: capitalize;'>${xssFilters.inHTMLData(
+        name
+      )}</span>: ${xssFilters.inHTMLData(value)}</span><br /><br />`
   })
 
   // Handle a possible error while parsing the request
@@ -122,6 +125,7 @@ app.post('/story-form', function (req, res) {
     // server crashes
     if (error) return
     console.log('Received fields:\n' + JSON.stringify(fields, null, 2))
+    console.log(fieldsString)
 
     const emailBody = `Thank you for your submission!<br /><br />${fieldsString}`
 
@@ -224,7 +228,9 @@ app.post('/uploads', function (req, res) {
     fieldsString =
       value !== 'false' && name !== 'fileValid' && value !== 'null'
         ? fieldsString +
-          `<span><span style='text-transform: capitalize;'>${name}</span>: ${value}</span><br /><br />`
+          `<span><span style='text-transform: capitalize;'>${xssFilters.inHTMLData(
+            name
+          )}</span>: ${xssFilters.inHTMLData(value)}</span><br /><br />`
         : fieldsString
   })
 
