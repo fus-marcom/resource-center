@@ -5,24 +5,6 @@ $fus-green:      #21412a;
 $fus-gold:       #998643;
 $link-color: $fus-yellow;
 
-.tabs {
-  list-style-type: none;
-  text-align: center;
-
-  .active {
-    font-weight: 500;
-  }
-
-  .tab {
-    margin: 0 2px;
-    display: inline;
-    padding: 8px;
-    color: $fus-yellow;
-    cursor: pointer;
-
-  }
-}
-
 .logo-card-container {
   margin-bottom: 24px;
 
