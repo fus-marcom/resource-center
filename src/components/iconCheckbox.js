@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 /* global handleDialogOpen handleDialogClose */
 import React, { Component } from 'react'
 import Checkbox from 'material-ui/Checkbox'
