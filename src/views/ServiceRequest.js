@@ -239,7 +239,7 @@ class ServiceRequest extends Component {
               className='col s12 m6 file-upload'
               style={{ marginBottom: '16px' }}
             >
-              <label for='upload' className='file-field input-field'>
+              <label htmlFor='upload' className='file-field input-field'>
                 <div className='btn'>
                   <span>Upload Files</span>
                   <input
@@ -275,7 +275,7 @@ class ServiceRequest extends Component {
             </div>
             <div className='col s12 m6 checkbox-col'>
               {leftCheckboxes.map((label, index) => (
-                <div>
+                <div key={index}>
                   <IconCheckbox
                     label={label.name}
                     name={label.name.toLowerCase()}
@@ -316,7 +316,7 @@ class ServiceRequest extends Component {
             </div>
             <div className='col s12 m6 checkbox-col'>
               {rightCheckboxes.map((label, index) => (
-                <div>
+                <div key={index}>
                   <IconCheckbox
                     label={label.name}
                     name={label.name.toLowerCase()}
