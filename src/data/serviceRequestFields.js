@@ -131,7 +131,6 @@ export const leftCheckboxes = [
 ]
 
 export const rightCheckboxes = [
-  { name: 'Social Media (New Platform/Feed)' },
   { name: 'Social Media Ad' },
   { name: 'Social Media Post' },
   { name: 'Television Ad' },
