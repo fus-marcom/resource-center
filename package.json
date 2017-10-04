@@ -20,7 +20,8 @@
     "react-masonry-component": "^5.0.7",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.11",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "xss-filters": "^1.2.7"
   },
   "scripts": {
     "predeploy": "npm run build",
