@@ -1,15 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Resource Center",
+  "name": "MarCom Resource Center",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "192x192",
+      "sizes": "32x32",
       "type": "image/png"
+    },
+    {
+      "src": "desktop.jpg",
+      "sizes": "347x400",
+      "type": "image/jpg"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#21412a",
+  "background_color": "#21412a"
 }
