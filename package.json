@@ -21,6 +21,7 @@
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.11",
     "react-tap-event-plugin": "^2.0.1",
+    "typeface-roboto": "^0.0.35",
     "xss-filters": "^1.2.7"
   },
   "scripts": {
