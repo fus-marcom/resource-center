@@ -64,7 +64,7 @@ class Story extends Component {
     this.setState({ form })
   }
 
-  handleFormData = async () => {
+  handleFormData = () => {
     const data = new FormData()
     for (const [key, val] of Object.entries(this.state.form)) {
       data.append(key, val)
@@ -72,32 +72,43 @@ class Story extends Component {
 
     this.setState({ loadingDialogOpen: true })
 
-    try {
-      const response = await fetch(UPLOAD_URL, {
-        method: 'post',
-        body: data
-      }).then(res => res.json())
+    const promiseResponse = fetch(UPLOAD_URL, {
+      method: 'post',
+      body: data
+    })
 
-      if (!response.success) throw response.status
+    promiseResponse
+      .then(response => {
+        if (!response) throw response.status
 
-      this.setState({
-        resultDialogOpen: true,
-        resultDialogSuccess: true,
-        resultDialogText: 'Your story suggestion was sent successfully.'
+        this.changeDialogResults({
+          dialogOpen: true,
+          dialogSuccess: true,
+          dialogText: 'Your story suggestion was sent successfully.'
+        })
       })
-    } catch (err) {
-      const msg =
-        typeof err === 'string'
-          ? err
-          : 'An error occurred while sending your story.'
-      this.setState({
-        resultDialogOpen: true,
-        resultDialogSuccess: false,
-        resultDialogText: msg
+      .catch(err => {
+        const msg =
+          typeof err === 'string'
+            ? err
+            : 'An error occurred while sending your story.'
+
+        this.changeDialogResults({
+          dialogOpen: true,
+          dialogSuccess: false,
+          dialogText: msg
+        })
       })
-    }
 
     this.setState({ loadingDialogOpen: false })
+  }
+
+  changeDialogResults (dialogResults) {
+    this.setState({
+      resultDialogOpen: dialogResults.dialogOpen,
+      resultDialogSuccess: dialogResults.dialogSuccess,
+      resultDialogText: dialogResults.dialogText
+    })
   }
 
   handleDialogClose = () => {
