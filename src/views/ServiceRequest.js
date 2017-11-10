@@ -130,18 +130,7 @@ class ServiceRequest extends Component {
     this.setState({ form })
   }
 
-  handleFormData = () => {
-    if (!Object.entries) {
-      Object.entries = function (obj) {
-        const ownProps = Object.keys(obj)
-        let i = ownProps.length
-        const resArray = new Array(i) // preallocate the Array
-        while (i--) resArray[i] = [ownProps[i], obj[ownProps[i]]]
-
-        return resArray
-      }
-    }
-
+  handleFormData = async () => {
     const data = new FormData()
     for (const [key, val] of Object.entries(this.state.form)) {
       data.append(key, val)
@@ -151,43 +140,32 @@ class ServiceRequest extends Component {
 
     this.setState({ loadingDialogOpen: true })
 
-    const promiseResponse = fetch(UPLOAD_URL, {
-      method: 'post',
-      body: data
-    })
+    try {
+      const response = await fetch(UPLOAD_URL, {
+        method: 'post',
+        body: data
+      }).then(res => res.json())
 
-    promiseResponse
-      .then(response => {
-        if (!response) throw response.status
+      if (!response.success) throw response.status
 
-        this.changeDialogResults({
-          dialogOpen: true,
-          dialogSuccess: true,
-          dialogText: 'Your service request was sent successfully.'
-        })
+      this.setState({
+        resultDialogOpen: true,
+        resultDialogSuccess: true,
+        resultDialogText: 'Your service request was sent successfully.'
       })
-      .catch(err => {
-        const msg =
-          typeof err === 'string'
-            ? err
-            : 'An error occurred while sending the request.'
-
-        this.changeDialogResults({
-          dialogOpen: true,
-          dialogSuccess: false,
-          dialogText: msg
-        })
+    } catch (err) {
+      const msg =
+        typeof err === 'string'
+          ? err
+          : 'An error occurred while sending the request.'
+      this.setState({
+        resultDialogOpen: true,
+        resultDialogSuccess: false,
+        resultDialogText: msg
       })
+    }
 
     this.setState({ loadingDialogOpen: false })
-  }
-
-  changeDialogResults (dialogResults) {
-    this.setState({
-      resultDialogOpen: dialogResults.dialogOpen,
-      resultDialogSuccess: dialogResults.dialogSuccess,
-      resultDialogText: dialogResults.dialogText
-    })
   }
 
   handleDialogClose = () => {
@@ -201,6 +179,7 @@ class ServiceRequest extends Component {
       <div className='container'>
         <Helmet>
           <title>Service Request | Resource Center</title>
+          <script src='https://cdn.polyfill.io/v2/polyfill.min.js?features=def‌​ault,es6,Object.entries,Array.from,DocumentFragment.prototype.append,Element.prototype.append,Document&flags=gated' />
         </Helmet>
         <div className='row'>
           <div className='col s12 flow-text'>
