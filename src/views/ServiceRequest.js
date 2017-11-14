@@ -186,6 +186,11 @@ class ServiceRequest extends Component {
             <h2 style={{ marginBottom: 0 }}>
               Please use this form to request services.
             </h2>
+            <span style={{ fontSize: '16px' }}>
+              * This form is not compatable with older browsers. Please use
+              current versions of Chrome, Firefox, Edge or Safari. Internet
+              Explorer is not supported.
+            </span>
           </div>
         </div>
         <div className='row'>
