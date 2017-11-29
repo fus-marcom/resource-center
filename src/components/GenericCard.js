@@ -67,6 +67,7 @@ export class GenericCard extends Component {
       <a href={link} rel='noopener noreferrer' target='_blank'>
         <CardContent {...this.props} />
       </a>
+
     ) : (
       <CardContent {...this.props} />
     )

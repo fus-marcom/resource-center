@@ -136,6 +136,7 @@ class Story extends Component {
       <div className='container'>
         <Helmet>
           <title>Story | Resource Center</title>
+          <script src='https://cdn.polyfill.io/v2/polyfill.min.js?features=def‌​ault,es6,Object.entries,Document&flags=gated' />
         </Helmet>
         <div className='row flow-text'>
           <div className='col s12'>

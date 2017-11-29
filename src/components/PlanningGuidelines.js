@@ -41,11 +41,7 @@ class PlanningGuidelines extends PureComponent {
                       {title}
                     </h3>
                     {description.split('\n').map((paragraph, key) => {
-                      return (
-                        <p key={key}>
-                          {paragraph}
-                        </p>
-                      )
+                      return <p key={key}>{paragraph}</p>
                     })}
                   </span>
                 )
@@ -64,12 +60,8 @@ class PlanningGuidelines extends PureComponent {
               {map(servicesData, ({ title, description }, key) => {
                 return (
                   <dl key={key}>
-                    <dt>
-                      {title}
-                    </dt>
-                    <dd>
-                      {description}
-                    </dd>
+                    <dt>{title}</dt>
+                    <dd>{description}</dd>
                   </dl>
                 )
               })}

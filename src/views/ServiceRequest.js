@@ -179,12 +179,18 @@ class ServiceRequest extends Component {
       <div className='container'>
         <Helmet>
           <title>Service Request | Resource Center</title>
+          <script src='https://cdn.polyfill.io/v2/polyfill.min.js?features=def‌​ault,es6,Object.entries,Array.from,DocumentFragment.prototype.append,Element.prototype.append,Document&flags=gated' />
         </Helmet>
         <div className='row'>
           <div className='col s12 flow-text'>
             <h2 style={{ marginBottom: 0 }}>
               Please use this form to request services.
             </h2>
+            <span style={{ fontSize: '16px' }}>
+              * This form is not compatible with older browsers. Please use
+              current versions of Chrome, Firefox, Edge or Safari. Internet
+              Explorer is not supported.
+            </span>
           </div>
         </div>
         <div className='row'>
