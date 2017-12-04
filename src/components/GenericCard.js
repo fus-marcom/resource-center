@@ -59,16 +59,15 @@ export class GenericCard extends Component {
 
     const isInternal = link && link[0] === '/'
 
-    const jsx = link ? (
-      isInternal ? (
-        <Link to={link}>
-          <CardContent {...this.props} />
-        </Link>
-      ) : (
-        <a href={link} target='_blank'>
-          <CardContent {...this.props} />
-        </a>
-      )
+    const jsx = link ? isInternal ? (
+      <Link to={link}>
+        <CardContent {...this.props} />
+      </Link>
+    ) : (
+      <a href={link} rel='noopener noreferrer' target='_blank'>
+        <CardContent {...this.props} />
+      </a>
+
     ) : (
       <CardContent {...this.props} />
     )

@@ -382,6 +382,7 @@ class ServiceRequest extends Component {
                       <Link
                         to='/planning-guide'
                         target='_blank'
+                        rel='noopener noreferrer'
                         style={{ fontWeight: 500 }}
                       >
                         Planning Guide
