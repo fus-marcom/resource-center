@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-/* global notifyFormError enableSubmit */
+/* global notifyFormError enableSubmit handleDateChange */
 import React, { Component } from 'react'
 import DatePicker from 'material-ui/DatePicker'
 import IconCheckbox from '../components/iconCheckbox'
@@ -54,7 +54,8 @@ class ServiceRequest extends Component {
     this.state = {
       form: {
         fileInput: null,
-        fileValid: true
+        fileValid: true,
+        completionDate: null
       },
       loadingDialogOpen: false,
       resultDialogOpen: false,
@@ -103,6 +104,13 @@ class ServiceRequest extends Component {
     const name = target.name
     const form = Object.assign({}, this.state.form)
     form[name] = value
+
+    this.setState({ form })
+  }
+
+  handleDateChange = date => {
+    const form = this.state.form
+    form.completionDate = date
 
     this.setState({ form })
   }
@@ -239,7 +247,10 @@ class ServiceRequest extends Component {
               className='col s12 m6'
               style={{ marginTop: '16px', marginBottom: '16px' }}
             >
-              <DatePicker hintText='Desired Completion Date' />
+              <DatePicker
+                hintText='Desired Completion Date'
+                onChange={(e, date) => this.handleDateChange(date)}
+              />
             </div>
             <div
               className='col s12 m6 file-upload'
