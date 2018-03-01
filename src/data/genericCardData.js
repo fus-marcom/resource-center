@@ -2,8 +2,7 @@ export default [
   {
     title: 'Brand Manual',
     description: 'Visual Brand Identity Manual.',
-    link:
-      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/LogoManual2.pdf',
+    link: 'https://franciscan.university/cdn/Manual18.pdf',
     hoverable: true
   },
   {
