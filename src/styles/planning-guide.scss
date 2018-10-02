@@ -1,4 +1,12 @@
 $fus-yellow: #ffb41f;
+$break-medium: 1000px;
+
+.scroll-spy {
+  @media screen and (max-width: $break-medium) {
+    display: none;
+  }
+}
+
 ul.scroll-spy-nav {
   list-style: none;
 
