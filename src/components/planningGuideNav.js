@@ -5,7 +5,7 @@ import { headerTitles, styles } from '../data/planningGuideServicesData'
 const PlanningGuideNav = ({ activeSection, scrollToItem }) => {
   const { root } = styles
   return (
-    <div style={root}>
+    <div className='scroll-spy' style={root}>
       <ul className='scroll-spy-nav'>
         {map(headerTitles, ({ title }, key) => {
           return (
