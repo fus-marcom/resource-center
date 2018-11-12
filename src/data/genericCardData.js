@@ -35,7 +35,7 @@ export default [
     title: 'Powerpoint',
     description: 'Official Franciscan University Powerpoint template.',
     link:
-      'https://myfranciscan.franciscan.edu/ICS/clientconfig/customcontent/marcom/MarComTab/PowerPointPres.pptx',
+      'https://franciscan.university/cdn/FranPowerPoint.pptx',
     hoverable: true
   },
   {
