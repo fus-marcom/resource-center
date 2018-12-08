@@ -116,26 +116,20 @@ class ServiceRequest extends Component {
   }
 
   handleFilePath = event => {
-    const target = event.target
-    // Array.from converts array-like to array (so that map works)
-    const files = Array.from(target.files)
-    let fileNames = null
-    const formState = this.state.form
-    formState.fileValid = true
-    this.setState({ formState })
-    if (files.length > 0) {
-      fileNames = files.map(f => f.name).join(', ')
-      files.map(
-        f =>
-          fileExtensions.match(f.type) === null
-            ? (formState.fileValid = false)
-            : ''
-      )
-    }
+    const files = [...event.target.files]
 
-    const form = Object.assign({}, this.state.form)
-    form.fileInput = fileNames
-    this.setState({ form })
+    this.setState(state => {
+      const form = { ...state.form }
+
+      const fileNames = files.map(f => f.name).join(', ')
+      form.fileInput = fileNames
+
+      form.fileValid = !files.some(f => !fileExtensions.match(f.type))
+
+      return {
+        form
+      }
+    })
   }
 
   handleFormData = async () => {
