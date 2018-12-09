@@ -21,9 +21,7 @@ import {
   leftCheckboxes,
   rightCheckboxes
 } from '../data/serviceRequestFields'
-
-const fileExtensions =
-  'application/vnd.rar, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, audio/mp4, audio/mpeg, text/plain, application/zip, video/quicktime, video/avi, audio/wav, image/jpeg, application/octet-stream, image/png'
+import fileExtensions from '../data/fileExtensions'
 
 const PORT = process.env.SERVER_PORT || 9000
 const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
@@ -124,7 +122,7 @@ class ServiceRequest extends Component {
       const fileNames = files.map(f => f.name).join(', ')
       form.fileInput = fileNames
 
-      form.fileValid = !files.some(f => !fileExtensions.match(f.type))
+      form.fileValid = !files.some(f => !fileExtensions.includes(f.type))
 
       return {
         form
