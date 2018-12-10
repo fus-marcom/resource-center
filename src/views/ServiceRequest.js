@@ -21,9 +21,7 @@ import {
   leftCheckboxes,
   rightCheckboxes
 } from '../data/serviceRequestFields'
-
-const fileExtensions =
-  'application/vnd.rar, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, audio/mp4, audio/mpeg, text/plain, application/zip, video/quicktime, video/avi, audio/wav, image/jpeg, application/octet-stream, image/png'
+import fileExtensions from '../data/fileExtensions'
 
 const PORT = process.env.SERVER_PORT || 9000
 const HOST = process.env.UPLOADS_HOST || window.location.host.split(':')[0]
@@ -116,26 +114,20 @@ class ServiceRequest extends Component {
   }
 
   handleFilePath = event => {
-    const target = event.target
-    // Array.from converts array-like to array (so that map works)
-    const files = Array.from(target.files)
-    let fileNames = null
-    const formState = this.state.form
-    formState.fileValid = true
-    this.setState({ formState })
-    if (files.length > 0) {
-      fileNames = files.map(f => f.name).join(', ')
-      files.map(
-        f =>
-          fileExtensions.match(f.type) === null
-            ? (formState.fileValid = false)
-            : ''
-      )
-    }
+    const files = [...event.target.files]
 
-    const form = Object.assign({}, this.state.form)
-    form.fileInput = fileNames
-    this.setState({ form })
+    this.setState(state => {
+      const form = { ...state.form }
+
+      const fileNames = files.map(f => f.name).join(', ')
+      form.fileInput = fileNames
+
+      form.fileValid = !files.some(f => !fileExtensions.includes(f.type))
+
+      return {
+        form
+      }
+    })
   }
 
   handleFormData = async () => {

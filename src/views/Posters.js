@@ -48,7 +48,7 @@ class Posters extends Component {
                     className={hoverable ? 'hoverable' : ''}
                   >
                     {description}
-                    {contactInfo !== undefined ? (
+                    {contactInfo && (
                       <div style={{ marginBottom: '0' }}>
                         <br />
                         {map(contactInfo, ({ link, linkText }, key) => {
@@ -64,7 +64,7 @@ class Posters extends Component {
                           )
                         })}
                       </div>
-                    ) : null}
+                    )}
                   </GenericCard>
                 </div>
               )
