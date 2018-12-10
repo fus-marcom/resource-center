@@ -42,20 +42,6 @@ class PlanningGuide extends Component {
     })
   }
 
-  handleNext = () => {
-    const { stepIndex } = this.state
-    if (stepIndex < 2) {
-      this.setState({ stepIndex: stepIndex + 1 })
-    }
-  }
-
-  handlePrev = () => {
-    const { stepIndex } = this.state
-    if (stepIndex > 0) {
-      this.setState({ stepIndex: stepIndex - 1 })
-    }
-  }
-
   render () {
     return (
       <div>
